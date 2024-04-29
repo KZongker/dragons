@@ -44,12 +44,12 @@ h2 {
     font-size: 40px;
 }
 
-.vikings {
+.vikings, .vikings2, .dragons, .dragons2 {
     border-bottom: 5px solid black;
     height: 450px;
 }
 
-.vikings p {
+.vikings p, .vikings2 p, .dragons p, .dragons2 p {
     line-height: 40px;
     text-align: center;
 }
@@ -58,6 +58,30 @@ h2 {
     float: left;
     margin-left: 100px;
     height: 300px;
+}
+
+.vikings2 img {
+    float: right;
+    margin-right: 100px;
+    height: 300px;
+}
+
+.dragons img {
+    float: left;
+    margin-left: 75px;
+    height: 300px;
+    max-width: 500px;
+}
+
+.dragons2 img {
+    float: right;
+    margin-right: 75px;
+    height: 300px;
+    max-width: 500px;
+}
+
+.flipped {
+    transform: scaleX(-1);
 }
 
 a:visited, a:link {
