@@ -34,8 +34,30 @@ body {
     overflow: auto;
 }
 
-h1, p {
+.info {
     text-align: center;
+    border-bottom: 5px solid black;
+}
+
+h2 {
+    text-align: center;
+    font-size: 40px;
+}
+
+.vikings {
+    border-bottom: 5px solid black;
+    height: 450px;
+}
+
+.vikings p {
+    line-height: 40px;
+    text-align: center;
+}
+
+.vikings img {
+    float: left;
+    margin-left: 100px;
+    height: 300px;
 }
 
 a:visited, a:link {
