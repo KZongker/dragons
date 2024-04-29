@@ -39,6 +39,27 @@ body {
     border-bottom: 5px solid black;
 }
 
+#intro {
+    line-height: 40px;
+    text-align: left;
+    text-indent: 50px;
+    padding: 10px 20px;
+    font-size: 24px;
+}
+
+#intro a {
+    line-height: 40px;
+    font-size: 24px;
+}
+
+#intro a:hover {
+    font-size: 26px;
+}
+
+#thanks {
+    text-align: center;
+}
+
 h2 {
     text-align: center;
     font-size: 40px;
