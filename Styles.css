@@ -114,3 +114,22 @@ a:visited, a:link {
 a:hover {
     font-size: 18px;
 }
+
+form {
+    text-align: center;
+    margin: 10px auto;
+    font-size: 24px;
+}
+
+.checks {
+    margin: 5px 0px;
+    width: 20%;
+    min-height: 10px;
+    height: 25px;
+}
+
+input, select {
+    margin: 5px 0px;
+    width: 40%;
+    min-height: 2em;
+}
