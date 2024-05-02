@@ -1,3 +1,16 @@
+* {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1, h2 {
+    font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
+}
+
 body {
     width: 80%; min-width: 600px; max-width: 1200px;
     margin: 50px auto;
@@ -8,7 +21,7 @@ body {
     background-color: whitesmoke;
     float: left;
     width: 200px;
-    line-height: 100px;
+    line-height: 90px;
     height: 600px;
     border-right: 5px solid black;
 }
@@ -132,4 +145,21 @@ input, select {
     margin: 5px 0px;
     width: 40%;
     min-height: 2em;
+}
+
+#music, #music2 {
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+}
+
+#fanimg {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+#fanimg img {
+    max-width: 100%;
+    max-height: 100%;
 }
