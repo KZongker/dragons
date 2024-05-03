@@ -17,7 +17,7 @@ body {
     background-image: linear-gradient(to bottom right, hsl(191, 67%, 83%), hsl(187, 92%, 76%), hsl(179, 67%, 58%));
 }
 
-#nav {
+.nav {
     background-color: whitesmoke;
     float: left;
     width: 200px;
@@ -26,11 +26,11 @@ body {
     border-right: 5px solid black;
 }
 
-#nav li {
+.nav li {
     list-style: none;
 }
 
-#header, #footer {
+.header, .footer {
     height: 100px;
     line-height: 100px;
     text-align: center;
@@ -41,13 +41,27 @@ body {
     overflow: hidden;
 }
 
-#content {
+.content {
     background-color: whitesmoke;
     height: 600px;
     overflow: auto;
 }
 
+.content2 {
+    background-color: black;
+    height: 600px;
+    overflow: auto;
+    color: whitesmoke;
+}
+
 .info {
+    text-align: center;
+    border-bottom: 5px solid black;
+}
+
+.info2 {
+    background-color: whitesmoke;
+    color: black;
     text-align: center;
     border-bottom: 5px solid black;
 }
@@ -159,7 +173,13 @@ input, select {
     flex-direction: column;
     flex-wrap: wrap;
 }
-#fanimg img {
+
+.wide {
     max-width: 100%;
+    max-height: 100%;
+}
+
+.tall {
+    max-width: 49%;
     max-height: 100%;
 }
