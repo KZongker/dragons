@@ -4,7 +4,7 @@
   font-style: normal;
 }
 
-h1, h2 {
+h1, h2, h3 {
     font-family: "Oswald", sans-serif;
   font-optical-sizing: auto;
   font-weight: bold;
@@ -182,4 +182,104 @@ input, select {
 .tall {
     max-width: 49%;
     max-height: 100%;
+}
+
+/*
+ Code below is for testing cards-! may replace all ".vikings" and ".vikings2" css!!
+*/
+
+#cardholder {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+h3 {font-size: 28px;}
+
+.bold {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.card {
+    height: 500px;
+    width:400px;
+    margin: 10px 0px;
+    padding: 0px;
+}
+
+.cardhead {
+    color: whitesmoke;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    margin: -20px 0px 0px 0px;
+}
+
+.cardcont {
+    background-color:whitesmoke;
+    height: 400px;
+    width: 360px;
+    margin: 0px auto;
+    padding: 5px 0px;
+    font-size: 20px;
+}
+
+.cardcont img {
+    max-height: 120px;
+    max-width: 100px;
+    border: 5px solid black;
+    float: left;
+    margin: 0px 10px 10px;
+}
+
+.starstats {
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+    line-height: 20px;
+}
+
+#card1, #card1head {
+    background-color: rgb(0,0,0);
+}
+
+#card2, #card2head {
+    background-color: rgb(0, 136, 255);
+}
+
+#card3, #card3head, #card4, #card4head {
+    background-color: rgb(22, 188, 22);
+}
+
+#card5, #card5head {
+    background-color: rgb(125, 113, 36);
+}
+
+#card6, #card6head {
+    background-color: rgb(252, 92, 0);
+}
+
+#card1head {
+    text-shadow: 4px 4px 8px grey;
+}
+
+#card2head {
+    text-shadow: 4px 4px 8px rgb(0, 99, 185);
+}
+
+#card3head {
+    text-shadow: 4px 4px 8px rgb(16, 143, 16);
+}
+
+#card4head {
+    text-shadow: 4px 4px 8px rgb(16, 143, 16);
+}
+
+#card5head {
+    text-shadow: 4px 4px 8px rgb(100, 91, 28);
+}
+
+#card6head {
+    text-shadow: 4px 4px 8px rgb(194, 71, 0);
 }
