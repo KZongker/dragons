@@ -92,101 +92,7 @@ h2 {
     font-size: 40px;
 }
 
-.vikings, .vikings2, .dragons, .dragons2 {
-    border-bottom: 5px solid black;
-    height: 450px;
-}
-
-.vikings p, .vikings2 p, .dragons p, .dragons2 p {
-    line-height: 40px;
-    text-align: center;
-}
-
-.vikings img {
-    float: left;
-    margin-left: 100px;
-    height: 300px;
-}
-
-.vikings2 img {
-    float: right;
-    margin-right: 100px;
-    height: 300px;
-}
-
-.dragons img {
-    float: left;
-    margin-left: 75px;
-    height: 300px;
-    max-width: 500px;
-}
-
-.dragons2 img {
-    float: right;
-    margin-right: 75px;
-    height: 300px;
-    max-width: 500px;
-}
-
-.flipped {
-    transform: scaleX(-1);
-}
-
-a:visited, a:link {
-    color: green;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-a:hover {
-    font-size: 18px;
-}
-
-form {
-    text-align: center;
-    margin: 10px auto;
-    font-size: 24px;
-}
-
-.checks {
-    margin: 5px 0px;
-    width: 20%;
-    min-height: 10px;
-    height: 25px;
-}
-
-input, select {
-    margin: 5px 0px;
-    width: 40%;
-    min-height: 2em;
-}
-
-#music, #music2 {
-    display: flex;
-    justify-content: center;
-    font-size: 18px;
-}
-
-#fanimg {
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-}
-
-.wide {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.tall {
-    max-width: 49%;
-    max-height: 100%;
-}
-
-/*
- Code below is for testing cards-! may replace all ".vikings" and ".vikings2" css!!
-*/
+/* START OF VIKINGS PAGE */
 
 #cardholder {
     display: flex;
@@ -282,4 +188,86 @@ h3 {font-size: 28px;}
 
 #card6head {
     text-shadow: 4px 4px 8px rgb(194, 71, 0);
+}
+
+/* END OF VIKINGS PAGE */
+
+.dragons, .dragons2 {
+    border-bottom: 5px solid black;
+    height: 450px;
+}
+
+.dragons p, .dragons2 p {
+    line-height: 40px;
+    text-align: center;
+}
+
+.dragons img {
+    float: left;
+    margin-left: 75px;
+    height: 300px;
+    max-width: 500px;
+}
+
+.dragons2 img {
+    float: right;
+    margin-right: 75px;
+    height: 300px;
+    max-width: 500px;
+}
+
+.flipped {
+    transform: scaleX(-1);
+}
+
+a:visited, a:link {
+    color: green;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+a:hover {
+    font-size: 18px;
+}
+
+form {
+    text-align: center;
+    margin: 10px auto;
+    font-size: 24px;
+}
+
+.checks {
+    margin: 5px 0px;
+    width: 20%;
+    min-height: 10px;
+    height: 25px;
+}
+
+input, select {
+    margin: 5px 0px;
+    width: 40%;
+    min-height: 2em;
+}
+
+#music, #music2 {
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+}
+
+#fanimg {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.wide {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.tall {
+    max-width: 49%;
+    max-height: 100%;
 }
