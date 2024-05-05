@@ -1,3 +1,5 @@
+/* GENERAL/INDEX START */
+
 * {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
@@ -92,7 +94,9 @@ h2 {
     font-size: 40px;
 }
 
-/* START OF VIKINGS PAGE */
+/* GENERAL/INDEX END */
+
+/* VIKINGS START */
 
 #cardholder {
     display: flex;
@@ -142,8 +146,12 @@ h3 {font-size: 28px;}
 .starstats {
     font-weight: bold;
     font-size: 24px;
-    text-align: center;
-    line-height: 20px;
+    padding: 10px;
+}
+
+.starstats td {
+    height: 45px;
+    width: 62%;
 }
 
 #card1, #card1head {
@@ -190,8 +198,9 @@ h3 {font-size: 28px;}
     text-shadow: 4px 4px 8px rgb(194, 71, 0);
 }
 
-/* END OF VIKINGS PAGE */
+/* VIKINGS END */
 
+/* DRAGONS START */
 .dragons, .dragons2 {
     border-bottom: 5px solid black;
     height: 450px;
@@ -220,6 +229,10 @@ h3 {font-size: 28px;}
     transform: scaleX(-1);
 }
 
+/* DRAGONS END */
+
+/* LINKS START */
+
 a:visited, a:link {
     color: green;
     text-decoration: none;
@@ -229,6 +242,10 @@ a:visited, a:link {
 a:hover {
     font-size: 18px;
 }
+
+/* LINKS END */
+
+/* SURVEY START */
 
 form {
     text-align: center;
@@ -249,11 +266,15 @@ input, select {
     min-height: 2em;
 }
 
+/* GALLERY START */
+
 #music, #music2 {
     display: flex;
     justify-content: center;
     font-size: 18px;
 }
+
+/* SURVEY END */
 
 #fanimg {
     margin-top: 50px;
@@ -271,3 +292,5 @@ input, select {
     max-width: 49%;
     max-height: 100%;
 }
+
+/* GALLERY END */
