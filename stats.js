@@ -87,6 +87,30 @@ const humans = [{
     defense: 3,
     image: "Images/Fanart/Snotloutig.jpg",
     color: "rgb(252, 92, 0)",
+},
+{
+    name: "Jeremy Zongker",
+    dragon: "Snaggleclaw",
+    age: "24/29/30",
+    bravery: 3,
+    intelligence: 5,
+    speed: 4,
+    attack: 4,
+    defense: 3,
+    image: "Images/Fanart/Hiccup.jpg",
+    color: "rgb(0, 92, 252)",
+},
+{
+    name: "Alyssa Zongker",
+    dragon: "Emberglow",
+    age: "13/17/18",
+    bravery: 5,
+    intelligence: 4,
+    speed: 4,
+    attack: 1,
+    defense: 2,
+    image: "Images/Fanart/ruffnut.jpg",
+    color: "rgb(0, 92, 252)",
 }];
 //end human array
 
@@ -119,12 +143,29 @@ function getCard(human, index) {
 
 function getStats(human) {
     let result = '<table class="starstats">'
-    + '<tr><td>Bravery: </td><td>' + human.bravery + '</td></tr>'
-    + '<tr><td>Intelligence: </td><td>' + human.intelligence + '</td></tr>'
-    + '<tr><td>Speed: </td><td>' + human.speed + '</td></tr>'
-    + '<tr><td>Attack: </td><td>' + human.attack + '</td></tr>'
-    + '<tr><td>Defense: </td><td>' + human.defense + '</td></tr>'
+    + '<tr><td>Bravery: </td><td>' + beStars(human.bravery) + '</td></tr>'
+    + '<tr><td>Intelligence: </td><td>' + beStars(human.intelligence) + '</td></tr>'
+    + '<tr><td>Speed: </td><td>' + beStars(human.speed) + '</td></tr>'
+    + '<tr><td>Attack: </td><td>' + beStars(human.attack) + '</td></tr>'
+    + '<tr><td>Defense: </td><td>' + beStars(human.defense) + '</td></tr>'
     +'</table>'
+    return result;
+}
+
+function beStars(stars) {
+    let result = "&#x2605; &#x2606; &#x2606; &#x2606; &#x2606;";
+    if (stars == 2) {
+        result = "&#x2605; &#x2605; &#x2606; &#x2606; &#x2606;";
+    }
+    if (stars == 3) {
+        result = "&#x2605; &#x2605; &#x2605; &#x2606; &#x2606;";
+    }
+    if (stars == 4) {
+        result = "&#x2605; &#x2605; &#x2605; &#x2605; &#x2606;";
+    }
+    if (stars == 5) {
+        result = "&#x2605; &#x2605; &#x2605; &#x2605; &#x2605;";
+    }
     return result;
 }
 //end human card functions
