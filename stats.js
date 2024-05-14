@@ -3,143 +3,133 @@ let greeting = "Ahoy there";
 console.log(greeting);
 //works fine!!
 
-//grabbing images:
-const hicImage = document.querySelector("#hicImage");
-const astImage = document.querySelector("#astImage");
-const rufImage = document.querySelector("#rufImage");
-const tufImage = document.querySelector("#tufImage");
-const fishImage = document.querySelector("#fishImage");
-const snotImage = document.querySelector("#snotImage");
-//end image grabbing lol
+/* previously grabbed images with this code:
+const hicImage = document.querySelector("#hicImage"); */
 
-/* can I similarly grab colors???
-const cardColor1 = document.querySelector();
-no this wouldn't be the right method, style property maybe vvv
-document.getElementById("card1head").style.background-color = "black";
-no idea if it would work- or if it works with rgb colors?? does not like hyphen. Underscore seems okay?
-const cardColor1 = document.getElementById("card1head").style.background_color = "rgb(0,0,0)";
-^^^ this but camelCase not underscore: https://www.w3schools.com/jsref/prop_style_backgroundcolor.asp
-would have to run function to change color????? Maybe????????? */
+/* Previously altered card colors with this code:
 const cardHeadColor1 = document.getElementById("card1head").style.backgroundColor = "rgb(0,0,0)";
 const cardColor1 = document.getElementById("card1").style.backgroundColor = "rgb(0,0,0)";
 
 function card1ColorChange() {
     cardHeadColor1(humans[0]);
     cardColor1(humans[0]);
-};
-//ITWORKS ITWORKS ITWOKRS ASDHFAHBHVEBVDHBFWEHABHDBF
-
-//colors continued
-const cardHeadColor2 = document.getElementById("card2head").style.backgroundColor = "rgb(0, 136, 255)";
-const cardColor2 = document.getElementById("card2").style.backgroundColor = "rgb(0, 136, 255)";
-
-function card1ColorChange() {
-    cardHeadColor2(humans[1]);
-    cardColor2(humans[1]);
-};
-
-const cardHeadColor3 = document.getElementById("card3head").style.backgroundColor = "rgb(22, 188, 22)";
-const cardColor3 = document.getElementById("card3").style.backgroundColor = "rgb(22, 188, 22)";
-
-function card1ColorChange() {
-    cardHeadColor3(humans[2]);
-    cardColor3(humans[2]);
-};
-
-const cardHeadColor4 = document.getElementById("card4head").style.backgroundColor = "rgb(22, 188, 22)";
-const cardColor4 = document.getElementById("card4").style.backgroundColor = "rgb(22, 188, 22)";
-
-function card1ColorChange() {
-    cardHeadColor4(humans[3]);
-    cardColor4(humans[3]);
-};
-
-const cardHeadColor5 = document.getElementById("card5head").style.backgroundColor = "rgb(125, 113, 36)";
-const cardColor5 = document.getElementById("card5").style.backgroundColor = "rgb(125, 113, 36)";
-
-function card1ColorChange() {
-    cardHeadColor5(humans[4]);
-    cardColor5(humans[4]);
-};
-
-const cardHeadColor6 = document.getElementById("card6head").style.backgroundColor = "rgb(252, 92, 0)";
-const cardColor6 = document.getElementById("card6").style.backgroundColor = "rgb(252, 92, 0)";
-
-function card1ColorChange() {
-    cardHeadColor6(humans[5]);
-    cardColor6(humans[5]);
-};
-//colors end... I forgot about text shadows... ughhhh.......... update later. reorganize too.
+}; */
 
 //start human array
 const humans = [{
     name: "Hiccup Horrendous Haddock III",
     dragon: "Toothless",
     age: "15/20/21",
-    bravery: "4/5",
-    intelligence: "5/5",
-    speed: "5/5",
-    attack: "2/5",
-    defense: "3/5",
-    hicImage,
+    bravery: 4,
+    intelligence: 5,
+    speed: 5,
+    attack: 2,
+    defense: 3,
+    image: "Images/Fanart/Hiccup.jpg",
+    color: "rgb(0,0,0)",
 },
 {
     name: "Astrid Hofferson",
     dragon: "Stormfly",
     age: "15/20/21",
-    bravery: "4/5",
-    intelligence: "5/5",
-    speed: "4/5",
-    attack: "4/5",
-    defense: "3/5",
-    astImage,
+    bravery: 4,
+    intelligence: 5,
+    speed: 4,
+    attack: 4,
+    defense: 3,
+    image: "Images/Fanart/astrid.jpg",
+    color: "rgb(0, 136, 255)",
 },
 {
     name: "Ruffnut Thorston",
     dragon: "Barf (& Belch)",
     age: "14/19/20",
-    bravery: "4/5",
-    intelligence: "2/5",
-    speed: "3/5",
-    attack: "5/5",
-    defense: "1/5",
-    rufImage,
+    bravery: 4,
+    intelligence: 2,
+    speed: 3,
+    attack: 5,
+    defense: 1,
+    image: "Images/Fanart/Thorstons.jpg",
+    color: "rgb(22, 188, 22)",
 },
 {
     name: "Tuffnut Thorston",
     dragon: "Belch (& Barf)",
     age: "14/19/20",
-    bravery: "2/5",
-    intelligence: "3/5",
-    speed: "2/5",
-    attack: "5/5",
-    defense: "3/5",
-    tufImage,
+    bravery: 2,
+    intelligence: 3,
+    speed: 2,
+    attack: 5,
+    defense: 3,
+    image: "Images/Fanart/Thorstons.jpg",
+    color: "rgb(22, 188, 22)",
 },
 {
     name: "Fishlegs Ingerman",
     dragon: "Meatlug",
     age: "14/19/20",
-    bravery: "1/5",
-    intelligence: "5/5",
-    speed: "1/5",
-    attack: "4/5",
-    defense: "4/5",
-    fishImage,
+    bravery: 1,
+    intelligence: 5,
+    speed: 1,
+    attack: 4,
+    defense: 4,
+    image: "Images/Fanart/fishlegsig.jpg",
+    color: "rgb(125, 113, 36)",
 },
 {
     name: "Snotlout Jorgenson",
     dragon: "Hookfang",
     age: "15/20/21",
-    bravery: "5/5",
-    intelligence: "3/5",
-    speed: "3/5",
-    attack: "5/5",
-    defense: "3/5",
-    snotImage,
+    bravery: 5,
+    intelligence: 3,
+    speed: 3,
+    attack: 5,
+    defense: 3,
+    image: "Images/Fanart/Snotloutig.jpg",
+    color: "rgb(252, 92, 0)",
 }];
 //end human array
 
-//test 2:
-console.log(humans[5]);
-// yessss all images connect!!
+//start card functions
+function fillCard() {
+    let result = [];
+    for (let i = 0; i < humans.length; i++) {
+        const human = humans[i];
+        const card = getCard(human, i + 1);
+        result.push(card);
+    }
+    console.log(result);
+    document.getElementById('cardHolderTwo').innerHTML = result.join('');
+}
+
+function getCard(human, index) {
+    let result = '<div class="card" id="card' + index + '">'
+   + '  <div class="cardhead" id="card' + index + 'head">'
+   + '      <h3>' + human.name + '</h3>'
+   + '  </div>'
+   + '  <div class="cardcont">'
+   + '      <img src="' + human.image + '">'
+   + '      <p><span class="bold">Dragon: </span>' + human.dragon + '</p>'
+   + '      <p><span class="bold">Age: </span>' + human.age + '</p><br>'
+   + getStats()
+   + '  </div>'
+   + '</div>';
+   return result;
+}
+
+function getStats(human) {
+    let result = 'Bravery: ';
+    return result;
+}
+//end card functions
+
+/* from notepad:
+ for (let i = 0; i < humans.length; i++) result.push(getCard(humans[i], i + 1));
+
+ same as:
+
+for (let i = 0; i < humans.length; i++) {
+	const human = humans[i];
+	const card = getCard(human, i + 1);
+	result.push(card);
+ */
