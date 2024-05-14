@@ -90,7 +90,7 @@ const humans = [{
 }];
 //end human array
 
-//start card functions
+//start human card functions
 function fillCard() {
     let result = [];
     for (let i = 0; i < humans.length; i++) {
@@ -99,7 +99,7 @@ function fillCard() {
         result.push(card);
     }
     console.log(result);
-    document.getElementById('cardHolderTwo').innerHTML = result.join('');
+    document.getElementById('cardholder').innerHTML = result.join('');
 }
 
 function getCard(human, index) {
@@ -111,17 +111,23 @@ function getCard(human, index) {
    + '      <img src="' + human.image + '">'
    + '      <p><span class="bold">Dragon: </span>' + human.dragon + '</p>'
    + '      <p><span class="bold">Age: </span>' + human.age + '</p><br>'
-   + getStats()
+   + getStats(human)
    + '  </div>'
    + '</div>';
    return result;
 }
 
 function getStats(human) {
-    let result = 'Bravery: ';
+    let result = '<table class="starstats">'
+    + '<tr><td>Bravery: </td><td>' + human.bravery + '</td></tr>'
+    + '<tr><td>Intelligence: </td><td>' + human.intelligence + '</td></tr>'
+    + '<tr><td>Speed: </td><td>' + human.speed + '</td></tr>'
+    + '<tr><td>Attack: </td><td>' + human.attack + '</td></tr>'
+    + '<tr><td>Defense: </td><td>' + human.defense + '</td></tr>'
+    +'</table>'
     return result;
 }
-//end card functions
+//end human card functions
 
 /* from notepad:
  for (let i = 0; i < humans.length; i++) result.push(getCard(humans[i], i + 1));
