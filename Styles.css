@@ -182,6 +182,14 @@ h3 {font-size: 28px;}
     background-color: rgb(22, 188, 22);
 }
 
+#card9, #card9head {
+    background-color: rgb(150, 0, 170);
+}
+
+#card10, #card10head {
+    background-color: rgb(150, 240, 0);
+}
+
 #card1head {
     text-shadow: 4px 4px 8px grey;
 }

@@ -111,6 +111,30 @@ const humans = [{
     defense: 2,
     image: "Images/Fanart/ruffnut.jpg",
     color: "rgb(0, 92, 252)",
+},
+{
+    name: "Violet Zongker",
+    dragon: "Indigo",
+    age: "26/31/32",
+    bravery: 3,
+    intelligence: 4,
+    speed: 3,
+    attack: 3,
+    defense: 4,
+    image: "Images/Fanart/ruffnut.jpg",
+    color: "rgb(0, 92, 252)",
+},
+{
+    name: "Thorn Zongker",
+    dragon: "Tigerlily",
+    age: "17/22/23",
+    bravery: 2,
+    intelligence: 4,
+    speed: 4,
+    attack: 1,
+    defense: 3,
+    image: "Images/Fanart/Thorstons.jpg",
+    color: "rgb(0, 92, 252)",
 }];
 //end human array
 
