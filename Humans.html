@@ -37,6 +37,18 @@
             <div id="cardholder">
                 
             </div>
+            <form>
+                <label for="battlerOne">Please choose your fighters:</label><br>
+                <select id="battlerOne">
+                  
+                </select>
+                <label for="battlerTwo"></label>
+                <select id="battlerTwo">
+                
+                </select><br>
+                <button type="button" id="fightButton" onclick="doBattle();">Fight!</button>
+                <p id="battleWinner">The winner is: </p><br>
+            </form>
         </div>
         
         <div class="footer">Made by K Zongker</div>
@@ -45,6 +57,7 @@
 
         <script src="stats.js"></script>
         <script>fillCard();</script>
+        <script>fillOptions();</script>
 
     </body>
 </html>

@@ -194,6 +194,69 @@ function beStars(stars) {
 }
 //end human card functions
 
+//start human battle functions
+
+const battlerOne = document.getElementById('battlerOne');
+const battlerTwo = document.getElementById('battlerTwo');
+const battleWinner = document.getElementById('battleWinner');
+
+function fillOptions() {
+    let result = [];
+    for (let i = 0; i < humans.length; i++) {
+        const human = humans[i];
+        options = getOptions(human, i);
+        result.push(options);
+    }
+    battlerOne.innerHTML = result.join('');
+    battlerTwo.innerHTML = result.join('');
+}
+
+function getOptions(human, index) {
+    let result = '<option value="' + index + '">' + human.name + '</option>';
+    return result;
+}
+
+
+
+
+
+
+
+function combatMath(human) {
+    let damage = human.bravery + human.attack;
+    let resistance = human.speed + human.defense;
+    let total = damage - resistance;
+    return total;
+}
+
+function pullCombat(human1Index, human2Index) {
+    let human1 = humans[human1Index];
+    let human2 = humans[human2Index];
+    let fighterOne = combatMath(human1);
+    let fighterTwo = combatMath(human2);
+    if (fighterOne > fighterTwo) {
+        battleWinner.innerText = 'The Winner is: ' + human1.name;
+    }
+    if (fighterOne < fighterTwo) {
+        battleWinner.innerText = 'The Winner is: ' + human2.name;
+    }
+    if (fighterOne == fighterTwo) {
+        battleWinner.innertext = 'The Winner is: Nobody! They tied!'
+    }
+    return battleWinner;
+}
+
+function doBattle() {
+    console.log('Fighting Vikings!!')
+    if(battlerOne.value == battlerTwo.value) {
+        alert('Viking cannot fight themself!');
+    } else {
+       pullCombat(battlerOne.value, battlerTwo.value);
+    }
+}
+//end human battle functions
+
+
 /* from notepad:
  for (let i = 0; i < humans.length; i++) result.push(getCard(humans[i], i + 1));
 
