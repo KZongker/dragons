@@ -121,7 +121,7 @@ const humans = [{
     speed: 3,
     attack: 3,
     defense: 4,
-    image: "Images/Fanart/ruffnut.jpg",
+    image: "Images/Fanart/astrid.jpg",
     color: "rgb(0, 92, 252)",
 },
 {
