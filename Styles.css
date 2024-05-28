@@ -232,6 +232,24 @@ h3 {font-size: 28px;}
 }
 /* FIGHT CALCULATOR END */
 
+/* ADDING HUMANS START */
+#addHumanBtn {
+    height: 60px;
+    width: 200px;
+    font-size: 30px;
+    font-style: italic;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgb(25, 185, 52);
+    background-image: linear-gradient(to bottom right, rgb(108, 245, 95), rgb(25, 185, 33));
+    border: 2px solid rgb(25, 95, 0);
+}
+
+#card11, #card11head, #card12, #card12head, #card13, #card13head, #card14, #card14head, #card15, #card15head, #card16, #card16head {
+    background-color: rgb(163, 0, 0);
+}
+/* ADDING HUMANS END */
+
 /* DRAGONS START */
 .dragons, .dragons2 {
     border-bottom: 5px solid black;

@@ -49,6 +49,51 @@
                 <button type="button" id="fightButton" onclick="doBattle();">Fight!</button>
                 <p id="battleWinner">The winner is: </p><br>
             </form>
+
+            <form id="addVikings">
+                <p>Want to add your own viking? Fill out the form below and test them in battle!</p>
+                
+                <label for="fullName">Viking Name:</label>
+                <input type="text" id="fullName" maxlength="50" required><br>
+                <label for="dragonName" maxlength="50">Dragon Name:</label>
+                <input type="text" id="dragonName" required><br>
+                <label for="vikingAge">Viking Age (first movie):</label>
+                <input type="number" id="vikingAge" min="1" max="114" required><br>
+                <label for="brave">Bravery:</label>
+                <input type="number" id="brave" min="1" max="5" required><br>
+                <label for="smart">Intelligence:</label>
+                <input type="number" id="smart" min="1" max="5" required><br>
+                <label for="fast">Speed:</label>
+                <input type="number" id="fast" min="1" max="5" required><br>
+                <label for="punch">Attack:</label>
+                <input type="number" id="punch" min="1" max="5" required><br>
+                <label for="block">Defense:</label>
+                <input type="number" id="block" min="1" max="5" required><br>
+
+                <label for="colorSelection">What color card would you like?</label><br>
+                <select id="colorSelection">
+                    <option>Red</option>
+                    <option>Orange</option>
+                    <option>Yellow</option>
+                    <option>Green</option>
+                    <option>Blue</option>
+                    <option>Purple</option>
+                    <option>Pink</option>
+                    <option>Grey</option>
+                    <option>Black</option>
+                </select><br>
+
+                <label for="imageSelection">Which image would you like?</label><br>
+                <select id="imageSelection">
+                    <option>Hiccup</option>
+                    <option>Astrid</option>
+                    <option>Thorston Twins</option>
+                    <option>Fishlegs</option>
+                    <option>Snotlout</option>
+                </select><br>
+
+                <button type="button" id="addHumanBtn" onclick="requireHuman();">Submit</button>
+            </form>
         </div>
         
         <div class="footer">Made by K Zongker</div>

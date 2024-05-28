@@ -218,10 +218,6 @@ function getOptions(human, index) {
 
 
 
-
-
-
-
 function combatMath(human) {
     let damage = human.bravery + human.attack;
     let resistance = human.speed + human.defense;
@@ -255,6 +251,62 @@ function doBattle() {
     }
 }
 //end human battle functions
+
+//start adding humans functions
+const vikingName = document.getElementById('fullName');
+const dragonName = document.getElementById('dragonName');
+const vikingAge = document.getElementById('vikingAge');
+const vikingBravery = document.getElementById('brave');
+const vikingIntelligence = document.getElementById('smart');
+const vikingSpeed = document.getElementById('fast');
+const vikingAttack = document.getElementById('punch');
+const vikingDefense = document.getElementById('block');
+const addHumanBtn = document.getElementById('addHumanBtn');
+
+function requireHuman() {
+    if(vikingName.value === "") {
+        alert("Please enter a full viking name!");
+    } else if(dragonName.value === "") {
+        alert("Please enter a name for your dragon!");
+    } else if(vikingAge.value === "") {
+        alert("Please enter your viking's age!");
+    } else if(vikingBravery.value === "") {
+        alert("Please enter a bravery stat!");
+    } else if(vikingIntelligence.value === "") {
+        alert("Please enter an intelligence stat!");
+    } else if(vikingSpeed.value === "") {
+        alert("Please enter a speed stat!");
+    } else if(vikingAttack.value === "") {
+        alert("Please enter an attack stat!");
+    } else if(vikingDefense.value === "") {
+        alert("Please enter a defense stat!");
+    } else {
+        createHumans();
+    }
+}
+
+function createHumans() {
+
+    const newHuman = {
+        name: `${vikingName.value}`,
+        dragon: `${dragonName.value}`,
+        age: `${JSON.parse(vikingAge.value)}/${JSON.parse(vikingAge.value) + 5}/${JSON.parse(vikingAge.value) + 6}`,
+        bravery: `${vikingBravery.value}`,
+        intelligence: `${vikingIntelligence.value}`,
+        speed: `${vikingSpeed.value}`,
+        attack: `${vikingAttack.value}`,
+        defense: `${vikingDefense.value}`,
+        image: "Images/Fanart/Hiccup.jpg",
+        color: "rgb(255, 0, 0)"
+    }
+
+    humans.push(newHuman);
+    fillCard(newHuman);
+    fillOptions(newHuman);
+    document.getElementById('addVikings').reset();
+    console.log(humans);
+}
+//end adding humans functions
 
 
 /* from notepad:
