@@ -152,7 +152,7 @@ function fillCard() {
 }
 
 function getCard(human, index) {
-    let result = '<div class="card" id="card' + index + '">'
+    let result = '<div class="card" id="card' + index + '">' /* + (space)human.color (add color classes in CSS, update in humans array)*/
    + '  <div class="cardhead" id="card' + index + 'head">'
    + '      <h3>' + human.name + '</h3>'
    + '  </div>'
