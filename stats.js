@@ -140,9 +140,10 @@ const humans = [{
 
 //start human card functions
 function fillCard() {
+    const everyHuman = fetchHumans();
     let result = [];
-    for (let i = 0; i < humans.length; i++) {
-        const human = humans[i];
+    for (let i = 0; i < everyHuman.length; i++) {
+        const human = everyHuman[i];
         const card = getCard(human, i + 1);
         result.push(card);
     }
@@ -195,7 +196,6 @@ function beStars(stars) {
 //end human card functions
 
 //start human battle functions
-
 const battlerOne = document.getElementById('battlerOne');
 const battlerTwo = document.getElementById('battlerTwo');
 const battleWinner = document.getElementById('battleWinner');
@@ -306,25 +306,27 @@ function createHumans() {
         color: "rgb(255, 0, 0)"
     }
 
-    /*
-    const storageArray = [];
     storageArray.push(newHuman);
-    const stringStorage = JSON.stringify(storageArray);
-    localStorage.setItem("extras", stringStorage);
-
-    const extraHumans = localStorage.getItem("extras");
-    const extraHumansParsed = JSON.parse(extraHumans);
-
-    const fullHumansList = humans.concat(extraHumansParsed);
-
-    Was thinking this might work for local storage but not sure, saving for later
-    */
-
     humans.push(newHuman);
+    storeHumans();
     fillCard(newHuman);
     fillOptions(newHuman);
     document.getElementById('addVikings').reset();
-    console.log(humans);
+}
+
+const storageArray = [];
+
+function storeHumans() {
+    const stringStorage = JSON.stringify(storageArray);
+    localStorage.setItem("extras", stringStorage);
+}
+
+function fetchHumans() {
+    const extraHumans = localStorage.getItem("extras");
+    const extraHumansParsed = JSON.parse(extraHumans);
+    const fullHumansList = humans.concat(extraHumansParsed);
+    console.log(fullHumansList);
+    return fullHumansList;
 }
 //end adding humans functions
 
