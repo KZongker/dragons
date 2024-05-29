@@ -280,6 +280,12 @@ function requireHuman() {
         alert("Please enter an attack stat!");
     } else if(vikingDefense.value === "") {
         alert("Please enter a defense stat!");
+    } else if(vikingAge.value <= 0 || vikingAge.value >= 114) {
+        alert("Please enter a valid age! (1-114)");
+    } else if(vikingBravery.value <= 0 || vikingBravery.value >= 6 || vikingIntelligence.value <=0 || vikingIntelligence.value >= 6 ||
+        vikingSpeed.value <= 0 || vikingSpeed.value >= 6 || vikingAttack.value <= 0 || vikingAttack.value >= 6 || vikingDefense.value <= 0 ||
+        vikingDefense.value >=6) {
+        alert("Please enter valid stat numbers! (1-5)");
     } else {
         createHumans();
     }
@@ -299,6 +305,20 @@ function createHumans() {
         image: "Images/Fanart/Hiccup.jpg",
         color: "rgb(255, 0, 0)"
     }
+
+    /*
+    const storageArray = [];
+    storageArray.push(newHuman);
+    const stringStorage = JSON.stringify(storageArray);
+    localStorage.setItem("extras", stringStorage);
+
+    const extraHumans = localStorage.getItem("extras");
+    const extraHumansParsed = JSON.parse(extraHumans);
+
+    const fullHumansList = humans.concat(extraHumansParsed);
+
+    Was thinking this might work for local storage but not sure, saving for later
+    */
 
     humans.push(newHuman);
     fillCard(newHuman);
