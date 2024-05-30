@@ -26,7 +26,7 @@ const humans = [{
     attack: 2,
     defense: 3,
     image: "Images/Fanart/Hiccup.jpg",
-    color: "rgb(0,0,0)",
+    color: "black",
 },
 {
     name: "Astrid Hofferson",
@@ -38,7 +38,7 @@ const humans = [{
     attack: 4,
     defense: 3,
     image: "Images/Fanart/astrid.jpg",
-    color: "rgb(0, 136, 255)",
+    color: "blue",
 },
 {
     name: "Ruffnut Thorston",
@@ -50,7 +50,7 @@ const humans = [{
     attack: 5,
     defense: 1,
     image: "Images/Fanart/Thorstons.jpg",
-    color: "rgb(22, 188, 22)",
+    color: "green",
 },
 {
     name: "Tuffnut Thorston",
@@ -62,7 +62,7 @@ const humans = [{
     attack: 5,
     defense: 3,
     image: "Images/Fanart/Thorstons.jpg",
-    color: "rgb(22, 188, 22)",
+    color: "green",
 },
 {
     name: "Fishlegs Ingerman",
@@ -74,7 +74,7 @@ const humans = [{
     attack: 4,
     defense: 4,
     image: "Images/Fanart/fishlegsig.jpg",
-    color: "rgb(125, 113, 36)",
+    color: "brown",
 },
 {
     name: "Snotlout Jorgenson",
@@ -86,7 +86,7 @@ const humans = [{
     attack: 5,
     defense: 3,
     image: "Images/Fanart/Snotloutig.jpg",
-    color: "rgb(252, 92, 0)",
+    color: "scarlet",
 },
 {
     name: "Jeremy Zongker",
@@ -98,7 +98,7 @@ const humans = [{
     attack: 4,
     defense: 3,
     image: "Images/Fanart/Hiccup.jpg",
-    color: "rgb(0, 92, 252)",
+    color: "blue",
 },
 {
     name: "Alyssa Zongker",
@@ -110,7 +110,7 @@ const humans = [{
     attack: 1,
     defense: 2,
     image: "Images/Fanart/ruffnut.jpg",
-    color: "rgb(0, 92, 252)",
+    color: "green",
 },
 {
     name: "Violet Zongker",
@@ -122,7 +122,7 @@ const humans = [{
     attack: 3,
     defense: 4,
     image: "Images/Fanart/astrid.jpg",
-    color: "rgb(0, 92, 252)",
+    color: "purple",
 },
 {
     name: "Thorn Zongker",
@@ -134,7 +134,7 @@ const humans = [{
     attack: 1,
     defense: 3,
     image: "Images/Fanart/Thorstons.jpg",
-    color: "rgb(0, 92, 252)",
+    color: "green",
 }];
 //end human array
 
@@ -152,7 +152,7 @@ function fillCard() {
 }
 
 function getCard(human, index) {
-    let result = '<div class="card" id="card' + index + '">' /* + (space)human.color (add color classes in CSS, update in humans array)*/
+    let result = '<div class="card" id="card' + index + '">' /* + (space)human.color*/
    + '  <div class="cardhead" id="card' + index + 'head">'
    + '      <h3>' + human.name + '</h3>'
    + '  </div>'
@@ -201,9 +201,10 @@ const battlerTwo = document.getElementById('battlerTwo');
 const battleWinner = document.getElementById('battleWinner');
 
 function fillOptions() {
+    let everyHuman = fetchHumans();
     let result = [];
-    for (let i = 0; i < humans.length; i++) {
-        const human = humans[i];
+    for (let i = 0; i < everyHuman.length; i++) {
+        const human = everyHuman[i];
         options = getOptions(human, i);
         result.push(options);
     }
@@ -226,8 +227,9 @@ function combatMath(human) {
 }
 
 function pullCombat(human1Index, human2Index) {
-    let human1 = humans[human1Index];
-    let human2 = humans[human2Index];
+    let everyHuman = fetchHumans();
+    let human1 = everyHuman[human1Index];
+    let human2 = everyHuman[human2Index];
     let fighterOne = combatMath(human1);
     let fighterTwo = combatMath(human2);
     if (fighterOne > fighterTwo) {
@@ -262,6 +264,9 @@ const vikingSpeed = document.getElementById('fast');
 const vikingAttack = document.getElementById('punch');
 const vikingDefense = document.getElementById('block');
 const addHumanBtn = document.getElementById('addHumanBtn');
+
+const deleteBox = document.getElementById('deleteBox');
+const removeHumanBtn = document.getElementById('removeHumanBtn');
 
 function requireHuman() {
     if(vikingName.value === "") {
@@ -306,17 +311,18 @@ function createHumans() {
         color: "rgb(255, 0, 0)"
     }
 
+    const extraHumans = localStorage.getItem("extras");
+    const extraHumansParsed = JSON.parse(extraHumans);
+    const storageArray = extraHumansParsed ? extraHumansParsed : [];
     storageArray.push(newHuman);
-    humans.push(newHuman);
-    storeHumans();
+    storeHumans(storageArray);
     fillCard(newHuman);
     fillOptions(newHuman);
+    fillOptionsTwo();
     document.getElementById('addVikings').reset();
 }
 
-const storageArray = [];
-
-function storeHumans() {
+function storeHumans(storageArray) {
     const stringStorage = JSON.stringify(storageArray);
     localStorage.setItem("extras", stringStorage);
 }
@@ -324,11 +330,43 @@ function storeHumans() {
 function fetchHumans() {
     const extraHumans = localStorage.getItem("extras");
     const extraHumansParsed = JSON.parse(extraHumans);
-    const fullHumansList = humans.concat(extraHumansParsed);
-    console.log(fullHumansList);
+    const fullHumansList = (extraHumansParsed) ? humans.concat(extraHumansParsed) : humans;
     return fullHumansList;
 }
-//end adding humans functions
+
+//start deleting humans functions
+function fillOptionsTwo() {
+    const extraHumans = localStorage.getItem("extras");
+    const extraHumansParsed = JSON.parse(extraHumans);
+    if (!extraHumansParsed) {
+        return;
+    } else {
+        let result = [];
+        for (let i = 0; i < extraHumansParsed.length; i++) {
+            const human = extraHumansParsed[i];
+            options = getOptions(human, i);
+            result.push(options);
+        }
+        deleteBox.innerHTML = result.join('');
+    }
+}
+
+function murder() {
+    let index = document.getElementById('deleteBox').selectedIndex;
+    const extraHumans = localStorage.getItem("extras");
+    const extraHumansParsed = JSON.parse(extraHumans);
+    if(extraHumansParsed.length === 0) {
+        alert("Nobody to delete!");
+    } else {
+        extraHumansParsed.splice(index, 1);
+        let extraHumansString = JSON.stringify(extraHumansParsed);
+        localStorage.setItem("extras", extraHumansString);
+        fillCard();
+        fillOptionsTwo();
+    }
+}
+//end adding/deleting humans functions
+//end human functions
 
 
 /* from notepad:

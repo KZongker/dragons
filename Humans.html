@@ -94,6 +94,12 @@
 
                 <button type="button" id="addHumanBtn" onclick="requireHuman();">Submit</button>
             </form>
+            <form>
+                <label for="deleteBox">Would you like to delete an added viking?</label><br>
+                <select id="deleteBox">
+                </select><br>
+                <button type="button" id="removeHumanBtn" onclick="murder();">Delete</button>
+            </form>
         </div>
         
         <div class="footer">Made by K Zongker</div>
@@ -101,7 +107,10 @@
     </div>
 
         <script src="stats.js"></script>
-        <script>fillCard();</script>
-        <script>fillOptions();</script>
+        <script>
+            fillCard();
+            fillOptions();
+            fillOptionsTwo();
+        </script>
     </body>
 </html>
