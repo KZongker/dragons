@@ -381,17 +381,17 @@ function getColorOptions(color) {
 
 const imageArray = [
     {name: "Hiccup",
-    image: "images/Fanart/Hiccup.jpg"},
+    image: "Images/Fanart/Hiccup.jpg"},
     {name: "Astrid",
-    image: "images/Fanart/astrid.jpg"},
+    image: "Images/Fanart/astrid.jpg"},
     {name: "Thorstons",
-    image: "images/Fanart/Thorstons.jpg"},
+    image: "Images/Fanart/Thorstons.jpg"},
     {name: "Ruffnut",
-    image: "images/Fanart/ruffnut.jpg"},
+    image: "Images/Fanart/ruffnut.jpg"},
     {name: "Fishlegs",
-    image: "images/Fanart/fishlegsig.jpg"},
+    image: "Images/Fanart/fishlegsig.jpg"},
     {name: "Snotlout",
-    image: "images/Fanart/Snotloutig.jpg"}
+    image: "Images/Fanart/Snotloutig.jpg"}
 ];
 
 function fillImages() {
