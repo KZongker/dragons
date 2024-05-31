@@ -38,7 +38,7 @@ const humans = [{
     attack: 4,
     defense: 3,
     image: "Images/Fanart/astrid.jpg",
-    color: "blue",
+    color: "sky",
 },
 {
     name: "Ruffnut Thorston",
@@ -122,7 +122,7 @@ const humans = [{
     attack: 3,
     defense: 4,
     image: "Images/Fanart/astrid.jpg",
-    color: "purple",
+    color: "indigo",
 },
 {
     name: "Thorn Zongker",
@@ -134,11 +134,19 @@ const humans = [{
     attack: 1,
     defense: 3,
     image: "Images/Fanart/Thorstons.jpg",
-    color: "green",
+    color: "chartreuse",
 }];
 //end human array
 
 //start human card functions
+function pageLoader() {
+    fillCard();
+    fillOptions();
+    fillOptionsTwo();
+    fillColors();
+    fillImages();
+}
+
 function fillCard() {
     const everyHuman = fetchHumans();
     let result = [];
@@ -152,7 +160,7 @@ function fillCard() {
 }
 
 function getCard(human, index) {
-    let result = '<div class="card" id="card' + index + '">' /* + (space)human.color*/
+    let result = '<div class="card ' + human.color + '" id="card' + index + '">'
    + '  <div class="cardhead" id="card' + index + 'head">'
    + '      <h3>' + human.name + '</h3>'
    + '  </div>'
@@ -265,6 +273,9 @@ const vikingAttack = document.getElementById('punch');
 const vikingDefense = document.getElementById('block');
 const addHumanBtn = document.getElementById('addHumanBtn');
 
+const colorSelection = document.getElementById('colorSelection');
+const imageSelection = document.getElementById('imageSelection');
+
 const deleteBox = document.getElementById('deleteBox');
 const removeHumanBtn = document.getElementById('removeHumanBtn');
 
@@ -307,8 +318,8 @@ function createHumans() {
         speed: `${vikingSpeed.value}`,
         attack: `${vikingAttack.value}`,
         defense: `${vikingDefense.value}`,
-        image: "Images/Fanart/Hiccup.jpg",
-        color: "rgb(255, 0, 0)"
+        image: `${imageSelection.value}`,
+        color: `${colorSelection.value}`
     }
 
     const extraHumans = localStorage.getItem("extras");
@@ -332,6 +343,70 @@ function fetchHumans() {
     const extraHumansParsed = JSON.parse(extraHumans);
     const fullHumansList = (extraHumansParsed) ? humans.concat(extraHumansParsed) : humans;
     return fullHumansList;
+}
+
+const colorArray = [
+    {name: "Pink"},
+    {name: "Magenta"},
+    {name: "Red"},
+    {name: "Scarlet"},
+    {name: "Orange"},
+    {name: "Yellow"},
+    {name: "Chartreuse"},
+    {name: "Green"},
+    {name: "Sky"},
+    {name: "Blue"},
+    {name: "Indigo"},
+    {name: "Purple"},
+    {name: "Brown"},
+    {name: "Black"},
+    {name: "Slate"},
+    {name: "Grey"}
+];
+
+function fillColors() {
+    let result = [];
+    for(let i = 0; i < colorArray.length; i++) {
+        const color = colorArray[i];
+            options = getColorOptions(color, i);
+            result.push(options);
+    }
+    colorSelection.innerHTML = result.join('');
+}
+
+function getColorOptions(color) {
+    let result = '<option value="' + color.name.toLowerCase() + '">' + color.name + '</option>';
+    return result;
+}
+
+const imageArray = [
+    {name: "Hiccup",
+    image: "images/Fanart/Hiccup.jpg"},
+    {name: "Astrid",
+    image: "images/Fanart/astrid.jpg"},
+    {name: "Thorstons",
+    image: "images/Fanart/Thorstons.jpg"},
+    {name: "Ruffnut",
+    image: "images/Fanart/ruffnut.jpg"},
+    {name: "Fishlegs",
+    image: "images/Fanart/fishlegsig.jpg"},
+    {name: "Snotlout",
+    image: "images/Fanart/Snotloutig.jpg"}
+];
+
+function fillImages() {
+    let result = [];
+    for(let i = 0; i < imageArray.length; i++) {
+        const imageChoice = imageArray[i];
+            options = getImageOptions(imageChoice, i);
+            result.push(options);
+    }
+    imageSelection.innerHTML = result.join('');
+}
+
+function getImageOptions(imageChoice) {
+    let result = '<option value="' + imageChoice.image + '">' + imageChoice.name + '</option>';
+    return result;
 }
 
 //start deleting humans functions
