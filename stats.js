@@ -296,7 +296,7 @@ function requireHuman() {
         alert("Please enter an attack stat!");
     } else if(vikingDefense.value === "") {
         alert("Please enter a defense stat!");
-    } else if(vikingAge.value <= 0 || vikingAge.value >= 114) {
+    } else if(vikingAge.value <= 0 || vikingAge.value > 114) {
         alert("Please enter a valid age! (1-114)");
     } else if(vikingBravery.value <= 0 || vikingBravery.value >= 6 || vikingIntelligence.value <=0 || vikingIntelligence.value >= 6 ||
         vikingSpeed.value <= 0 || vikingSpeed.value >= 6 || vikingAttack.value <= 0 || vikingAttack.value >= 6 || vikingDefense.value <= 0 ||
