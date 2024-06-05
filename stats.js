@@ -47,8 +47,8 @@ function fillCard() {
 }
 
 function getCard(human, index) {
-    let result = '<div class="card ' + human.color + '" id="card' + index + '">'
-   + '  <div class="cardhead" id="card' + index + 'head">'
+    let result = '<div class="humanCard ' + human.color + '" id="humanCard' + index + '">'
+   + '  <div class="humanCardhead" id="humanCard' + index + 'head">'
    + '      <h3>' + human.name + '</h3>'
    + '  </div>'
    + '  <div class="cardcont">'
