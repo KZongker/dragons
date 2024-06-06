@@ -31,6 +31,7 @@ function pageLoader() {
         fillOptionsTwo();
         fillColors();
         fillImages();
+        hideBox();
     });
 }
 
@@ -166,31 +167,153 @@ const imageSelection = document.getElementById('imageSelection');
 const deleteBox = document.getElementById('deleteBox');
 const removeHumanBtn = document.getElementById('removeHumanBtn');
 
+const alertBox = document.getElementById('alertBox');
+
+function hideBox() {
+    alertBox.style.display = "none";
+}
+
 function requireHuman() {
     if(vikingName.value === "") {
-        alert("Please enter a full viking name!");
+        alertBox.style.display = "block";
+        let result = [];
+        let alteredAlert = '<div class="alert alert-warning alert-dismissible fade show text-center" role="alert">'
+               + '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-diamond-fill" viewBox="0 0 16 16">'
+               + '<path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>'
+               + '</svg>'
+               + ' Please enter a full viking name!'
+               + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+               + '</div>';
+            result.push(alteredAlert);
+        alertBox.innerHTML = result.join('');
     } else if(dragonName.value === "") {
-        alert("Please enter a name for your dragon!");
+        alertBox.style.display = "block";
+        let result = [];
+        let alteredAlert = '<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">'
+               + '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-diamond-fill" viewBox="0 0 16 16">'
+               + '<path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>'
+               + '</svg>'
+               + ' Please enter a dragon name!'
+               + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+               + '</div>';
+            result.push(alteredAlert);
+        alertBox.innerHTML = result.join('');
     } else if(vikingAge.value === "") {
-        alert("Please enter your viking's age!");
+        alertBox.style.display = "block";
+        let result = [];
+        let alteredAlert = '<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">'
+               + '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-diamond-fill" viewBox="0 0 16 16">'
+               + '<path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>'
+               + '</svg>'
+               + ' Please enter an age for your viking!'
+               + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+               + '</div>';
+            result.push(alteredAlert);
+        alertBox.innerHTML = result.join('');
     } else if(vikingBravery.value === "") {
-        alert("Please enter a bravery stat!");
+        alertBox.style.display = "block";
+        let result = [];
+        let alteredAlert = '<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">'
+               + '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-diamond-fill" viewBox="0 0 16 16">'
+               + '<path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>'
+               + '</svg>'
+               + ' Please enter a bravery stat!'
+               + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+               + '</div>';
+            result.push(alteredAlert);
+        alertBox.innerHTML = result.join('');
     } else if(vikingIntelligence.value === "") {
-        alert("Please enter an intelligence stat!");
+        alertBox.style.display = "block";
+        let result = [];
+        let alteredAlert = '<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">'
+               + '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-diamond-fill" viewBox="0 0 16 16">'
+               + '<path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>'
+               + '</svg>'
+               + ' Please enter an intelligence stat!'
+               + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+               + '</div>';
+            result.push(alteredAlert);
+        alertBox.innerHTML = result.join('');
     } else if(vikingSpeed.value === "") {
-        alert("Please enter a speed stat!");
+        alertBox.style.display = "block";
+        let result = [];
+        let alteredAlert = '<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">'
+               + '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-diamond-fill" viewBox="0 0 16 16">'
+               + '<path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>'
+               + '</svg>'
+               + ' Please enter a speed stat!'
+               + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+               + '</div>';
+            result.push(alteredAlert);
+        alertBox.innerHTML = result.join('');
     } else if(vikingAttack.value === "") {
-        alert("Please enter an attack stat!");
+        alertBox.style.display = "block";
+        let result = [];
+        let alteredAlert = '<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">'
+               + '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-diamond-fill" viewBox="0 0 16 16">'
+               + '<path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>'
+               + '</svg>'
+               + ' Please enter an attack stat!'
+               + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+               + '</div>';
+            result.push(alteredAlert);
+        alertBox.innerHTML = result.join('');
     } else if(vikingDefense.value === "") {
-        alert("Please enter a defense stat!");
+        alertBox.style.display = "block";
+        let result = [];
+        let alteredAlert = '<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">'
+               + '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-diamond-fill" viewBox="0 0 16 16">'
+               + '<path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>'
+               + '</svg>'
+               + ' Please enter a defense stat!'
+               + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+               + '</div>';
+            result.push(alteredAlert);
+        alertBox.innerHTML = result.join('');
     } else if(vikingAge.value <= 0 || vikingAge.value > 114) {
-        alert("Please enter a valid age! (1-114)");
+        alertBox.style.display = "block";
+        let result = [];
+        let alteredAlert = '<div class="alert alert-warning alert-dismissible fade show text-center" role="alert">'
+               + '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-diamond" viewBox="0 0 16 16">'
+               + '<path d="M6.95.435c.58-.58 1.52-.58 2.1 0l6.515 6.516c.58.58.58 1.519 0 2.098L9.05 15.565c-.58.58-1.519.58-2.098 0L.435 9.05a1.48 1.48 0 0 1 0-2.098zm1.4.7a.495.495 0 0 0-.7 0L1.134 7.65a.495.495 0 0 0 0 .7l6.516 6.516a.495.495 0 0 0 .7 0l6.516-6.516a.495.495 0 0 0 0-.7L8.35 1.134z"/>'
+               + '<path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>'
+               + '</svg>'
+               + ' Please enter a valid age! (1-114)'
+               + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+               + '</div>';
+            result.push(alteredAlert);
+        alertBox.innerHTML = result.join('');
     } else if(vikingBravery.value <= 0 || vikingBravery.value >= 6 || vikingIntelligence.value <=0 || vikingIntelligence.value >= 6 ||
         vikingSpeed.value <= 0 || vikingSpeed.value >= 6 || vikingAttack.value <= 0 || vikingAttack.value >= 6 || vikingDefense.value <= 0 ||
         vikingDefense.value >=6) {
-        alert("Please enter valid stat numbers! (1-5)");
+            alertBox.style.display = "block";
+            let result = [];
+            let alteredAlert = '<div class="alert alert-warning alert-dismissible fade show text-center" role="alert">'
+                   + '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-diamond" viewBox="0 0 16 16">'
+                   + '<path d="M6.95.435c.58-.58 1.52-.58 2.1 0l6.515 6.516c.58.58.58 1.519 0 2.098L9.05 15.565c-.58.58-1.519.58-2.098 0L.435 9.05a1.48 1.48 0 0 1 0-2.098zm1.4.7a.495.495 0 0 0-.7 0L1.134 7.65a.495.495 0 0 0 0 .7l6.516 6.516a.495.495 0 0 0 .7 0l6.516-6.516a.495.495 0 0 0 0-.7L8.35 1.134z"/>'
+                   + '<path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>'
+                   + '</svg>'
+                   + ' Please enter valid stat numbers! (1-5)'
+                   + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+                   + '</div>';
+                result.push(alteredAlert);
+            alertBox.innerHTML = result.join('');
     } else {
         createHumans();
+        alertBox.style.display = "block";
+        let result = [];
+        let alteredAlert = '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">'
+               + '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">'
+               + '<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>'
+               + '</svg>'
+               + ' Human Added! Feel free to test them in battle! '
+               + '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">'
+               + '<path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"/>'
+               + '</svg>'
+               + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+               + '</div>';
+            result.push(alteredAlert);
+        alertBox.innerHTML = result.join('');
     }
 }
 
