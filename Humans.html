@@ -39,28 +39,36 @@
                 <p>Everything you need to know about the vikings of Berk!</p>
             </div>
 
-            <div id="cardholder">
+            <div id="cardholder" class="mb-4">
                 
             </div>
 
-            <div class="container" id="fightAlert">
+            <div class="row justify-content-center">
+
+            <div class="col-lg-8" id="fightAlert">
                 <div class="alert alert-warning alert-dimissible fade show text-center" role="alert">
                     Viking Cannot Fight Themself!
-                    <button type="button" class="btn-close" onclick="hideBox();" aria-label="Close"></button>
+                    <button type="button" class="btn-close" onclick="hideBoxTwo();" aria-label="Close"></button>
                 </div>
             </div>
 
-            <form>
-                <label for="battlerOne">Please choose your fighters:</label><br>
-                <select id="battlerOne">
-                  
-                </select>
-                <label for="battlerTwo"></label>
-                <select id="battlerTwo">
-                
-                </select><br>
-                <button type="button" id="fightButton" onclick="doBattle();">Fight!</button>
-                <p id="battleWinner">The winner is: </p><br>
+                <div class="col-lg-8">
+
+            <form class="text-center" style="font-size: 20px">
+                <div class="row">
+                    <label for="battlerOne" class="form-label">Please choose your fighters:</label><br>
+                    <label for="battlerTwo" class="form-label"></label>
+                    <div class="col-sm-6">
+                        <select id="battlerOne" class="form-select">
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <select id="battlerTwo" class="form-select">
+                        </select><br>
+                    </div>
+                </div>
+                <button type="button" id="fightButton" onclick="doBattle();" class="mb-2">Fight!</button>
+                <p id="battleWinner">The Winner is: </p><br>
             </form>
 
             <div class="container" id="alertBox">
@@ -73,46 +81,107 @@
                 </div>
             </div>
 
-            <form id="addVikings">
+            <form id="addVikings" class="text-center" style="font-size: 20px">
                 <p>Want to add your own viking? Fill out the form below and test them in battle!</p>
                 
-                <label for="fullName">Viking Name:</label>
-                <input type="text" id="fullName" maxlength="50" required><br>
-                <label for="dragonName" maxlength="50">Dragon Name:</label>
-                <input type="text" id="dragonName" required><br>
-                <label for="vikingAge">Viking Age (first movie):</label>
-                <input type="number" id="vikingAge" min="1" max="114" required><br>
-                <label for="brave">Bravery:</label>
-                <input type="number" id="brave" min="1" max="5" required><br>
-                <label for="smart">Intelligence:</label>
-                <input type="number" id="smart" min="1" max="5" required><br>
-                <label for="fast">Speed:</label>
-                <input type="number" id="fast" min="1" max="5" required><br>
-                <label for="punch">Attack:</label>
-                <input type="number" id="punch" min="1" max="5" required><br>
-                <label for="block">Defense:</label>
-                <input type="number" id="block" min="1" max="5" required><br>
+                <div class="row my-4">
+                    <div class="col-md-4">
+                        <label for="fullName" class="form-label">Viking Name:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" id="fullName" class="form-control" maxlength="50" required>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <label for="dragonName" maxlength="50" class="form-label">Dragon Name:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" id="dragonName" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <label for="vikingAge" class="form-label">Viking Age (first movie):</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="number" class="form-control" id="vikingAge" min="1" max="114" required>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <label for="brave" class="form-label">Bravery:</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="number" id="brave" class="form-control" min="1" max="5" required>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <label for="smart" class="form-label">Intelligence:</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="number" id="smart" class="form-control" min="1" max="5" required>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <label for="fast" class="form-label">Speed:</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="number" id="fast" class="form-control" min="1" max="5" required>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <label for="punch" class="form-label">Attack:</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="number" id="punch" class="form-control" min="1" max="5" required>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <label for="block" class="form-label">Defense:</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="number" id="block" class="form-control" min="1" max="5" required>
+                    </div>
+                </div>
 
-                <label for="colorSelection">What color card would you like?</label><br>
-                <select id="colorSelection">
-                
-                </select><br>
+                <label for="colorSelection" class="form-label mb-2">What color card would you like?</label>
+                <div class="row justify-content-center mb-4">
+                    <div class="col-md-6">
+                        <select id="colorSelection" class="form-select">
+                        </select>
+                    </div>
+                </div>
 
-                <label for="imageSelection">Which image would you like?</label><br>
-                <select id="imageSelection">
-                  
-                </select><br>
+                <label for="imageSelection" class="form-label mb-2">Which image would you like?</label>
+                <div class="row justify-content-center mb-4">
+                    <div class="col-md-6">
+                        <select id="imageSelection" class="form-select">
+                        </select>
+                    </div>
+                </div>
 
-                <button type="button" id="addHumanBtn" onclick="requireHuman();">Submit</button>
+                <button type="button" id="addHumanBtn" class="mb-4" onclick="requireHuman();">Submit</button>
             </form>
-            <form>
-                <label for="deleteBox">Would you like to delete an added viking?</label><br>
-                <select id="deleteBox">
-                </select><br>
-                <button type="button" id="removeHumanBtn" onclick="murder();">Delete</button>
+            <form class="text-center" style="font-size: 20px">
+                <label for="deleteBox" class="form-label mb-2">Would you like to delete an added viking?</label>
+                <div class="row justify-content-center mb-4">
+                    <div class="col-md-6">
+                        <select id="deleteBox" class="form-select">
+                        </select>
+                    </div>
+                </div>
+                <button type="button" id="removeHumanBtn" class="mb-4" onclick="murder();">Delete</button>
             </form>
         </div>
-        
+
+    </div>
+    </div>
+
         <div class="footer">Made by K Zongker</div>
 
     </div>

@@ -129,10 +129,10 @@ function pullCombat(human1Index, human2Index) {
     let fighterOne = combatMath(human1);
     let fighterTwo = combatMath(human2);
     if (fighterOne > fighterTwo) {
-        battleWinner.innerText = 'The Winner is: ' + human1.name;
+        battleWinner.innerText = 'The Winner is: ' + human1.name + '!';
     }
     if (fighterOne < fighterTwo) {
-        battleWinner.innerText = 'The Winner is: ' + human2.name;
+        battleWinner.innerText = 'The Winner is: ' + human2.name + '!';
     }
     if (fighterOne == fighterTwo) {
         battleWinner.innertext = 'The Winner is: Nobody! They tied!'
@@ -172,6 +172,10 @@ const fightAlert = document.getElementById('fightAlert');
 
 function hideBox() {
     alertBox.style.display = "none";
+    fightAlert.style.display = "none";
+}
+
+function hideBoxTwo() {
     fightAlert.style.display = "none";
 }
 

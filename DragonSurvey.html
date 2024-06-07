@@ -46,57 +46,96 @@
             </audio>
         </div>
 
-            <form>
-                <label for="name">Viking Name:</label><br>
-                <input type="text" id="name" name="name" placeholder="firstname" required><br>
 
-                <label for="petname">Dragon Name:</label><br>
-                <input type="text" id="petname" name="petname" placeholder="pet name/made up" required><br>
 
-                <label for="species">My Dragon Is A:</label><br>
-                <select id="species" name="species">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+            <form style="font-size: 20px;">
+                <fieldset>
+                <label for="name" class="form-label">Viking Name:</label>
+                <input type="text" id="name" class="form-control mb-4" style="height: 46px" name="name" placeholder="firstname" required>
+
+                <label for="petname" class="form-label">Dragon Name:</label>
+                <input type="text" id="petname" class="form-control mb-4" style="height: 46px" name="petname" placeholder="pet name/made up" required>
+
+                <label for="species" class="form-label">My Dragon Is A:</label>
+                <select id="species" name="species" class="form-select mb-4" style="height: 46px">
                     <option>Select One</option>
                     <option>Deadly Nadder</option>
                     <option>Hiddeous Zippleback</option>
                     <option>Gronckle</option>
                     <option>Monstrous Nightmare</option>
                     <option>Other</option>
-                </select><br>
+                </select>
 
-                My Dragon Enjoys (check all that apply):<br>
-                <label for="fish">Fish</label>
-                <input type="checkbox" id="fish" name="fish" class="checks" checked><br>
-                <label for="chicken">Chicken</label>
-                <input type="checkbox" id="chicken" name="chicken" class="checks"><br>
-                <label for="sheep">Sheep</label>
-                <input type="checkbox" id="sheep" name="sheep" class="checks"><br>
-                <label for="nip">Dragon Nip</label>
-                <input type="checkbox" id="nip" name="nip" class="checks"><br>
-                <label for="light">Chasing Light</label>
-                <input type="checkbox" id="light" name="light" class="checks"><br>
-                <label for="fetch">Playing Fetch</label>
-                <input type="checkbox" id="fetch" name="fetch" class="checks"><br>
-                <label for="brush">Being Brushed</label>
-                <input type="checkbox" id="brush" name="brush" class="checks"><br>
-                <label for="flight">Flight Practice</label>
-                <input type="checkbox" id="flight" name="flight" class="checks"><br><br>
+                <span class="form-label">My Dragon Enjoys (check all that apply):</span>
+                <div class="form-check">
+                    <input type="checkbox" id="fish" class="form-check-input" name="fish" class="checks" checked>
+                    <label for="fish" class="form-check-label">Fish</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="chicken" class="form-check-input" name="chicken" class="checks">
+                    <label for="chicken" class="form-check-label">Chicken</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="sheep" class="form-check-input" name="sheep" class="checks">
+                    <label for="sheep" class="form-check-label">Sheep</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="nip" class="form-check-input" name="nip" class="checks">
+                    <label for="nip" class="form-check-label">Dragon Nip</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="light" class="form-check-input" name="light" class="checks">
+                    <label for="light" class="form-check-label">Chasing Light</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="fetch" class="form-check-input" name="fetch" class="checks">
+                    <label for="fetch" class="form-check-label">Playing Fetch</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="brush" class="form-check-input" name="brush" class="checks">
+                    <label for="brush" class="form-check-label">Being Brushed</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="flight" class="form-check-input" name="flight" class="checks">
+                    <label for="flight" class="form-check-label">Flight Practice</label>
+                </div><br>
 
-                My Dragon's Fire Type:<br>
-                <label for="blasts">Blasts</label>
-                <input type="radio" id="blasts" name="fire" class="checks" checked><br>
-                <label for="stream">Streaming</label>
-                <input type="radio" id="stream" name="fire" class="checks"><br>
-                <label for="gas">Gas/Spark</label>
-                <input type="radio" id="gas" name="fire" class="checks"><br>
-                <label for="otherfire">Other</label>
-                <input type="radio" id="otherfire" name="fire" class="checks"><br>
+                <span class="form-label">My Dragon's Fire Type:</span>
+                <div class="form-check">
+                    <input type="radio" id="blasts" class="form-check-input" name="fire" class="checks" checked>
+                    <label for="blasts" class="form-check-label">Blasts</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" id="stream" class="form-check-input" name="fire" class="checks">
+                    <label for="stream" class="form-check-label">Streaming</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" id="gas" class="form-check-input" name="fire" class="checks">
+                    <label for="gas" class="form-check-label">Gas/Spark</label>
+                </div>
+                <div class="form-check mb-4">
+                    <input type="radio" id="otherfire" class="form-check-input" name="fire" class="checks">
+                    <label for="otherfire" class="form-check-label">Other</label>
+                </div>
 
-                <br><label for="comments">Extra Comments:</label><br>
-                <textarea id="comments" name="comments" rows="10" cols="40" placeholder="Thank you for your input!"></textarea><br>
+                <div class="form-floating mb-4">
+                <textarea id="comments" name="comments" class="form-control" style="height: 140px" placeholder="Thank you for your input!"></textarea>
+                <label for="comments">Extra Comments:</label>
+                </div>
 
-                <button type="submit" onclick="alert('Thanks for participating in the dragon survey!')">Submit</button>
-                <button type="reset">Reset</button>
+                <div class="mb-4">
+                <button type="submit" onclick="alert('Thanks for participating in the dragon survey!')" class="btn btn-outline-success btn-lg">Submit</button>
+                <button type="reset" class="btn btn-outline-danger btn-lg">Reset</button>
+                </div>
+            </fieldset>
             </form>
+        </div>
+    </div>
+
+
+
         </div>
         <div class="footer">Made by K Zongker</div>
 

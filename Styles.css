@@ -325,7 +325,7 @@ a:hover {
 /* LINKS END */
 
 /* SURVEY START */
-form {
+/* form {
     text-align: center;
     margin: auto;
     padding: 10px 0px;
@@ -343,7 +343,7 @@ input, select {
     margin: 5px 0px;
     width: 40%;
     min-height: 2em;
-}
+} */
 /* GALLERY START */
 
 #music, #music2, #music3 {
