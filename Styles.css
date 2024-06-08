@@ -283,7 +283,12 @@ h3 {font-size: 28px;}
 /* ADDING HUMANS END */
 
 /* DRAGONS START */
-.dragons, .dragons2 {
+.dragons img, .dragons2 img {
+    max-width: 500px;
+    max-height: 300px;
+}
+
+/* .dragons, .dragons2 {
     border-bottom: 5px solid black;
     height: 450px;
 }
@@ -309,7 +314,7 @@ h3 {font-size: 28px;}
 
 .flipped {
     transform: scaleX(-1);
-}
+} */
 /* DRAGONS END */
 
 /* LINKS START */
