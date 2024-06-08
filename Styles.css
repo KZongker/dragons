@@ -62,8 +62,8 @@ body {
 }
 
 .info2 {
-    background-color: whitesmoke;
-    color: black;
+    background-color: black;
+    color: whitesmoke;
     text-align: center;
     border-bottom: 5px solid black;
     padding: 10px 0px;
@@ -358,6 +358,22 @@ input, select {
 }
 /* SURVEY END */
 
+#imageCarousel {
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+.carousel-item {
+    height: 75vh;
+    background: black;
+}
+
+.carousel-item img {
+    max-height: 75vh;
+}
+
+/*
+
 #fanimg {
     margin-top: 50px;
     display: flex;
@@ -373,5 +389,5 @@ input, select {
 .tall {
     max-width: 49%;
     max-height: 100%;
-}
+} */
 /* GALLERY END */
