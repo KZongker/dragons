@@ -368,16 +368,16 @@ input, select {
     background: black;
 }
 
-/* .item {
+.carousel-item .item {
     position: relative;
     height: 100%;
-} */
+}
 
 .carousel-item img {
     max-height: 75vh;
-   /* position: absolute;
     top: 50%;
-    transform: translate(50%); */
+    position: relative;
+    transform: translateY(-50%);
 }
 
 /*
