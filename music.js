@@ -1,31 +1,21 @@
-const dumbRapSong = document.getElementById('dumbRapSong');
 const surveySong = document.getElementById('surveySong');
 const gallerySong = document.getElementById('gallerySong');
 
-dumbRapSong.loop = false;
 surveySong.loop = true;
 gallerySong.loop = true;
 
 function playSong() {
-    dumbRapSong.play();
-}
-
-function pauseSong() {
-    dumbRapSong.pause();
-}
-
-function playSong2() {
     surveySong.play();
 }
 
-function pauseSong2() {
+function pauseSong() {
     surveySong.pause();
 }
 
-function playSong3() {
+function playSong2() {
     gallerySong.play();
 }
 
-function pauseSong3() {
+function pauseSong2() {
     gallerySong.pause();
 }
