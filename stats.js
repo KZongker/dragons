@@ -169,14 +169,20 @@ const removeHumanBtn = document.getElementById('removeHumanBtn');
 
 const alertBox = document.getElementById('alertBox');
 const fightAlert = document.getElementById('fightAlert');
+const deleteAlert = document.getElementById('deleteAlert');
 
 function hideBox() {
     alertBox.style.display = "none";
     fightAlert.style.display = "none";
+    deleteAlert.style.display = "none";
 }
 
 function hideBoxTwo() {
     fightAlert.style.display = "none";
+}
+
+function hideBoxThree() {
+    deleteAlert.style.display = "none";
 }
 
 function requireHuman() {
@@ -447,7 +453,7 @@ function murder() {
     const extraHumans = localStorage.getItem("extras");
     const extraHumansParsed = JSON.parse(extraHumans);
     if(extraHumansParsed.length === 0) {
-        alert("Nobody to delete!");
+        deleteAlert.style.display = "block";
     } else {
         extraHumansParsed.splice(index, 1);
         let extraHumansString = JSON.stringify(extraHumansParsed);
