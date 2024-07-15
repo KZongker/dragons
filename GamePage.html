@@ -2,10 +2,10 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Practice Home</title>
+        <title>Practice Game</title>
         <link rel="stylesheet" href="Styles.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- ROBOTO FONT -->
+        <!-- ROBOTO FONT -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -34,42 +34,43 @@
             </div>
         </div> 
 
-        <!-- OLD NAVIGATION:
-            <div class="nav">
-            <ul>
-                <li>Directory:</li>
-                <li><a href="index.html">Homepage</a></li>
-                <li><a href="Humans.html">Human Characters</a></li>
-                <li><a href="DragonChars.html">Dragon Characters</a></li>
-                <li><a href="DragonSurvey.html">Survey</a></li>
-                <li><a href="FanGallery.html">Fan Art</a></li>
-            </ul>
-        </div> -->
-
-        <div class="content container-fluid">
-            <div class="info">
-                <h1>Welcome to my HTTYD Information Catalog!</h1>
-                <p> My name is Katrina Zongker, and the purpose of this site is to allow me to practice coding.</p>
+        <div class="content2 container-fluid">
+            <div class="info2">
+                <h1>Welcome to the Game Page!</h1>
+                <p>Give it a go- have some fun! (Currently WIP- not playable.)</p>
             </div>
 
-            <div id="music3">
-                <p>Here's a dumb rap my dad had AI create about this site:</p> 
-                <audio controls>
-                    <source src="Audio/dragons.mp3">
-                </audio>
+            <div class="row justify-content-center my-4" id="fullScreen">
+
+                <div class="col-md-10 text-center">
+
+                    <div id="gameBox">
+
+                        <div class="player">
+                            <div class="playerDragon">
+
+                            </div>
+                        </div>
+
+                        <div class="sky"></div>
+
+                        <div class="ground"></div>
+
+                    </div>
+
+                </div>
+
             </div>
 
-            <div id="intro">
-                <p>If you've found this page, then you've stumbled upon my practice website. It isn't meant to be super professional as it just exists so that I can learn and practice different things and add code as I see fit. So, the likelihood of this page looking like it's from 2005 for a while are pretty high, but I appreciate your visit. Feel free to take a look around to see my progress!</p>
+            <div class="row" style="border-bottom: 4px solid black"></div>
 
-                <p>That said, the majority of the content here is going to be based on my childhood favorite movie trilogy, How to Train Your Dragon. Please do not take any of it too seriously, and I do not claim to own the series, characters, music, nor anything else within the franchise. Those all belong to Dreamworks, please visit their offical site for the series here: <a href="https://www.dreamworks.com/how-to-train-your-dragon">HTTYD Dreamworks Site!</a></p>
 
-                <p id="thanks">&#x2606;Thanks for stopping by!&#x2606;</p>
-            </div>
         </div>
+
 
         <div class="footer">Made by K Zongker</div>
 
+        <script src="GamePlay.js"></script>
         <!-- Latest compiled JavaScript -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
