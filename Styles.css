@@ -421,6 +421,7 @@ input, select {
     height: 30px;
     background-color: green;
     z-index: 1;
+    display: none;
 }
 
 .sky {
@@ -431,6 +432,7 @@ input, select {
     height: 100%;
     background-color: lightblue;
     z-index: 0;
+    display: none;
 }
 
 .player {
@@ -438,7 +440,8 @@ input, select {
     height: 100px;
     width: 120px;
     position: relative;
-    z-index: 2;
+    z-index: 1;
+    display: none;
 }
 
 @media (max-width: 750px) {
@@ -507,10 +510,10 @@ input, select {
     0% {
         background-color: transparent;
     }
-    10% {
+    20% {
         background-color: transparent;
     }
-    25% {
+    35% {
         background-color: grey;
     }
     100% {
@@ -551,7 +554,6 @@ input, select {
 .dragonHead {
     height: 30%;
     width: 25%;
-    background-color: red;
     position: absolute;
     top: 10%;
     right: 10%;
@@ -627,7 +629,6 @@ input, select {
 .dragonSnout {
     height: 50%;
     width: 50%;
-    background-color: red;
     position: absolute;
     bottom: 0%;
     right: -30%;
@@ -654,7 +655,6 @@ input, select {
 .dragonEarFBottom {
     height: 60%;
     width: 100%;
-    background-color: red;
     position: absolute;
     bottom: 0%;
     left: 0%;
@@ -663,7 +663,6 @@ input, select {
 .dragonEarFTop {
     height: 40%;
     width: 80%;
-    background-color: red;
     position: absolute;
     bottom: 60%;
     left: 0%;
@@ -672,7 +671,6 @@ input, select {
 .dragonEarInner {
     height: 60%;
     width: 50%;
-    background-color: darkred;
     position: absolute;
     bottom: 20%;
     left: 10%;
@@ -691,7 +689,6 @@ input, select {
 .dragonEarBBottom {
     height: 60%;
     width: 100%;
-    background-color: darkred;
     position: absolute;
     bottom: 0%;
     left: 0%;
@@ -700,7 +697,6 @@ input, select {
 .dragonEarBTop {
     height: 40%;
     width: 80%;
-    background-color: darkred;
     position: absolute;
     bottom: 60%;
     left: 0%;
@@ -709,7 +705,6 @@ input, select {
 .dragonBody {
     height: 40%;
     width: 50%;
-    background-color: red;
     position: absolute;
     top: 30%;
     left: 30%;
@@ -719,7 +714,6 @@ input, select {
 .dragonWingFront {
     height: 50%;
     width: 50%;
-    background-color: orange;
     position: absolute;
     top: 10%;
     left: 10%;
@@ -732,7 +726,6 @@ input, select {
 .dragonWingBack {
     height: 50%;
     width: 50%;
-    background-color: rgb(210, 136, 0);
     position: absolute;
     top: 20%;
     left: 16%;
@@ -746,7 +739,6 @@ input, select {
 .dragonWingVertical {
     height: 100%;
     width: 20%;
-    background-color: darkred;
     position: absolute;
     top: 0%;
     right: 0%;
@@ -755,7 +747,6 @@ input, select {
 .dragonWingHorizontal {
     height: 20%;
     width: 100%;
-    background-color: darkred;
     position: absolute;
     bottom: 0%;
     right: 0%;
@@ -768,7 +759,6 @@ input, select {
 .dragonWingVerticalTwo {
     height: 100%;
     width: 20%;
-    background-color: rgb(88, 0, 0);
     position: absolute;
     top: 0%;
     right: 0%;
@@ -777,7 +767,6 @@ input, select {
 .dragonWingHorizontalTwo {
     height: 20%;
     width: 100%;
-    background-color: rgb(88, 0, 0);
     position: absolute;
     bottom: 0%;
     right: 0%;
@@ -884,26 +873,22 @@ input, select {
 
 .FR {
     right: 15%;
-    background-color: red;
     bottom: -30%;
 }
 
 .BR {
     right: 5%;
-    background-color: darkred;
     bottom: -28%;
     z-index: -1;
 }
 
 .FL {
     right: 75%;
-    background-color: red;
     bottom: -30%;
 }
 
 .BL {
     right: 65%;
-    background-color: darkred;
     bottom: -28%;
     z-index: -1;
 }
@@ -911,7 +896,6 @@ input, select {
 .dragonTailOne {
     height: 50%;
     width: 40%;
-    background-color: red;
     position: absolute;
     top: 15%;
     left: -40%;
@@ -920,11 +904,88 @@ input, select {
 .dragonTailTwo {
     height: 30%;
     width: 20%;
-    background-color: red;
     position: absolute;
     top: 25%;
     left: -60%;
 }
 
+.dcMain {
+    background-color: red;
+}
+
+.dcSecondary {
+    background-color: darkred;
+}
+
+.dcThree {
+    background-color: rgb(88, 0, 0);
+}
+
+.dwcOne {
+    background-color: orange;
+}
+
+.dwcTwo {
+    background-color: rgb(210, 136, 0);
+}
+
+.startScreen {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 70%;
+    position: absolute;
+}
+
+#colorOps {
+    height: 20%;
+    width: 40%;
+    position: relative;
+    display: flex;
+    left: 30%;
+    top: 20%;
+}
+
+.dragonOp {
+    color: white;
+    margin: 10px;
+    height: 100%;
+    width: 20%;
+}
+
+.dragonColor {
+    height: 100%;
+    width: 100%;
+}
+
+#mangoColor {
+    background-color: red;
+}
+
+#fernColor {
+    background-color: green;
+}
+
+#juniperColor {
+    background-color: blue;
+}
+
+#violetColor {
+    background-color: purple;
+}
+
+#startBtn {
+    height: 20%;
+    width: 40%;
+    font-size: 30px;
+    font-style: italic;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgb(68, 185, 25);
+    background-image: linear-gradient(to bottom right, rgb(115, 245, 95), rgb(36, 185, 25));
+    border: 2px solid rgb(30, 95, 0);
+    position: relative;
+    top: 50%;
+}
 
 /* GAME END */
