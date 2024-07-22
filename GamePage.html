@@ -42,11 +42,15 @@
 
             <div class="row justify-content-center my-4" id="fullScreen">
 
-                <div class="col-md-10 text-center">
+                <div class="text-center">
+                    <!-- ^ previously col-md-10 ^
+                     setting width may be necessary for javascript collisions
+                     not intending to make game for mobile anyways
+                     can media query if it matters that much -->
 
                     <div id="gameBox">
 
-                        <div class="startScreen">
+                        <div class="startScreen" id="startScreen">
 
                             <div id="colorOps">
                                 <div class="dragonOp" id="mango">
@@ -129,6 +133,8 @@
                         </div>
 
                         <div class="sky" id="sky"></div>
+
+                        <div class="landmark" id="landmark"></div>
 
                         <div class="ground" id="ground"></div>
 

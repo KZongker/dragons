@@ -2,6 +2,7 @@ const gameBox = document.getElementById('gameBox');
 const player = document.getElementById('player');
 const sky = document.getElementById('sky');
 const ground = document.getElementById('ground');
+const landmark = document.getElementById('landmark');
 
 const startBtn = document.getElementById('startBtn');
 const startScreen = document.getElementById('startScreen');
@@ -10,6 +11,10 @@ const mango = document.getElementById('mango');
 const fern = document.getElementById('fern');
 const juniper = document.getElementById('juniper');
 const violet = document.getElementById('violet');
+let mangoSel = true;
+let fernSel = false;
+let juniperSel = false;
+let violetSel = false;
 
 const dcMain = document.querySelectorAll('.dcMain');
 const dcSecondary = document.querySelectorAll('.dcSecondary');
@@ -27,6 +32,8 @@ function resetPosition() {
     player.style.left = 0;
     if(player.style.transform !== 'scaleX(1)') {
         player.style.transform = 'scaleX(1)'; }
+    playerX = 0;
+    playerY = 0;
     console.log("reset");
     return;
 }
@@ -44,6 +51,7 @@ function startGame() {
     player.style.display = "block";
     sky.style.display = "block";
     ground.style.display = "block";
+    landmark.style.display = "block";
     startScreen.style.display = "none";
     resetPosition();
     return;
@@ -54,7 +62,10 @@ function mangoSelected() {
     fern.style.color = 'white';
     juniper.style.color = 'white';
     violet.style.color = 'white';
-    console.log(dcMain);
+    mangoSel = true;
+    fernSel = false;
+    juniperSel = false;
+    violetSel = false;
     dcMain.forEach((el) => el.style.backgroundColor = 'red');
     dcSecondary.forEach((el) => el.style.backgroundColor = 'darkred');
     dcThree.forEach((el) => el.style.backgroundColor = 'rgb(88, 0, 0)');
@@ -68,7 +79,10 @@ function fernSelected() {
     fern.style.color = 'yellow';
     juniper.style.color = 'white';
     violet.style.color = 'white';
-    console.log(dcMain);
+    mangoSel = false;
+    fernSel = true;
+    juniperSel = false;
+    violetSel = false;
     dcMain.forEach((el) => el.style.backgroundColor = 'green');
     dcSecondary.forEach((el) => el.style.backgroundColor = 'darkgreen');
     dcThree.forEach((el) => el.style.backgroundColor = 'rgb(0, 88, 0)');
@@ -82,7 +96,10 @@ function juniperSelected() {
     fern.style.color = 'white';
     juniper.style.color = 'yellow';
     violet.style.color = 'white';
-    console.log(dcMain);
+    mangoSel = false;
+    fernSel = false;
+    juniperSel = true;
+    violetSel = false;
     dcMain.forEach((el) => el.style.backgroundColor = 'blue');
     dcSecondary.forEach((el) => el.style.backgroundColor = 'darkblue');
     dcThree.forEach((el) => el.style.backgroundColor = 'rgb(0, 0, 88)');
@@ -96,7 +113,10 @@ function violetSelected() {
     fern.style.color = 'white';
     juniper.style.color = 'white';
     violet.style.color = 'yellow';
-    console.log(dcMain);
+    mangoSel = false;
+    fernSel = false;
+    juniperSel = false;
+    violetSel = true;
     dcMain.forEach((el) => el.style.backgroundColor = 'rgb(144, 0, 180)');
     dcSecondary.forEach((el) => el.style.backgroundColor = 'rgb(103, 0, 129)');
     dcThree.forEach((el) => el.style.backgroundColor = 'rgb(73, 0, 92)');
@@ -126,9 +146,17 @@ function checkKey(e) {
     e = e || window.event;
     horizontal = 0;
     vertical = 0;
-    let leftpos = parseInt(window.getComputedStyle(player).getPropertyValue("left"))
-    let toppos = parseInt(window.getComputedStyle(player).getPropertyValue("top"))
-
+    let leftpos = parseInt(window.getComputedStyle(player).getPropertyValue("left"));
+    let toppos = parseInt(window.getComputedStyle(player).getPropertyValue("top"));
+    // let botpos = parseInt(window.getComputedStyle(player).getPropertyValue("bottom"));
+    // let rightpos = parseInt(window.getComputedStyle(player).getPropertyValue("right"));
+    let heightpos = parseInt(window.getComputedStyle(player).getPropertyValue("height"));
+    let widthpos = parseInt(window.getComputedStyle(player).getPropertyValue("width"));
+    let gameTop = parseInt(window.getComputedStyle(gameBox).getPropertyValue("top"));
+    let gameLeft = parseInt(window.getComputedStyle(gameBox).getPropertyValue("left"));
+    let gameRight = parseInt(window.getComputedStyle(gameBox).getPropertyValue("width"));
+    // let gameBottom = parseInt(window.getComputedStyle(gameBox).getPropertyValue("bottom"));
+    let groundTop = parseInt(window.getComputedStyle(ground).getPropertyValue("top"));
     if (e.keyCode == '38' || e.keyCode == '87') {
         if (e.keyCode == '38') {
             event.preventDefault();
@@ -159,12 +187,38 @@ function checkKey(e) {
         if(player.style.transform !== 'scaleX(1)') {
         player.style.transform = 'scaleX(1)'; }
     }
-    playerX = playerX + horizontal;
-    playerY = playerY + vertical;
-    // console.log(playerX, playerY);
-
+   // playerX = playerX + horizontal;
+   // playerY = playerY + vertical;
+    // console.log('first XY:', playerX, playerY);
+    // console.log('first hor, vert:', horizontal, vertical);
+  
+   // Start Collisions
+   if(leftpos <= gameLeft) {
+        leftpos = leftpos + 1;
+        horizontal = 1;
+        player.style.left = leftpos + horizontal + speed + 'px';
+   } 
+   if(leftpos + widthpos >= gameRight) {
+        leftpos = leftpos - 1;
+        horizontal = -1;
+        player.style.left = leftpos + horizontal - speed + 'px';
+   }
+   if (toppos <= gameTop) {
+        toppos = toppos + 1;
+        vertical = 1;
+        player.style.top = toppos + vertical + speed + 'px';
+   }
+   if (toppos + heightpos >= groundTop) {
+    toppos = toppos - 1;
+    vertical = -1;
+    player.style.top = toppos + vertical - speed + 'px';
+}
+// End Collisions
 }
 // End Movement
+
+//start background scrolling
+//end background scrolling
 
 
 
