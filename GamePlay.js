@@ -208,7 +208,7 @@ function checkKey(e) {
         vertical = 1;
         player.style.top = toppos + vertical + speed + 'px';
    }
-   if (toppos + heightpos >= groundTop) {
+   if (toppos + heightpos -10 >= groundTop) {
     toppos = toppos - 1;
     vertical = -1;
     player.style.top = toppos + vertical - speed + 'px';
