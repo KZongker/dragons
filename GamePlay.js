@@ -146,17 +146,31 @@ function checkKey(e) {
     e = e || window.event;
     horizontal = 0;
     vertical = 0;
+
+    // Player
     let leftpos = parseInt(window.getComputedStyle(player).getPropertyValue("left"));
     let toppos = parseInt(window.getComputedStyle(player).getPropertyValue("top"));
     // let botpos = parseInt(window.getComputedStyle(player).getPropertyValue("bottom"));
     // let rightpos = parseInt(window.getComputedStyle(player).getPropertyValue("right"));
     let heightpos = parseInt(window.getComputedStyle(player).getPropertyValue("height"));
     let widthpos = parseInt(window.getComputedStyle(player).getPropertyValue("width"));
+
+    // Collision Borders
     let gameTop = parseInt(window.getComputedStyle(gameBox).getPropertyValue("top"));
     let gameLeft = parseInt(window.getComputedStyle(gameBox).getPropertyValue("left"));
     let gameRight = parseInt(window.getComputedStyle(gameBox).getPropertyValue("width"));
     // let gameBottom = parseInt(window.getComputedStyle(gameBox).getPropertyValue("bottom"));
     let groundTop = parseInt(window.getComputedStyle(ground).getPropertyValue("top"));
+
+    // Background Scrolling
+    let landmarkpos = parseInt(window.getComputedStyle(landmark).getPropertyValue("left"));
+    let landmarkwidth = parseInt(window.getComputedStyle(landmark).getPropertyValue("width"));
+    let skypos = parseInt(window.getComputedStyle(sky).getPropertyValue("left"));
+    let skywidth = parseInt(window.getComputedStyle(sky).getPropertyValue("width"));
+    let groundpos = parseInt(window.getComputedStyle(sky).getPropertyValue("left"));
+    let groundwidth = parseInt(window.getComputedStyle(sky).getPropertyValue("width"));
+
+    // Begin functions
     if (e.keyCode == '38' || e.keyCode == '87') {
         if (e.keyCode == '38') {
             event.preventDefault();
@@ -197,23 +211,65 @@ function checkKey(e) {
         leftpos = leftpos + 1;
         horizontal = 1;
         player.style.left = leftpos + horizontal + speed + 'px';
-   } 
-   if(leftpos + widthpos >= gameRight) {
+   } else if(leftpos + widthpos >= gameRight) {
         leftpos = leftpos - 1;
         horizontal = -1;
         player.style.left = leftpos + horizontal - speed + 'px';
-   }
-   if (toppos <= gameTop) {
+   } else if (toppos <= gameTop) {
         toppos = toppos + 1;
         vertical = 1;
         player.style.top = toppos + vertical + speed + 'px';
-   }
-   if (toppos + heightpos -10 >= groundTop) {
+   } else if (toppos + heightpos -10 >= groundTop) {
     toppos = toppos - 1;
     vertical = -1;
     player.style.top = toppos + vertical - speed + 'px';
 }
 // End Collisions
+
+// Start scrolling
+if(leftpos + widthpos >= gameRight / 2 && e.keyCode == '39' || leftpos + widthpos >= gameRight / 2 && e.keyCode == '68') {
+    /* landmarkpos = landmarkpos - 1; */
+    skypos = skypos - 1;
+    groundpos = groundpos -1;
+    /* landmark.style.left = landmarkpos + horizontal - speed + 'px'; */
+    sky.style.left = skypos + horizontal - speed + 'px';
+    ground.style.left = groundpos + horizontal - speed + 'px';
+    player.style.left = leftpos + 'px';
+    /* if(landmarkpos <= gameLeft) {
+        landmark.style.display = 'none';
+        landmark.style.left = gameRight - landmarkwidth + 'px';
+        landmark.style.display = 'block';
+    } */
+    // console.log(leftpos);
+
+    if(skypos <= gameLeft) {
+        skypos = gameLeft - horizontal - speed;
+        sky.style.width = skywidth - horizontal - speed + 'px';
+        skypos += 1;
+        sky.style.left = skypos - horizontal + speed + 'px';
+        // console.log(skywidth, skypos);
+        if(skywidth <= 8) {
+            sky.style.display = 'none';
+            sky.style.left = gameRight - skywidth + 'px';
+            sky.style.display = 'block';
+        }
+    }
+
+    if(groundpos <= gameLeft) {
+        groundpos = gameLeft - horizontal - speed;
+        ground.style.width = groundwidth - horizontal - speed + 'px';
+        groundpos += 1;
+        ground.style.left = groundpos - horizontal + speed + 'px';
+        // console.log(groundwidth, groundpos);
+        if(groundwidth <= 8) {
+            ground.style.display = 'none';
+            ground.style.left = gameRight - groundwidth + 'px';
+            ground.style.display = 'block';
+        }
+    }
+}
+
+// end scrolling
 }
 // End Movement
 
