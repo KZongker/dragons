@@ -450,6 +450,27 @@ input, select {
     z-index: 0;
     display: none;
 }
+.skyTwo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+    z-index: 0;
+    display: none;
+}
+
+.skyThree {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: cyan;
+    z-index: 0;
+    display: none;
+}
 
 .player {
     background-color: transparent;

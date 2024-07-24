@@ -3,6 +3,8 @@ const player = document.getElementById('player');
 const sky = document.getElementById('sky');
 const ground = document.getElementById('ground');
 const landmark = document.getElementById('landmark');
+const skyTwo = document.getElementById('skyTwo');
+const skyThree = document.getElementById('skyThree');
 
 const startBtn = document.getElementById('startBtn');
 const startScreen = document.getElementById('startScreen');
@@ -167,8 +169,18 @@ function checkKey(e) {
     let landmarkwidth = parseInt(window.getComputedStyle(landmark).getPropertyValue("width"));
     let skypos = parseInt(window.getComputedStyle(sky).getPropertyValue("left"));
     let skywidth = parseInt(window.getComputedStyle(sky).getPropertyValue("width"));
+    let skyright =  parseInt(window.getComputedStyle(sky).getPropertyValue("right"));
     let groundpos = parseInt(window.getComputedStyle(sky).getPropertyValue("left"));
     let groundwidth = parseInt(window.getComputedStyle(sky).getPropertyValue("width"));
+    let skyTwoPos = parseInt(window.getComputedStyle(skyTwo).getPropertyValue("left"));
+    let skyTwoWidth = parseInt(window.getComputedStyle(skyTwo).getPropertyValue("width"));
+    let skyThreePos = parseInt(window.getComputedStyle(skyThree).getPropertyValue("left"));
+    let skyThreeWidth = parseInt(window.getComputedStyle(skyThree).getPropertyValue("width"));
+
+    skyTwo.style.left = gameRight + 'px';
+    skyTwo.style.width = 0 + 'px';
+    skyThree.style.left = gameRight + 'px';
+    skyThree.style.width = 0 + 'px';
 
     // Begin functions
     if (e.keyCode == '38' || e.keyCode == '87') {
@@ -247,11 +259,55 @@ if(leftpos + widthpos >= gameRight / 2 && e.keyCode == '39' || leftpos + widthpo
         sky.style.width = skywidth - horizontal - speed + 'px';
         skypos += 1;
         sky.style.left = skypos - horizontal + speed + 'px';
+
+        skyTwo.style.display = "block";
+        skyTwoPos = skywidth - horizontal - speed;
+        skyTwo.style.width = skyTwoWidth + horizontal + speed + 'px';
+        skyTwoPos -= 1;
+        skyTwo.style.left = skyTwoPos + horizontal + 'px';
+        console.log("Sky1 scrolling");
+        // console.log(skyright, skywidth, skyright + skywidth);
         // console.log(skywidth, skypos);
+        // console.log(skypos, skyTwoPos);
         if(skywidth <= 8) {
             sky.style.display = 'none';
             sky.style.left = gameRight - skywidth + 'px';
-            sky.style.display = 'block';
+        }
+    }
+
+    if(skyTwoPos <= gameLeft) {
+        skyTwoPos = gameLeft - horizontal - speed;
+        skyTwo.style.width = skyTwoWidth - horizontal - speed + 'px';
+        skyTwoPos += 1;
+        skyTwo.style.left = skyTwoPos - horizontal + speed + 'px';
+
+        skyThree.style.display = "block";
+        skyThreePos = skyTwoWidth - horizontal - speed;
+        skyThree.style.width = skyThreeWidth + horizontal + speed + 'px';
+        skyThreePos -= 1;
+        skyThree.style.left = skyThreePos + horizontal + 'px';
+        console.log("Sky 2 Scrolling");
+        if(skyTwoWidth <= 8) {
+            skyTwo.style.display = 'none';
+            skyTwo.style.left = gameRight - skyTwoWidth + 'px';
+        }
+    }
+
+    if(skyThreePos <= gameLeft) {
+        skyThreePos = gameLeft - horizontal - speed;
+        skyThree.style.width = skyThreeWidth - horizontal - speed + 'px';
+        skyThreePos += 1;
+        skyThree.style.left = skyThreePos - horizontal + speed + 'px';
+
+        sky.style.display = "block";
+        skypos = skyThreeWidth - horizontal - speed;
+        sky.style.width = skywidth + horizontal + speed + 'px';
+        skypos -= 1;
+        sky.style.left = skypos + horizontal + 'px';
+        console.log("Sky 3 Scrolling");
+        if(skyThreeWidth <= 8) {
+            skyThree.style.display = 'none';
+            skyThree.style.left = gameRight - skyThreeWidth + 'px';
         }
     }
 
@@ -264,7 +320,6 @@ if(leftpos + widthpos >= gameRight / 2 && e.keyCode == '39' || leftpos + widthpo
         if(groundwidth <= 8) {
             ground.style.display = 'none';
             ground.style.left = gameRight - groundwidth + 'px';
-            ground.style.display = 'block';
         }
     }
 }
