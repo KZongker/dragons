@@ -5,6 +5,8 @@ const ground = document.getElementById('ground');
 const landmark = document.getElementById('landmark');
 const skyTwo = document.getElementById('skyTwo');
 const skyThree = document.getElementById('skyThree');
+const groundTwo = document.getElementById('groundTwo');
+const groundThree = document.getElementById('groundThree');
 
 const startBtn = document.getElementById('startBtn');
 const startScreen = document.getElementById('startScreen');
@@ -58,6 +60,10 @@ function startGame() {
     skyThree.style.left = gameSide + 'px';
     skyThree.style.width = 0 + 'px';
     ground.style.display = "block";
+    groundTwo.style.left = gameSide + 'px';
+    groundTwo.style.width = 0 + 'px';
+    groundThree.style.left = gameSide + 'px';
+    groundThree.style.width = 0 + 'px';
     landmark.style.display = "block";
     startScreen.style.display = "none";
     resetPosition();
@@ -168,6 +174,8 @@ function checkKey(e) {
     let gameRight = parseInt(window.getComputedStyle(gameBox).getPropertyValue("width"));
     // let gameBottom = parseInt(window.getComputedStyle(gameBox).getPropertyValue("bottom"));
     let groundTop = parseInt(window.getComputedStyle(ground).getPropertyValue("top"));
+    let groundTwoTop = parseInt(window.getComputedStyle(groundTwo).getPropertyValue("top"));
+    let groundThreeTop = parseInt(window.getComputedStyle(groundThree).getPropertyValue("top"));
 
     // Background Scrolling
     let landmarkpos = parseInt(window.getComputedStyle(landmark).getPropertyValue("left"));
@@ -177,6 +185,10 @@ function checkKey(e) {
     let skyright =  parseInt(window.getComputedStyle(sky).getPropertyValue("right"));
     let groundpos = parseInt(window.getComputedStyle(sky).getPropertyValue("left"));
     let groundwidth = parseInt(window.getComputedStyle(sky).getPropertyValue("width"));
+    let groundTwoPos = parseInt(window.getComputedStyle(groundTwo).getPropertyValue("left"));
+    let groundTwoWidth = parseInt(window.getComputedStyle(groundTwo).getPropertyValue("width"));
+    let groundThreePos = parseInt(window.getComputedStyle(groundThree).getPropertyValue("left"));
+    let groundThreeWidth = parseInt(window.getComputedStyle(groundThree).getPropertyValue("width"));
     let skyTwoPos = parseInt(window.getComputedStyle(skyTwo).getPropertyValue("left"));
     let skyTwoWidth = parseInt(window.getComputedStyle(skyTwo).getPropertyValue("width"));
     let skyThreePos = parseInt(window.getComputedStyle(skyThree).getPropertyValue("left"));
@@ -232,7 +244,7 @@ function checkKey(e) {
         toppos = toppos + 1;
         vertical = 1;
         player.style.top = toppos + vertical + speed + 'px';
-   } else if (toppos + heightpos -10 >= groundTop) {
+   } else if (toppos + heightpos -10 >= groundTop || toppos + heightpos -10 >= groundTwoTop || toppos + heightpos -10 >= groundThreeTop) {
     toppos = toppos - 1;
     vertical = -1;
     player.style.top = toppos + vertical - speed + 'px';
@@ -319,10 +331,58 @@ if(leftpos + widthpos >= gameRight / 2 && e.keyCode == '39' || leftpos + widthpo
         ground.style.width = groundwidth - horizontal - speed + 'px';
         groundpos += 1;
         ground.style.left = groundpos - horizontal + speed + 'px';
-        // console.log(groundwidth, groundpos);
+
+        groundTwo.style.display = "block";
+        groundTwoPos = groundwidth - horizontal - speed;
+        groundTwo.style.width = groundTwoWidth + horizontal + speed + 'px';
+        groundTwoPos -= 1;
+        groundTwo.style.left = groundTwoPos + horizontal + 'px';
+        //console.log("Sky1 scrolling", skypos);
+        // console.log(skyright, skywidth, skyright + skywidth);
+        // console.log(skywidth, skypos);
+        // console.log(skypos, skyTwoPos);
         if(groundwidth <= 8) {
             ground.style.display = 'none';
             ground.style.left = gameRight - groundwidth + 'px';
+            //console.log(gameRight - groundwidth, gameRight, groundwidth, groundpos);
+        }
+    }
+
+    if(groundTwoPos <= gameLeft) {
+        groundTwoPos = gameLeft - horizontal - speed;
+        groundTwo.style.width = groundTwoWidth - horizontal - speed + 'px';
+        groundTwoPos += 1;
+        groundTwo.style.left = groundTwoPos - horizontal + speed + 'px';
+
+        groundThree.style.display = "block";
+        groundThreePos = groundTwoWidth - horizontal - speed;
+        groundThree.style.width = groundThreeWidth + horizontal + speed + 'px';
+        groundThreePos -= 1;
+        groundThree.style.left = groundThreePos + horizontal + speed + 'px';
+        //console.log("Sky 2 Scrolling", skyTwoPos);
+        if(groundTwoWidth <= 8) {
+            groundTwo.style.display = 'none';
+            groundTwo.style.left = gameRight - groundTwoWidth + 'px';
+            //console.log(gameRight - groundTwoWidth, gameRight, groundTwoWidth, groundTwoPos);
+        }
+    }
+
+    if(groundThreePos <= gameLeft) {
+        groundThreePos = gameLeft - horizontal - speed;
+        groundThree.style.width = groundThreeWidth - horizontal - speed + 'px';
+        groundThreePos += 1;
+        groundThree.style.left = groundThreePos - horizontal + speed + 'px';
+
+        ground.style.display = "block";
+        groundpos = groundThreeWidth - horizontal - speed;
+        ground.style.width = groundwidth + horizontal + speed + 'px';
+        groundpos -= 1;
+        ground.style.left = groundpos + horizontal + speed + 'px';
+        //console.log("Sky 3 Scrolling", skyThreePos);
+        if(groundThreeWidth <= 8) {
+            groundThree.style.display = 'none';
+            groundThree.style.left = gameRight - groundThreeWidth + 'px';
+            //console.log(gameRight - groundThreeWidth, gameRight, groundThreeWidth, groundThreePos);
         }
     }
 }
