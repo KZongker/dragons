@@ -59,7 +59,7 @@ function startGame() {
     skyTwo.style.width = 0 + 'px';
     skyThree.style.left = gameSide + 'px';
     skyThree.style.width = 0 + 'px';
-    ground.style.display = "block";
+    ground.style.display = "none";
     groundTwo.style.left = gameSide + 'px';
     groundTwo.style.width = 0 + 'px';
     groundThree.style.left = gameSide + 'px';
@@ -145,6 +145,7 @@ let vertical = 0;
 let speed = 9;
 let playerX = 0;
 let playerY = 0;
+let distance = 0;
 
 const toNum = (pxVal) => {
     return parseInt(pxVal, 10);
@@ -183,6 +184,8 @@ function checkKey(e) {
     let skypos = parseInt(window.getComputedStyle(sky).getPropertyValue("left"));
     let skywidth = parseInt(window.getComputedStyle(sky).getPropertyValue("width"));
     let skyright =  parseInt(window.getComputedStyle(sky).getPropertyValue("right"));
+    let skyTwoRight = parseInt(window.getComputedStyle(skyTwo).getPropertyValue("right"));
+    let skyThreeRight = parseInt(window.getComputedStyle(skyThree).getPropertyValue("right"));
     let groundpos = parseInt(window.getComputedStyle(sky).getPropertyValue("left"));
     let groundwidth = parseInt(window.getComputedStyle(sky).getPropertyValue("width"));
     let groundTwoPos = parseInt(window.getComputedStyle(groundTwo).getPropertyValue("left"));
@@ -218,6 +221,21 @@ function checkKey(e) {
         player.style.left = leftpos + horizontal - speed + 'px';
         if(player.style.transform !== 'scaleX(-1)') {
             player.style.transform = 'scaleX(-1)'; }
+        if(distance === 0) {
+            distance = 0;
+        } else {
+            distance -= 1;
+        }
+        if(skywidth < 8) {
+            sky.style.left = gameLeft + skywidth + 'px';
+        }
+        if(skyTwoWidth < 8) {
+            skyTwo.style.left = gameLeft + skywidth + 'px';
+        }
+        if(skyThreeWidth < 8) {
+            skyThree.style.left = gameLeft + skywidth + 'px';
+        }
+        //console.log(distance, gameLeft, gameLeft + leftpos, leftpos);
     }
     else if (e.keyCode == '39' || e.keyCode == '68') {
         horizontal += 1;
@@ -225,6 +243,17 @@ function checkKey(e) {
         player.style.left = leftpos + horizontal + speed + 'px';
         if(player.style.transform !== 'scaleX(1)') {
         player.style.transform = 'scaleX(1)'; }
+        distance += 1;
+        console.log(distance);
+        if(skywidth < 8) {
+            sky.style.left = gameRight - skywidth + 'px';
+        }
+        if(skyTwoWidth < 8) {
+            skyTwo.style.left = gameRight - skywidth+ 'px';
+        }
+        if(skyThreeWidth < 8) {
+            skyThree.style.left = gameRight - skywidth + 'px';
+        }
     }
    // playerX = playerX + horizontal;
    // playerY = playerY + vertical;
@@ -277,7 +306,7 @@ if(leftpos + widthpos >= gameRight / 2 && e.keyCode == '39' || leftpos + widthpo
         skyTwo.style.width = skyTwoWidth + horizontal + speed + 'px';
         skyTwoPos -= 1;
         skyTwo.style.left = skyTwoPos + horizontal + 'px';
-        console.log("Sky1 scrolling", skypos);
+        console.log("skypos:", skypos, "skywidth:", skywidth, "skyTwoPos:", skyTwoPos, "skyTwoWidth:", skyTwoWidth);
         // console.log(skyright, skywidth, skyright + skywidth);
         // console.log(skywidth, skypos);
         // console.log(skypos, skyTwoPos);
@@ -326,7 +355,7 @@ if(leftpos + widthpos >= gameRight / 2 && e.keyCode == '39' || leftpos + widthpo
         }
     }
 
-    if(groundpos <= gameLeft) {
+    /* if(groundpos <= gameLeft) {
         groundpos = gameLeft - horizontal - speed;
         ground.style.width = groundwidth - horizontal - speed + 'px';
         groundpos += 1;
@@ -384,7 +413,79 @@ if(leftpos + widthpos >= gameRight / 2 && e.keyCode == '39' || leftpos + widthpo
             groundThree.style.left = gameRight - groundThreeWidth + 'px';
             //console.log(gameRight - groundThreeWidth, gameRight, groundThreeWidth, groundThreePos);
         }
+    } */
+}
+
+if(distance > 10 && leftpos <= 100 && e.keyCode == '37' || distance > 10 && leftpos <= 100 && e.keyCode == '65') {
+    player.style.left = leftpos + 'px';
+}
+
+if(distance > 0 && leftpos <= 100 && e.keyCode == '37' || distance > 0 && leftpos <= 100 && e.keyCode == '65') {
+
+    sky.style.left = skypos + horizontal + speed + 'px';
+    ground.style.left = groundpos + horizontal + speed + 'px';
+
+    if(skyTwoPos >= gameLeft && skyThreeWidth <= 8) {
+        skypos = speed;
+        sky.style.width = skywidth - horizontal + speed + 'px';
+        sky.style.left = skypos + horizontal + 'px';
+
+        skyTwo.style.width = skyTwoWidth + horizontal - speed + 'px';
+        skyTwo.style.left = skyTwoPos - horizontal + speed + 'px';
+        skyTwoPos -= 1;
+
+        if(skyTwoWidth <= 8) {
+            skyTwo.style.display = "none";
+            skyTwo.style.left = gameLeft + skyTwoWidth + 'px';
+        }
+        
+        console.log("skypos:", skypos, "skywidth:", skywidth, "skyTwoPos:", skyTwoPos, "skyTwoWidth:", skyTwoWidth);
+
+        /* Other direction: skypos consistently -9, skywidth -10, skytwopos - 10, skytwowidth + 10
+            So this direction should be: skypos 9, skywidth + 10, SkytwoPos + 10, skytwoWidth - 10
+            Currently: skypos 9, skywidth + 10, skytwopos + 10, skytwoWidth - 10
+            May have solved
+        */
+        /*
+        skyThree.style.display = "block";
+
+        skyThreePos = gameLeft + horizontal + speed;
+        skyThree.style.width = skyThreeWidth + horizontal + speed + 'px';
+        skyThreePos -= 1;
+        skyThree.style.left = skyThreePos + horizontal - speed + 'px'; */
+      
     }
+
+    /*
+    if(skyThreeRight >= gameLeft && skywidth <= 8) {
+        skyTwoPos = speed;
+        skyTwo.style.width = skyTwoWidth - horizontal + speed + 'px';
+        skyTwo.style.left = skyTwoPos + horizontal + 'px';
+
+        skyThree.style.width = skyThreeWidth + horizontal - speed + 'px';
+        skyThree.style.left = skyThreePos - horizontal + speed + 'px';
+        skyThreePos -= 1;
+
+        if(skyThreeWidth <= 8) {
+            skyThree.style.display = "none";
+            skyThree.style.left = gameLeft + skyThreeWidth + 'px';
+        }
+    }
+
+    if(skyright >= gameLeft && skyTwoWidth <= 8) {
+        skyThreePos = speed;
+        skyThree.style.width = skyThreeWidth - horizontal + speed + 'px';
+        skyThree.style.left = skyThreePos + horizontal + 'px';
+
+        sky.style.width = skywidth + horizontal - speed + 'px';
+        sky.style.left = skypos - horizontal + speed + 'px';
+        skypos -= 1;
+
+        if(skywidth <= 8) {
+            sky.style.display = "none";
+            sky.style.left = gameLeft + skywidth + 'px';
+        }
+    } */
 }
 
 // end scrolling
