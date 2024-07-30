@@ -226,15 +226,15 @@ function checkKey(e) {
         } else {
             distance -= 1;
         }
-        if(skywidth <= 8) {
+        if(skywidth <= 8 && skyThreeWidth >= 8) {
             sky.style.left = gameLeft + skywidth + 'px';
+            console.log("moving", skypos, skywidth);
         }
-        if(skyTwoWidth <= 8) {
+        if(skyTwoWidth <= 8 && skywidth >= 8) {
             skyTwo.style.left = gameLeft + skyTwoWidth + 'px';
         }
-        if(skyThreeWidth <= 8) {
+        if(skyThreeWidth <= 8 && skyTwoWidth >= 8) {
             skyThree.style.left = gameLeft + skyThreeWidth + 'px';
-            console.log("moving", skyThreePos, gameLeft + skywidth);
         }
         //console.log(distance, gameLeft, gameLeft + leftpos, leftpos);
     }
@@ -419,14 +419,16 @@ if(leftpos + widthpos >= gameRight / 2 && e.keyCode == '39' || leftpos + widthpo
 
 if(distance > 10 && leftpos <= 100 && e.keyCode == '37' || distance > 10 && leftpos <= 100 && e.keyCode == '65') {
     player.style.left = leftpos + 'px';
+    console.log("skypos:", skypos, "skywidth:", skywidth, "skyTwoPos:", skyTwoPos, "skyTwoWidth:", skyTwoWidth, "skyThreePos:", skyThreePos, "S3W:", skyThreeWidth);
 }
 
 if(distance > 0 && leftpos <= 100 && e.keyCode == '37' || distance > 0 && leftpos <= 100 && e.keyCode == '65') {
 
-    sky.style.left = skypos + horizontal + speed + 'px';
-    ground.style.left = groundpos + horizontal + speed + 'px';
+    /*sky.style.left = skypos + horizontal + speed + 'px';
+    ground.style.left = groundpos + horizontal + speed + 'px'; */
 
-    if(skyTwoPos <= gameRight && skyThreePos <= gameLeft) {
+    if(skyTwoPos <= gameRight && skyThreeWidth <= 8) {
+        sky.style.display = "block";
         skypos = gameLeft + horizontal;
         sky.style.width = skywidth - horizontal + speed + 'px';
         sky.style.left = skypos + horizontal + 'px';
@@ -457,7 +459,8 @@ if(distance > 0 && leftpos <= 100 && e.keyCode == '37' || distance > 0 && leftpo
       
     }
 
-    /* if(skypos <= gameRight && skyTwoPos <= gameLeft) {
+     if(skypos <= gameRight && skyTwoWidth <= 8) {
+        skyThree.style.display = "block";
         skyThreePos = gameLeft + horizontal;
         skyThree.style.width = skyThreeWidth - horizontal + speed + 'px';
         skyThree.style.left = skyThreePos + horizontal + 'px';
@@ -472,7 +475,8 @@ if(distance > 0 && leftpos <= 100 && e.keyCode == '37' || distance > 0 && leftpo
         }
     }
 
-    if(skyThreePos <= gameRight && skypos <= gameLeft) {
+    if(skyThreePos <= gameRight && skywidth <= 8) {
+        skyTwo.style.display = "block";
         skyTwoPos = gameLeft + horizontal;
         skyTwo.style.width = skyTwoWidth - horizontal + speed + 'px';
         skyTwo.style.left = skyTwoPos + horizontal + 'px';
@@ -485,7 +489,7 @@ if(distance > 0 && leftpos <= 100 && e.keyCode == '37' || distance > 0 && leftpo
             skyThree.style.display = "none";
             skyThree.style.left = gameLeft + skyThreeWidth + 'px';
         } 
-    } */
+    }
     
 }
 
