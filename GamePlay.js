@@ -240,120 +240,108 @@ function updatePositions() {
   }
 }
 
-function checkKey(e) {
+function handleUp(e) {
+  if (e.keyCode == '38') {
+    e.preventDefault();
+  }
+  vertical -= 1;
+  // console.log("W Key!");
+  player.style.top = positions.player.top + vertical - speed + 'px';
+}
 
-    e = e || window.event;
-    horizontal = 0;
-    vertical = 0;
-    updatePositions();
+function handleDown(e) {
+  if (e.keyCode == '40') {
+    event.preventDefault();
+  }
+  vertical += 1;
+  // console.log("S Key!");
+  player.style.top = positions.player.top + vertical + speed + 'px';
+}
 
-    
-    
+function handleLeft(e) {
+  horizontal -= 1;
+  // console.log("A Key!");
+  player.style.left = positions.player.left + horizontal - speed + 'px';
+  if(player.style.transform !== 'scaleX(-1)') {
+      player.style.transform = 'scaleX(-1)'; }
+  if(distance === 0) {
+      distance = 0;
+  } else {
+      distance -= 1;
+  }
 
+  if(skydist >= 1300 && positions.sky.leftTwo >= 1300) {
+      skyTwo.style.display = "none";
+      skyTwoDist = 0;
+      positions.sky.leftTwo = -1300;
+      skyTwo.style.left = positions.sky.leftTwo + 'px';
+  }
+  if(skyThreeDist >= 1300 && positions.sky.left >= 1300) {
+      sky.style.display = "none";
+      skydist = 0;
+      positions.sky.left = -1300;
+      sky.style.left = positions.sky.left + 'px';
+  }
+  if(skyTwoDist >= 1300 && positions.sky.leftThree >= 1300) {
+      skyThree.style.display = "none";
+      skyThreeDist = 0;
+      positions.sky.leftThree = -1300;
+      skyThree.style.left = positions.sky.leftThree + 'px';
+  }
+}
 
-    // Begin functions
-    if (e.keyCode == '38' || e.keyCode == '87') {
-        if (e.keyCode == '38') {
-            event.preventDefault();
-        }
-        vertical -= 1;
-        // console.log("W Key!");
-        player.style.top = positions.player.top + vertical - speed + 'px';
-    }
-    else if (e.keyCode == '40' || e.keyCode == '83') {
-        if (e.keyCode == '40') {
-            event.preventDefault();
-        }
-        vertical += 1;
-        // console.log("S Key!");
-        player.style.top = positions.player.top + vertical + speed + 'px';
-    }
-    else if (e.keyCode == '37' || e.keyCode == '65') {
-        horizontal -= 1;
-        // console.log("A Key!");
-        player.style.left = positions.player.left + horizontal - speed + 'px';
-        if(player.style.transform !== 'scaleX(-1)') {
-            player.style.transform = 'scaleX(-1)'; }
-        if(distance === 0) {
-            distance = 0;
-        } else {
-            distance -= 1;
-        }
+function handleRight(e) {
+  horizontal += 1;
+  // console.log("D Key!");
+  player.style.left = positions.player.left + horizontal + speed + 'px';
+  if(player.style.transform !== 'scaleX(1)') {
+  player.style.transform = 'scaleX(1)'; }
+  distance += 1;
+  console.log(distance);
 
-        if(skydist >= 1300 && positions.sky.leftTwo >= 1300) {
-            skyTwo.style.display = "none";
-            skyTwoDist = 0;
-            positions.sky.leftTwo = -1300;
-            skyTwo.style.left = positions.sky.leftTwo + 'px';
-        }
-        if(skyThreeDist >= 1300 && positions.sky.left >= 1300) {
-            sky.style.display = "none";
-            skydist = 0;
-            positions.sky.left = -1300;
-            sky.style.left = positions.sky.left + 'px';
-        }
-        if(skyTwoDist >= 1300 && positions.sky.leftThree >= 1300) {
-            skyThree.style.display = "none";
-            skyThreeDist = 0;
-            positions.sky.leftThree = -1300;
-            skyThree.style.left = positions.sky.leftThree + 'px';
-        }
+  if(skydist <= 0) {
+      sky.style.display = "none";
+      skydist = 1300;
+      positions.sky.left = 0;
+      sky.style.left = positions.sky.left + skydist + 'px';
+      console.log(positions.sky.left, skydist, positions.sky.left + skydist, positions.game.right);
+  }
+  if(skyTwoDist <= 0) {
+      skyTwo.style.display = "none";
+      skyTwoDist = 1300;
+      positions.sky.leftTwo = 0;
+      skyTwo.style.left = positions.sky.leftTwo + skyTwoDist + 'px';
+  }
+  if(skyThreeDist <= 0) {
+      skyThree.style.display = "none";
+      skyThreeDist = 1300;
+      positions.sky.leftThree = 0;
+      skyThree.style.left = positions.sky.leftThree + skyThreeDist + 'px';
+  }
+}
 
-    }
-    else if (e.keyCode == '39' || e.keyCode == '68') {
-        horizontal += 1;
-        // console.log("D Key!");
-        player.style.left = positions.player.left + horizontal + speed + 'px';
-        if(player.style.transform !== 'scaleX(1)') {
-        player.style.transform = 'scaleX(1)'; }
-        distance += 1;
-        console.log(distance);
-
-        if(skydist <= 0) {
-            sky.style.display = "none";
-            skydist = 1300;
-            positions.sky.left = 0;
-            sky.style.left = positions.sky.left + skydist + 'px';
-            console.log(positions.sky.left, skydist, positions.sky.left + skydist, positions.game.right);
-        }
-        if(skyTwoDist <= 0) {
-            skyTwo.style.display = "none";
-            skyTwoDist = 1300;
-            positions.sky.leftTwo = 0;
-            skyTwo.style.left = positions.sky.leftTwo + skyTwoDist + 'px';
-        }
-        if(skyThreeDist <= 0) {
-            skyThree.style.display = "none";
-            skyThreeDist = 1300;
-            positions.sky.leftThree = 0;
-            skyThree.style.left = positions.sky.leftThree + skyThreeDist + 'px';
-        }
-        
-    }
-   
-  
-   // Start Collisions
-   if(positions.player.left <= positions.game.left) {
+function handleCollissions() {
+  if(positions.player.left <= positions.game.left) {
     positions.player.left = positions.player.left + 1;
-        horizontal = 1;
-        player.style.left = positions.player.left + horizontal + speed + 'px';
-   } else if(positions.player.left + positions.player.width >= positions.game.right) {
+    horizontal = 1;
+    player.style.left = positions.player.left + horizontal + speed + 'px';
+  } else if(positions.player.left + positions.player.width >= positions.game.right) {
     positions.player.left = positions.player.left - 1;
-        horizontal = -1;
-        player.style.left = positions.player.left + horizontal - speed + 'px';
-   } else if (positions.player.top <= positions.game.top) {
+    horizontal = -1;
+    player.style.left = positions.player.left + horizontal - speed + 'px';
+  } else if (positions.player.top <= positions.game.top) {
     positions.player.top = positions.player.top + 1;
-        vertical = 1;
-        player.style.top = positions.player.top + vertical + speed + 'px';
-   } else if (positions.player.top + positions.player.height -10 >= positions.ground.top || positions.player.top + positions.player.height -10 >= positions.ground.topTwo || positions.player.top + positions.player.height -10 >= positions.ground.topThree) {
+    vertical = 1;
+    player.style.top = positions.player.top + vertical + speed + 'px';
+  } else if (positions.player.top + positions.player.height -10 >= positions.ground.top || positions.player.top + positions.player.height -10 >= positions.ground.topTwo || positions.player.top + positions.player.height -10 >= positions.ground.topThree) {
     positions.player.top = positions.player.top - 1;
     vertical = -1;
     player.style.top = positions.player.top + vertical - speed + 'px';
+  }
 }
-// End Collisions
 
-// Start scrolling
-if(positions.player.left + positions.player.width >= positions.game.right / 2 && e.keyCode == '39' || positions.player.left + positions.player.width >= positions.game.right / 2 && e.keyCode == '68') {
+function handleRightScroll(e) {
+  if(positions.player.left + positions.player.width >= positions.game.right / 2 && e.keyCode == '39' || positions.player.left + positions.player.width >= positions.game.right / 2 && e.keyCode == '68') {
 
     player.style.left = positions.player.left + 'px';
     console.log("S1P:", positions.sky.left, "S1D:", skydist, "S2P:", positions.sky.leftTwo, "S2D:", skyTwoDist, "S3P:", positions.sky.leftThree, "S3D:", skyThreeDist);
@@ -406,9 +394,27 @@ if(positions.player.left + positions.player.width >= positions.game.right / 2 &&
             skyThree.style.left = positions.sky.leftThree + skyThreeDist + 'px';
         }
     }
-
-    
+   
+  }
 }
+
+function checkKey(e) {
+
+    e = e || window.event;
+    horizontal = 0;
+    vertical = 0;
+    updatePositions();
+
+    // Begin functions
+    if (e.keyCode == '38' || e.keyCode == '87') handleUp(e);
+    else if (e.keyCode == '40' || e.keyCode == '83') handleDown(e);
+    else if (e.keyCode == '37' || e.keyCode == '65') handleLeft(e);
+    else if (e.keyCode == '39' || e.keyCode == '68') handleRight(e);
+   
+    handleCollissions();
+
+// Start scrolling
+    handleRightScroll(e);
 
 if(distance > 10 && positions.player.left <= 100 && e.keyCode == '37' || distance > 10 && positions.player.left <= 100 && e.keyCode == '65') {
     player.style.left = positions.player.left + 'px';
