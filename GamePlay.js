@@ -314,6 +314,7 @@ function handleCollissions() {
 
 function handleRightScroll(e) {
   if(positions.player.left + positions.player.width >= positions.game.right / 2 && e.keyCode == '39' || positions.player.left + positions.player.width >= positions.game.right / 2 && e.keyCode == '68') {
+    console.log("S1P:", positions.sky.left, "S1D:", skydist, "S2P:", positions.sky.leftTwo, "S2D:", skyTwoDist, "S3P:", positions.sky.leftThree, "S3D:", skyThreeDist);
     player.style.left = positions.player.left + 'px';
     keepBackgroundsInBounds();
 
@@ -325,17 +326,22 @@ function handleRightScroll(e) {
 
 //left can be between -1300 and 2600
 function keepBackgroundsInBounds() {
-  if (positions.sky.left > 2600) positions.sky.left = -1300;
-  if (positions.sky.leftTwo > 2600) positions.sky.leftTwo = -1300;
-  if (positions.sky.leftThree > 2600) positions.sky.leftThree = -1300;
-  if (positions.sky.left < -1300) positions.sky.left = 2600;
-  if (positions.sky.leftTwo < -1300) positions.sky.leftTwo = 2600;
-  if (positions.sky.leftThree < -1300) positions.sky.leftThree = 2600;
+  console.log("SkyLeft2 is", positions.sky.leftTwo);
+  if (positions.sky.left > 2600) positions.sky.left = -1290;
+  else if (positions.sky.left <= -1300) positions.sky.left = 2600;
+
+  if (positions.sky.leftTwo > 2600) positions.sky.leftTwo = -1290;
+  else if (positions.sky.leftTwo <= -1300) positions.sky.leftTwo = 2600;
+
+  if (positions.sky.leftThree > 2600) positions.sky.leftThree = -1290;
+  else if (positions.sky.leftThree <= -1300) positions.sky.leftThree = 2600;
+  console.log("SkyLeft2 NOW is", positions.sky.leftTwo);
 }
 
 
+
 function handleLeftScroll(e) {
-  if((distance > 0 && positions.player.left <= 100 && e.keyCode == '37') || (distance > 0 && positions.player.left <= 100 && e.keyCode == '65')) {
+  if((distance > 8 && positions.player.left <= 100 && e.keyCode == '37') || (distance > 10 && positions.player.left <= 100 && e.keyCode == '65')) {
     //We're scrolling left
     console.log("Scrolling left")
     console.log("S1P:", positions.sky.left, "S1D:", skydist, "S2P:", positions.sky.leftTwo, "S2D:", skyTwoDist, "S3P:", positions.sky.leftThree, "S3D:", skyThreeDist);
