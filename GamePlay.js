@@ -58,14 +58,12 @@ function startGame() {
     skyTwo.style.display = "block";
     skyThree.style.display = "block";
     skyTwo.style.left = gameSide + 'px';
-    //skyTwo.style.width = 0 + 'px';
     skyThree.style.left = (gameSide * 2) + 'px';
-    //skyThree.style.width = 0 + 'px';
-    ground.style.display = "none";
+    ground.style.display = "block";
+    groundTwo.style.display = "block";
+    groundThree.style.display = "block";
     groundTwo.style.left = gameSide + 'px';
-    groundTwo.style.width = 0 + 'px';
     groundThree.style.left = (gameSide * 2) + 'px';
-    groundThree.style.width = 0 + 'px';
     landmark.style.display = "block";
     startScreen.style.display = "none";
     resetPosition();
@@ -151,6 +149,9 @@ let distance = 0;
 let skydist = 1300;
 let skyTwoDist = 1300;
 let skyThreeDist = 1300;
+let grounddist = 1300;
+let groundTwoDist = 1300;
+let groundThreeDist = 1300;
 
 const toNum = (pxVal) => {
     return parseInt(pxVal, 10);
@@ -237,7 +238,10 @@ function updatePositions() {
       leftThree: groundThreePos,
       width: groundwidth,
       widthTwo: groundTwoWidth,
-      widthThree: groundThreeWidth
+      widthThree: groundThreeWidth,
+      top: groundTop,
+      topTwo: groundTwoTop,
+      topThree: groundThreeTop
     }
   }
 }
@@ -321,21 +325,31 @@ function handleRightScroll(e) {
     sky.style.left = positions.sky.left - horizontal - speed + 'px';
     skyTwo.style.left = positions.sky.leftTwo - horizontal - speed + 'px';
     skyThree.style.left = positions.sky.leftThree - horizontal - speed + 'px';
+
+    ground.style.left = positions.ground.left - horizontal - speed + 'px';
+    groundTwo.style.left = positions.ground.leftTwo - horizontal - speed + 'px';
+    groundThree.style.left = positions.ground.leftThree - horizontal - speed + 'px';
   }
 }
 
 //left can be between -1300 and 2600
 function keepBackgroundsInBounds() {
-  console.log("SkyLeft2 is", positions.sky.leftTwo);
+  //console.log("SkyLeft2 is", positions.sky.leftTwo);
   if (positions.sky.left > 2600) positions.sky.left = -1290;
   else if (positions.sky.left <= -1300) positions.sky.left = 2600;
+  if (positions.ground.left > 2600) positions.ground.left = -1290;
+  else if (positions.ground.left <= -1300) positions.ground.left = 2600;
 
   if (positions.sky.leftTwo > 2600) positions.sky.leftTwo = -1290;
   else if (positions.sky.leftTwo <= -1300) positions.sky.leftTwo = 2600;
+  if (positions.ground.leftTwo > 2600) positions.ground.leftTwo = -1290;
+  else if (positions.ground.leftTwo <= -1300) positions.ground.leftTwo = 2600;
 
   if (positions.sky.leftThree > 2600) positions.sky.leftThree = -1290;
   else if (positions.sky.leftThree <= -1300) positions.sky.leftThree = 2600;
-  console.log("SkyLeft2 NOW is", positions.sky.leftTwo);
+  if (positions.ground.leftThree > 2600) positions.ground.leftThree = -1290;
+  else if (positions.ground.leftThree <= -1300) positions.ground.leftThree = 2600;
+  //console.log("SkyLeft2 NOW is", positions.sky.leftTwo);
 }
 
 
@@ -352,7 +366,9 @@ function handleLeftScroll(e) {
     skyTwo.style.left = positions.sky.leftTwo - horizontal + speed + 'px';
     skyThree.style.left = positions.sky.leftThree - horizontal + speed + 'px';
 
-
+    ground.style.left = positions.ground.left - horizontal + speed + 'px';
+    groundTwo.style.left = positions.ground.leftTwo - horizontal + speed + 'px';
+    groundThree.style.left = positions.ground.leftThree - horizontal + speed + 'px';
   }
     
 }
