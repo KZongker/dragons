@@ -55,14 +55,16 @@ function startGame() {
     let gameSide = parseInt(window.getComputedStyle(gameBox).getPropertyValue("width"));
     player.style.display = "block";
     sky.style.display = "block";
+    skyTwo.style.display = "block";
+    skyThree.style.display = "block";
     skyTwo.style.left = gameSide + 'px';
     //skyTwo.style.width = 0 + 'px';
-    skyThree.style.left = gameSide + 'px';
+    skyThree.style.left = (gameSide * 2) + 'px';
     //skyThree.style.width = 0 + 'px';
     ground.style.display = "none";
     groundTwo.style.left = gameSide + 'px';
     groundTwo.style.width = 0 + 'px';
-    groundThree.style.left = gameSide + 'px';
+    groundThree.style.left = (gameSide * 2) + 'px';
     groundThree.style.width = 0 + 'px';
     landmark.style.display = "block";
     startScreen.style.display = "none";
@@ -277,24 +279,6 @@ function handleLeft(e) {
       distance -= 1;
   }
 
-  if(skydist >= 1300 && positions.sky.leftTwo >= 1300) {
-      skyTwo.style.display = "none";
-      skyTwoDist = 0;
-      positions.sky.leftTwo = -1300;
-      skyTwo.style.left = positions.sky.leftTwo + 'px';
-  }
-  if(skyThreeDist >= 1300 && positions.sky.left >= 1300) {
-      sky.style.display = "none";
-      skydist = 0;
-      positions.sky.left = -1300;
-      sky.style.left = positions.sky.left + 'px';
-  }
-  if(skyTwoDist >= 1300 && positions.sky.leftThree >= 1300) {
-      skyThree.style.display = "none";
-      skyThreeDist = 0;
-      positions.sky.leftThree = -1300;
-      skyThree.style.left = positions.sky.leftThree + 'px';
-  }
 }
 
 function handleRight(e) {
@@ -306,25 +290,6 @@ function handleRight(e) {
   distance += 1;
   console.log(distance);
 
-  if(skydist <= 0) {
-      sky.style.display = "none";
-      skydist = 1300;
-      positions.sky.left = 0;
-      sky.style.left = positions.sky.left + skydist + 'px';
-      console.log(positions.sky.left, skydist, positions.sky.left + skydist, positions.game.right);
-  }
-  if(skyTwoDist <= 0) {
-      skyTwo.style.display = "none";
-      skyTwoDist = 1300;
-      positions.sky.leftTwo = 0;
-      skyTwo.style.left = positions.sky.leftTwo + skyTwoDist + 'px';
-  }
-  if(skyThreeDist <= 0) {
-      skyThree.style.display = "none";
-      skyThreeDist = 1300;
-      positions.sky.leftThree = 0;
-      skyThree.style.left = positions.sky.leftThree + skyThreeDist + 'px';
-  }
 }
 
 function handleCollissions() {
@@ -349,117 +314,41 @@ function handleCollissions() {
 
 function handleRightScroll(e) {
   if(positions.player.left + positions.player.width >= positions.game.right / 2 && e.keyCode == '39' || positions.player.left + positions.player.width >= positions.game.right / 2 && e.keyCode == '68') {
-    //We're scrolling right
-
     player.style.left = positions.player.left + 'px';
-    console.log("S1P:", positions.sky.left, "S1D:", skydist, "S2P:", positions.sky.leftTwo, "S2D:", skyTwoDist, "S3P:", positions.sky.leftThree, "S3D:", skyThreeDist);
+    keepBackgroundsInBounds();
 
-    if(positions.sky.left <= positions.game.left && positions.sky.leftThree >= positions.game.right) {
-        sky.style.left = positions.sky.left - horizontal - speed + 'px';
-        console.log("skydist:", skydist)
-        skydist = skydist - horizontal - speed;
-
-        skyTwo.style.display = "block";
-        skyTwo.style.left = skydist + 'px';
-        
-        if(skydist <= 0) {
-            sky.style.display = "none";
-            skydist = 1300;
-            positions.sky.left = 0;
-            sky.style.left = positions.sky.left + skydist + 'px';
-            console.log(positions.sky.left, skydist, positions.sky.left + skydist, positions.game.right);
-        }
-    }
-
-    if(positions.sky.leftTwo <= positions.game.left && positions.sky.left >= positions.game.right) {
-        skyTwo.style.left = positions.sky.leftTwo - horizontal - speed + 'px';
-        console.log("skyTwoDist:", skyTwoDist)
-        skyTwoDist = skyTwoDist - horizontal - speed;
-
-        skyThree.style.display = "block";
-        skyThree.style.left = skyTwoDist + 'px';
-        
-        if(skyTwoDist <= 0) {
-            skyTwo.style.display = "none";
-            skyTwoDist = 1300;
-            positions.sky.leftTwo = 0;
-            skyTwo.style.left = positions.sky.leftTwo + skyTwoDist + 'px';
-        }
-    }
-
-    if(positions.sky.leftThree <= positions.game.left && positions.sky.leftTwo >= positions.game.right) {
-        skyThree.style.left = positions.sky.leftThree - horizontal - speed + 'px';
-        console.log("skyThreeDist:", skyThreeDist)
-        skyThreeDist = skyThreeDist - horizontal - speed;
-
-        sky.style.display = "block";
-        sky.style.left = skyThreeDist + 'px';
-        
-        if(skyThreeDist <= 0) {
-            skyThree.style.display = "none";
-            skyThreeDist = 1300;
-            positions.sky.leftThree = 0;
-            skyThree.style.left = positions.sky.leftThree + skyThreeDist + 'px';
-        }
-    }
-   
+    sky.style.left = positions.sky.left - horizontal - speed + 'px';
+    skyTwo.style.left = positions.sky.leftTwo - horizontal - speed + 'px';
+    skyThree.style.left = positions.sky.leftThree - horizontal - speed + 'px';
   }
 }
 
+//left can be between -1300 and 2600
+function keepBackgroundsInBounds() {
+  if (positions.sky.left > 2600) positions.sky.left = -1300;
+  if (positions.sky.leftTwo > 2600) positions.sky.leftTwo = -1300;
+  if (positions.sky.leftThree > 2600) positions.sky.leftThree = -1300;
+  if (positions.sky.left < -1300) positions.sky.left = 2600;
+  if (positions.sky.leftTwo < -1300) positions.sky.leftTwo = 2600;
+  if (positions.sky.leftThree < -1300) positions.sky.leftThree = 2600;
+}
+
+
 function handleLeftScroll(e) {
-  if(distance > 0 && positions.player.left <= 100 && e.keyCode == '37' || distance > 0 && positions.player.left <= 100 && e.keyCode == '65') {
+  if((distance > 0 && positions.player.left <= 100 && e.keyCode == '37') || (distance > 0 && positions.player.left <= 100 && e.keyCode == '65')) {
     //We're scrolling left
+    console.log("Scrolling left")
     console.log("S1P:", positions.sky.left, "S1D:", skydist, "S2P:", positions.sky.leftTwo, "S2D:", skyTwoDist, "S3P:", positions.sky.leftThree, "S3D:", skyThreeDist);
+    keepBackgroundsInBounds();
+    console.log(positions.sky.left, positions.sky.left + positions.sky.width, positions.game.right)
 
-    if(positions.sky.leftTwo <= positions.game.right && positions.sky.leftThree <= positions.game.left) {
-        skyTwo.style.left = positions.sky.leftTwo - horizontal + speed + 'px';
-        console.log("skyTwoDist:", skyTwoDist)
-        skydist = skydist - horizontal + speed;
+    sky.style.left = positions.sky.left - horizontal + speed + 'px';
+    skyTwo.style.left = positions.sky.leftTwo - horizontal + speed + 'px';
+    skyThree.style.left = positions.sky.leftThree - horizontal + speed + 'px';
 
-        sky.style.display = "block";
-        sky.style.left = positions.sky.left - horizontal + speed + 'px';
-        console.log(positions.sky.leftTwo, positions.sky.widthTwo, positions.sky.leftTwo - positions.sky.widthTwo, positions.game.left);
-        
-        if(skydist >= 1300) {
-            skyTwo.style.display = "none";
-            skyTwoDist = 0;
-            positions.sky.leftTwo = -1300;
-            skyTwo.style.left = positions.sky.leftTwo + 'px';
-        }
-    }
 
-    if(positions.sky.left <= positions.game.right && positions.sky.leftTwo <= positions.game.left) {
-        sky.style.left = positions.sky.left - horizontal + speed + 'px';
-        console.log("skydist:", skydist)
-        skyThreeDist = skyThreeDist - horizontal + speed;
-
-        skyThree.style.display = "block";
-        skyThree.style.left = positions.sky.leftThree - horizontal + speed + 'px';
-        
-        if(skyThreeDist >= 1300) {
-            sky.style.display = "none";
-            skydist = 0;
-            positions.sky.left = -1300;
-            sky.style.left = positions.sky.left + 'px';
-        }
-    }
-
-    if(positions.sky.leftThree <= positions.game.right && positions.sky.left <= positions.game.left) {
-        skyThree.style.left = positions.sky.leftThree - horizontal + speed + 'px';
-        console.log("skyThreeDist:", skyThreeDist)
-        skyTwoDist = skyTwoDist - horizontal + speed;
-
-        skyTwo.style.display = "block";
-        skyTwo.style.left = positions.sky.leftTwo - horizontal + speed + 'px';
-        
-        if(skyTwoDist >= 1300) {
-            skyThree.style.display = "none";
-            skyThreeDist = 0;
-            positions.sky.leftThree = -1300;
-            skyThree.style.left = positions.sky.leftThree + 'px';
-        }
-    }
   }
+    
 }
 
 function checkKey(e) {
@@ -470,6 +359,7 @@ function checkKey(e) {
   handleInput(e);
   handleCollissions();
   handleRightScroll(e);
-  if(distance > 10 && positions.player.left <= 100 && e.keyCode == '37' || distance > 10 && positions.player.left <= 100 && e.keyCode == '65') player.style.left = positions.player.left + 'px'; //fix dragon at 100px
+  console.log("Fix dragon", distance, positions.player.left, e.keyCode);
+  if(distance > 10 && positions.player.left <= 100 && (e.keyCode == '37' || e.keyCode == '65')) player.style.left = positions.player.left + 'px'; //fix dragon at 100px
   handleLeftScroll(e);
 }

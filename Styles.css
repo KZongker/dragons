@@ -476,7 +476,7 @@ input, select {
 .skyTwo {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 1300;
     width: 100%;
     height: 1300px;
     background-color: blue;
@@ -489,7 +489,7 @@ input, select {
     top: 0;
     left: 0;
     width: 100%;
-    height: 1300px;
+    height: 2600px;
     background-color: cyan;
     z-index: 0;
     display: none;
