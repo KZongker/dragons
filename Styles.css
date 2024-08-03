@@ -468,7 +468,7 @@ input, select {
     top: 0;
     left: 0;
     width: 100%;
-    height: 1300px;
+    height: 100%;
     background-color: lightblue;
     z-index: 0;
     display: none;
@@ -478,7 +478,7 @@ input, select {
     top: 0;
     left: 1300;
     width: 100%;
-    height: 1300px;
+    height: 100%;
     background-color: blue;
     z-index: 0;
     display: none;
@@ -489,12 +489,22 @@ input, select {
     top: 0;
     left: 0;
     width: 100%;
-    height: 2600px;
+    height: 100%;
     background-color: cyan;
     z-index: 0;
     display: none;
 }
 
+.cloud {
+    position: absolute;
+    top: 5%;
+    left: 20%;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+}
+
+/* player start */
 .player {
     background-color: transparent;
     height: 100px;
@@ -988,7 +998,135 @@ input, select {
 .dwcTwo {
     background-color: rgb(210, 136, 0);
 }
+/* player end */
 
+/* sheep start */
+.sheep {
+    background-color: transparent;
+    height: 60px;
+    width: 70px;
+    position: absolute;
+    bottom: 30px;
+    left: 20%;
+    z-index: 1;
+    display: none;
+}
+
+.sheepHead {
+    background-color: transparent;
+    height: 50%;
+    width: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.sheepEarLeft {
+    height: 30%;
+    width: 20%;
+    position: absolute;
+    top: 20%;
+    left: 0%;
+}
+.sheepEarRight {
+    height: 30%;
+    width: 20%;
+    position: absolute;
+    top: 20%;
+    left: 80%;
+}
+.sheepHeadWool {
+    height: 20%;
+    width: 70%;
+    position: absolute;
+    top: 0;
+    left: 15%;
+}
+.sheepFace {
+    background-color: rgb(244, 171, 107);
+    height: 80%;
+    width: 70%;
+    position: absolute;
+    top: 20%;
+    left: 15%;
+}
+.sheepEyeLeft {
+    background-color: black;
+    height: 40%;
+    width: 20%;
+    position: absolute;
+    top: 5%;
+    left: 15%;
+}
+.sheepEyeRight {
+    background-color: black;
+    height: 40%;
+    width: 20%;
+    position: absolute;
+    top: 5%;
+    left: 55%;
+}
+.sheepMouth {
+    background-color: black;
+    height: 10%;
+    width: 40%;
+    position: absolute;
+    top: 60%;
+    left: 25%;
+}
+
+.sheepBody {
+    background-color: transparent;
+    height: 80%;
+    width: 80%;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    z-index: -1;
+}
+.sheepWool {
+        height: 60%;
+        width: 80%;
+        position: absolute;
+        top: 0;
+        left: 0;
+}
+.sheepTail {
+    height: 20%;
+    width: 10%;
+    position: absolute;
+    top: 5%;
+    left: 80%;
+}
+.sheepLeg {
+    height: 40%;
+    width: 15%;
+    position: absolute;
+    top: 60%;
+}
+.SFL {
+    left: 5%;
+    background-color: rgb(53, 53, 53);
+}
+.SBL {
+    left: 15%;
+    background-color: black;
+    z-index: -1;
+}
+.SFR {
+    left: 50%;
+    background-color: rgb(53, 53, 53);
+}
+.SBR {
+    left: 60%;
+    background-color: black;
+    z-index: -1;
+}
+.scc {
+    background-color: white;
+}
+/* sheep end */
+
+/* start screen start */
 .startScreen {
     height: 100%;
     width: 100%;
@@ -1051,5 +1189,6 @@ input, select {
 #mango {
     color: yellow;
 }
+/* start screen end */
 
 /* GAME END */

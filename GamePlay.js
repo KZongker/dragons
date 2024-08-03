@@ -8,6 +8,9 @@ const skyThree = document.getElementById('skyThree');
 const groundTwo = document.getElementById('groundTwo');
 const groundThree = document.getElementById('groundThree');
 
+const sheep = document.getElementById('sheep');
+const scc = document.querySelectorAll('.scc');
+
 const startBtn = document.getElementById('startBtn');
 const startScreen = document.getElementById('startScreen');
 
@@ -54,17 +57,21 @@ function startGame() {
     console.log("started");
     let gameSide = parseInt(window.getComputedStyle(gameBox).getPropertyValue("width"));
     player.style.display = "block";
+
     sky.style.display = "block";
     skyTwo.style.display = "block";
     skyThree.style.display = "block";
     skyTwo.style.left = gameSide + 'px';
     skyThree.style.left = (gameSide * 2) + 'px';
+
     ground.style.display = "block";
     groundTwo.style.display = "block";
     groundThree.style.display = "block";
     groundTwo.style.left = gameSide + 'px';
     groundThree.style.left = (gameSide * 2) + 'px';
-    landmark.style.display = "block";
+
+    sheep.style.display = "block";
+    landmark.style.display = "none";
     startScreen.style.display = "none";
     resetPosition();
     return;
@@ -172,6 +179,9 @@ function updatePositions() {
   let heightpos = parseInt(window.getComputedStyle(player).getPropertyValue("height"));
   let widthpos = parseInt(window.getComputedStyle(player).getPropertyValue("width"));
 
+  //sheep
+  let sheeppos = parseInt(window.getComputedStyle(sheep).getPropertyValue("left"));
+
   // Collision Borders
   let gameTop = parseInt(window.getComputedStyle(gameBox).getPropertyValue("top"));
   let gameLeft = parseInt(window.getComputedStyle(gameBox).getPropertyValue("left"));
@@ -242,6 +252,9 @@ function updatePositions() {
       top: groundTop,
       topTwo: groundTwoTop,
       topThree: groundThreeTop
+    },
+    sheep: {
+        left: sheeppos
     }
   }
 }
@@ -373,6 +386,20 @@ function handleLeftScroll(e) {
     
 }
 
+function catchSheep() {
+    if(positions.player.left + positions.player.width >= positions.sheep.left) {
+        if(mangoSel) {
+            scc.forEach((el) => el.style.backgroundColor = 'red');
+        } else if(fernSel) {
+            scc.forEach((el) => el.style.backgroundColor = 'green');
+        } else if(juniperSel) {
+            scc.forEach((el) => el.style.backgroundColor = 'blue');
+        } else if(violetSel) {
+            scc.forEach((el) => el.style.backgroundColor = 'rgb(144, 0, 180)');
+        }
+    }
+}
+
 function checkKey(e) {
   e = e || window.event;
   horizontal = 0;
@@ -384,4 +411,5 @@ function checkKey(e) {
   console.log("Fix dragon", distance, positions.player.left, e.keyCode);
   if(distance > 10 && positions.player.left <= 100 && (e.keyCode == '37' || e.keyCode == '65')) player.style.left = positions.player.left + 'px'; //fix dragon at 100px
   handleLeftScroll(e);
+  catchSheep();
 }
