@@ -398,29 +398,8 @@ function handleRightScroll(e) {
   }
 }
 
-function checkKey(e) {
-
-    e = e || window.event;
-    horizontal = 0;
-    vertical = 0;
-    updatePositions();
-
-    // Begin functions
-    if (e.keyCode == '38' || e.keyCode == '87') handleUp(e);
-    else if (e.keyCode == '40' || e.keyCode == '83') handleDown(e);
-    else if (e.keyCode == '37' || e.keyCode == '65') handleLeft(e);
-    else if (e.keyCode == '39' || e.keyCode == '68') handleRight(e);
-   
-    handleCollissions();
-
-// Start scrolling
-    handleRightScroll(e);
-
-if(distance > 10 && positions.player.left <= 100 && e.keyCode == '37' || distance > 10 && positions.player.left <= 100 && e.keyCode == '65') {
-    player.style.left = positions.player.left + 'px';
-}
-
-if(distance > 0 && positions.player.left <= 100 && e.keyCode == '37' || distance > 0 && positions.player.left <= 100 && e.keyCode == '65') {
+function handleLeftScroll(e) {
+  if(distance > 0 && positions.player.left <= 100 && e.keyCode == '37' || distance > 0 && positions.player.left <= 100 && e.keyCode == '65') {
     console.log("S1P:", positions.sky.left, "S1D:", skydist, "S2P:", positions.sky.leftTwo, "S2D:", skyTwoDist, "S3P:", positions.sky.leftThree, "S3D:", skyThreeDist);
 
     if(positions.sky.leftTwo <= positions.game.right && positions.sky.leftThree <= positions.game.left) {
@@ -474,13 +453,29 @@ if(distance > 0 && positions.player.left <= 100 && e.keyCode == '37' || distance
 
 
     
+  }
 }
 
-// end scrolling
+
+function checkKey(e) {
+  e = e || window.event;
+  horizontal = 0;
+  vertical = 0;
+  updatePositions();
+
+  // Begin functions
+  if (e.keyCode == '38' || e.keyCode == '87') handleUp(e);
+  else if (e.keyCode == '40' || e.keyCode == '83') handleDown(e);
+  else if (e.keyCode == '37' || e.keyCode == '65') handleLeft(e);
+  else if (e.keyCode == '39' || e.keyCode == '68') handleRight(e);
+  
+  handleCollissions();
+  // Start scrolling
+  handleRightScroll(e);
+  // Handle dragon position stop
+  if(distance > 10 && positions.player.left <= 100 && e.keyCode == '37' || distance > 10 && positions.player.left <= 100 && e.keyCode == '65') {
+      player.style.left = positions.player.left + 'px';
+  }
+  handleLeftScroll(e);
+
 }
-// End Movement
-
-//start background scrolling
-//end background scrolling
-
-
