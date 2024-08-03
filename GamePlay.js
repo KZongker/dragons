@@ -240,6 +240,13 @@ function updatePositions() {
   }
 }
 
+function handleInput(e) {
+  if (e.keyCode == '38' || e.keyCode == '87') handleUp(e);
+  else if (e.keyCode == '40' || e.keyCode == '83') handleDown(e);
+  else if (e.keyCode == '37' || e.keyCode == '65') handleLeft(e);
+  else if (e.keyCode == '39' || e.keyCode == '68') handleRight(e);
+}
+
 function handleUp(e) {
   if (e.keyCode == '38') {
     e.preventDefault();
@@ -342,6 +349,7 @@ function handleCollissions() {
 
 function handleRightScroll(e) {
   if(positions.player.left + positions.player.width >= positions.game.right / 2 && e.keyCode == '39' || positions.player.left + positions.player.width >= positions.game.right / 2 && e.keyCode == '68') {
+    //We're scrolling right
 
     player.style.left = positions.player.left + 'px';
     console.log("S1P:", positions.sky.left, "S1D:", skydist, "S2P:", positions.sky.leftTwo, "S2D:", skyTwoDist, "S3P:", positions.sky.leftThree, "S3D:", skyThreeDist);
@@ -400,6 +408,7 @@ function handleRightScroll(e) {
 
 function handleLeftScroll(e) {
   if(distance > 0 && positions.player.left <= 100 && e.keyCode == '37' || distance > 0 && positions.player.left <= 100 && e.keyCode == '65') {
+    //We're scrolling left
     console.log("S1P:", positions.sky.left, "S1D:", skydist, "S2P:", positions.sky.leftTwo, "S2D:", skyTwoDist, "S3P:", positions.sky.leftThree, "S3D:", skyThreeDist);
 
     if(positions.sky.leftTwo <= positions.game.right && positions.sky.leftThree <= positions.game.left) {
@@ -450,32 +459,17 @@ function handleLeftScroll(e) {
             skyThree.style.left = positions.sky.leftThree + 'px';
         }
     }
-
-
-    
   }
 }
-
 
 function checkKey(e) {
   e = e || window.event;
   horizontal = 0;
   vertical = 0;
   updatePositions();
-
-  // Begin functions
-  if (e.keyCode == '38' || e.keyCode == '87') handleUp(e);
-  else if (e.keyCode == '40' || e.keyCode == '83') handleDown(e);
-  else if (e.keyCode == '37' || e.keyCode == '65') handleLeft(e);
-  else if (e.keyCode == '39' || e.keyCode == '68') handleRight(e);
-  
+  handleInput(e);
   handleCollissions();
-  // Start scrolling
   handleRightScroll(e);
-  // Handle dragon position stop
-  if(distance > 10 && positions.player.left <= 100 && e.keyCode == '37' || distance > 10 && positions.player.left <= 100 && e.keyCode == '65') {
-      player.style.left = positions.player.left + 'px';
-  }
+  if(distance > 10 && positions.player.left <= 100 && e.keyCode == '37' || distance > 10 && positions.player.left <= 100 && e.keyCode == '65') player.style.left = positions.player.left + 'px'; //fix dragon at 100px
   handleLeftScroll(e);
-
 }
