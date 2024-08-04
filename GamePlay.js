@@ -10,6 +10,8 @@ const groundThree = document.getElementById('groundThree');
 
 const sheep = document.getElementById('sheep');
 const scc = document.querySelectorAll('.scc');
+const sheepCounter = document.getElementById('sheepCounter');
+const sheepNum = document.getElementById('sheepNum');
 
 const startBtn = document.getElementById('startBtn');
 const startScreen = document.getElementById('startScreen');
@@ -71,6 +73,7 @@ function startGame() {
     groundThree.style.left = (gameSide * 2) + 'px';
 
     sheep.style.display = "block";
+    sheepCounter.style.display = "block";
     landmark.style.display = "none";
     startScreen.style.display = "none";
     resetPosition();
@@ -181,6 +184,9 @@ function updatePositions() {
 
   //sheep
   let sheeppos = parseInt(window.getComputedStyle(sheep).getPropertyValue("left"));
+  let sheeptop = parseInt(window.getComputedStyle(sheep).getPropertyValue("top"));
+  let sheepwidth = parseInt(window.getComputedStyle(sheep).getPropertyValue("width"));
+  let sheepheight = parseInt(window.getComputedStyle(sheep).getPropertyValue("height"));
 
   // Collision Borders
   let gameTop = parseInt(window.getComputedStyle(gameBox).getPropertyValue("top"));
@@ -254,7 +260,10 @@ function updatePositions() {
       topThree: groundThreeTop
     },
     sheep: {
-        left: sheeppos
+        left: sheeppos,
+        top: sheeptop,
+        width: sheepwidth,
+        height: sheepheight
     }
   }
 }
@@ -306,7 +315,7 @@ function handleRight(e) {
   player.style.transform = 'scaleX(1)'; }
   distance += 1;
   console.log(distance);
-
+  console.log("PL - PW >= SL:", positions.player.left + positions.player.width >= positions.sheep.left, "PL <= SL + SW:", positions.player.left <= positions.sheep.left + positions.sheep.width, "PT + PH >= ST:", positions.player.top + positions.player.height >= positions.sheep.top, "PT <= ST + SH:", positions.player.top <= positions.sheep.top + positions.sheep.height);
 }
 
 function handleCollissions() {
@@ -386,8 +395,19 @@ function handleLeftScroll(e) {
     
 }
 
+let sheepCount = 0;
+let sheepWoolColored = false;
+
 function catchSheep() {
-    if(positions.player.left + positions.player.width >= positions.sheep.left) {
+  if(sheepWoolColored) {
+    return;
+  } else if(positions.player.left + positions.player.width >= positions.sheep.left &&
+    positions.player.left <= positions.sheep.left + positions.sheep.width &&
+    positions.player.top + positions.player.height >= positions.sheep.top &&
+    positions.player.top <= positions.sheep.top + positions.sheep.height
+  ) {
+      sheepCount += 1;
+      sheepNum.textContent = `${sheepCount}/3`;
         if(mangoSel) {
             scc.forEach((el) => el.style.backgroundColor = 'red');
         } else if(fernSel) {
@@ -397,6 +417,7 @@ function catchSheep() {
         } else if(violetSel) {
             scc.forEach((el) => el.style.backgroundColor = 'rgb(144, 0, 180)');
         }
+        sheepWoolColored = true;
     }
 }
 

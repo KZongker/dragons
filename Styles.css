@@ -1124,6 +1124,83 @@ input, select {
 .scc {
     background-color: white;
 }
+
+.sheepCounter {
+    height: 40px;
+    width: 80px;
+    position: absolute;
+    top: 0;
+    right: 20%;
+    z-index: 1;
+    display: none;
+    background-color: transparent;
+}
+.sheepNum {
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    text-align: center;
+    line-height: 40px;
+}
+.sheepDisplay {
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.sdHeadWool {
+    height: 10%;
+    width: 60%;
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    background-color: white;
+}
+.sdLeftEar {
+    height: 20%;
+    width: 10%;
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    background-color: white;
+}
+.sdRightEar {
+    height: 20%;
+    width: 10%;
+    position: absolute;
+    top: 20%;
+    left: 80%;
+    background-color: white;
+}
+.sdFace {
+    height: 60%;
+    width: 60%;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    background-color: rgb(244, 171, 107);
+}
+.sdLeftEye {
+    height: 40%;
+    width: 20%;
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    background-color: black;
+}
+.sdRightEye {
+    height: 40%;
+    width: 20%;
+    position: absolute;
+    top: 10%;
+    left: 60%;
+    background-color: black;
+}
 /* sheep end */
 
 /* start screen start */
