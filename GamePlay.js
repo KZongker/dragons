@@ -510,7 +510,8 @@ if(minuteOnes === 9 && secondsTens == 6) {
   minuteOnes = 0;
   minuteTens += 1;
 }
-if(minuteTens === 6 && minuteOnes === 0) {
+if(minuteTens === 5 && minuteOnes === 10) {
+  minuteOnes = 0;
   minuteTens = 0;
   hours += 1;
 }
