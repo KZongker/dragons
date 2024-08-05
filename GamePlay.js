@@ -31,6 +31,12 @@ const dcThree = document.querySelectorAll('.dcThree');
 const dwcOne = document.querySelectorAll('.dwcOne');
 const dwcTwo = document.querySelectorAll('.dwcTwo');
 
+const pauseGameBtn = document.getElementById('pauseGameBtn');
+const gameTimer = document.getElementById('gameTimer');
+const pauseScreen = document.getElementById('pauseScreen');
+const currentTime = document.getElementById('currentTime');
+const resumeGameBtn = document.getElementById('resumeGameBtn');
+
 //temp in case player offscreen
 const resetBtn = document.getElementById('resetBtn');
 
@@ -76,9 +82,58 @@ function startGame() {
     sheepCounter.style.display = "block";
     landmark.style.display = "none";
     startScreen.style.display = "none";
-    runTimer();
+
+    pauseGameBtn.style.display = "block";
+    gameTimer.style.display = "block";
     resetPosition();
     return;
+}
+
+pauseGameBtn.addEventListener("click", pauseGame);
+resumeGameBtn.addEventListener("click", resumeGame);
+
+function pauseGame() {
+  player.style.display = "none";
+
+  sky.style.display = "none";
+  skyTwo.style.display = "none";
+  skyThree.style.display = "none";
+
+  ground.style.display = "none";
+  groundTwo.style.display = "none";
+  groundThree.style.display = "none";
+
+  sheep.style.display = "none";
+  sheepCounter.style.display = "none";
+
+  pauseGameBtn.style.display = "none";
+  gameTimer.style.display = "none";
+  
+  gamePaused = true;
+  pauseScreen.style.display = "block";
+  setPlayPause();
+  currentTime.textContent = `Current Time: ${hours}:${minuteTens}${minuteOnes}:${secondsTens}${secondsOnes}`;
+}
+
+function resumeGame() {
+  player.style.display = "block";
+
+  sky.style.display = "block";
+  skyTwo.style.display = "block";
+  skyThree.style.display = "block";
+
+  ground.style.display = "block";
+  groundTwo.style.display = "block";
+  groundThree.style.display = "block";
+
+  sheep.style.display = "block";
+  sheepCounter.style.display = "block";
+
+  gamePaused = false;
+  pauseGameBtn.style.display = "block";
+  gameTimer.style.display = "block";
+  setPlayPause();
+  pauseScreen.style.display = "none";
 }
 
 function mangoSelected() {
@@ -427,10 +482,18 @@ let secondsTens = 0;
 let minuteOnes = 0;
 let minuteTens = 0;
 let hours = 0;
+let gamePaused = false;
+let runTimer = setInterval(updateTimer, 1000);
 
-function runTimer(){
-  setInterval(updateTimer, 1000);
+function setPlayPause() {
+  if(gamePaused) {
+    clearInterval(runTimer);
+  } else {
+    runTimer = setInterval(updateTimer, 1000);
+  }
 }
+
+
 
 function updateTimer() {
 secondsOnes += 1;
@@ -451,7 +514,16 @@ if(minuteTens === 6 && minuteOnes === 0) {
   minuteTens = 0;
   hours += 1;
 }
-console.log(hours, ":", minuteTens, minuteOnes, ":", secondsTens, secondsOnes);
+gameTimer.textContent = `${hours}:${minuteTens}${minuteOnes}:${secondsTens}${secondsOnes}`;
+}
+
+function pauseTimer() {
+  secondsOnes = secondsOnes;
+  secondsTens = secondsTens;
+  minuteOnes = minuteOnes;
+  minuteTens = minuteTens;
+  hours = hours;
+  gameTimer.textContent = `${hours}:${minuteTens}${minuteOnes}:${secondsTens}${secondsOnes}`;
 }
 
 function checkKey(e) {
