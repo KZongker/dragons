@@ -76,6 +76,7 @@ function startGame() {
     sheepCounter.style.display = "block";
     landmark.style.display = "none";
     startScreen.style.display = "none";
+    runTimer();
     resetPosition();
     return;
 }
@@ -419,6 +420,38 @@ function catchSheep() {
         }
         sheepWoolColored = true;
     }
+}
+
+let secondsOnes = 0;
+let secondsTens = 0;
+let minuteOnes = 0;
+let minuteTens = 0;
+let hours = 0;
+
+function runTimer(){
+  setInterval(updateTimer, 1000);
+}
+
+function updateTimer() {
+secondsOnes += 1;
+if(secondsOnes === 10) {
+  secondsOnes = 0,
+  secondsTens += 1;
+}
+if(secondsTens === 6 && secondsOnes === 0){
+  secondsOnes = 0;
+  secondsTens = 0;
+  minuteOnes += 1;
+}
+if(minuteOnes === 9 && secondsTens == 6) {
+  minuteOnes = 0;
+  minuteTens += 1;
+}
+if(minuteTens === 6 && minuteOnes === 0) {
+  minuteTens = 0;
+  hours += 1;
+}
+console.log(hours, ":", minuteTens, minuteOnes, ":", secondsTens, secondsOnes);
 }
 
 function checkKey(e) {
