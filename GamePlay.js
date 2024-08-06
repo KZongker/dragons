@@ -13,6 +13,9 @@ const scc = document.querySelectorAll('.scc');
 const sheepCounter = document.getElementById('sheepCounter');
 const sheepNum = document.getElementById('sheepNum');
 
+const ringFront = document.getElementById('ringFront');
+const ringBack = document.getElementById('ringBack');
+
 const startBtn = document.getElementById('startBtn');
 const startScreen = document.getElementById('startScreen');
 
@@ -80,11 +83,14 @@ function startGame() {
 
     sheep.style.display = "block";
     sheepCounter.style.display = "block";
+    ringFront.style.display = "block";
+    ringBack.style.display = "block";
     landmark.style.display = "none";
     startScreen.style.display = "none";
 
     pauseGameBtn.style.display = "block";
     gameTimer.style.display = "block";
+    resetTimer();
     resetPosition();
     return;
 }
@@ -105,6 +111,9 @@ function pauseGame() {
 
   sheep.style.display = "none";
   sheepCounter.style.display = "none";
+
+  ringFront.style.display = "none";
+  ringBack.style.display = "none";
 
   pauseGameBtn.style.display = "none";
   gameTimer.style.display = "none";
@@ -128,6 +137,9 @@ function resumeGame() {
 
   sheep.style.display = "block";
   sheepCounter.style.display = "block";
+
+  ringFront.style.display = "block";
+  ringBack.style.display = "block";
 
   gamePaused = false;
   pauseGameBtn.style.display = "block";
@@ -516,6 +528,14 @@ if(minuteTens === 5 && minuteOnes === 10) {
   hours += 1;
 }
 gameTimer.textContent = `${hours}:${minuteTens}${minuteOnes}:${secondsTens}${secondsOnes}`;
+}
+
+function resetTimer() {
+  secondsOnes = 0;
+  secondsTens = 0;
+  minuteOnes = 0;
+  minuteTens = 0;
+  hours = 0;
 }
 
 function pauseTimer() {
