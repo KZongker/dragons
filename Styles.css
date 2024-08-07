@@ -1001,15 +1001,19 @@ input, select {
 /* player end */
 
 /* sheep start */
+#sheepContainer {
+    display: none;
+    bottom: 30px;
+}
+
 .sheep {
-    background-color: transparent;
+    background-color: darkblue;
     height: 60px;
     width: 70px;
     position: absolute;
     bottom: 30px;
     left: 20%;
     z-index: 1;
-    display: none;
 }
 
 .sheepHead {

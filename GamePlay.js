@@ -9,9 +9,9 @@ const groundTwo = document.getElementById('groundTwo');
 const groundThree = document.getElementById('groundThree');
 
 const sheep = document.getElementById('sheep');
-const scc = document.querySelectorAll('.scc');
 const sheepCounter = document.getElementById('sheepCounter');
 const sheepNum = document.getElementById('sheepNum');
+const sheepContainer = document.getElementById('sheepContainer');
 
 const ringFront = document.getElementById('ringFront');
 const rfTop = document.getElementById('rfTop');
@@ -85,6 +85,8 @@ function startGame() {
     landmark.style.display = "none";
     startScreen.style.display = "none";
 
+    fillSheep();
+
     resetTimer();
     resetPosition();
     return;
@@ -101,7 +103,7 @@ function showGame() {
   groundTwo.style.display = "block";
   groundThree.style.display = "block";
 
-  sheep.style.display = "block";
+  sheepContainer.style.display = "block";
   sheepCounter.style.display = "block";
 
   ringFront.style.display = "block";
@@ -259,10 +261,10 @@ function updatePositions() {
   let widthpos = parseInt(window.getComputedStyle(player).getPropertyValue("width"));
 
   //sheep
-  let sheeppos = parseInt(window.getComputedStyle(sheep).getPropertyValue("left"));
-  let sheeptop = parseInt(window.getComputedStyle(sheep).getPropertyValue("top"));
-  let sheepwidth = parseInt(window.getComputedStyle(sheep).getPropertyValue("width"));
-  let sheepheight = parseInt(window.getComputedStyle(sheep).getPropertyValue("height"));
+  //let sheeppos = parseInt(window.getComputedStyle(sheepContainer).getPropertyValue("left"));
+  //let sheeptop = parseInt(window.getComputedStyle(sheepContainer).getPropertyValue("top"));
+  //let sheepwidth = parseInt(window.getComputedStyle(sheepContainer).getPropertyValue("width"));
+  //let sheepheight = parseInt(window.getComputedStyle(sheepContainer).getPropertyValue("height"));
 
   //ring
   let rfpos = parseInt(window.getComputedStyle(rfSide).getPropertyValue("left"));
@@ -344,12 +346,6 @@ function updatePositions() {
       top: groundTop,
       topTwo: groundTwoTop,
       topThree: groundThreeTop
-    },
-    sheep: {
-        left: sheeppos,
-        top: sheeptop,
-        width: sheepwidth,
-        height: sheepheight
     },
     ring: {
       frontleft: rfpos,
@@ -449,12 +445,12 @@ function handleRightScroll(e) {
     groundTwo.style.left = positions.ground.leftTwo - horizontal - speed + 'px';
     groundThree.style.left = positions.ground.leftThree - horizontal - speed + 'px';
 
-    if(positions.sheep.left > positions.game.left && positions.sheep.left < positions.game.right) {
+    /*if(positions.sheep.left > positions.game.left && positions.sheep.left < positions.game.right) {
       sheep.style.display = "block";
       sheep.style.left = positions.sheep.left - horizontal - speed + 'px';
     } else {
       sheep.style.display = "none";
-    }
+    } */
 
     if(positions.ring.frontmost > positions.game.left && positions.ring.frontmost < positions.game.right) {
       ringFront.style.display = "block";
@@ -510,12 +506,12 @@ function handleLeftScroll(e) {
     groundTwo.style.left = positions.ground.leftTwo - horizontal + speed + 'px';
     groundThree.style.left = positions.ground.leftThree - horizontal + speed + 'px';
     
-    if(positions.sheep.left > positions.game.left && positions.sheep.left < positions.game.right) {
+    /* if(positions.sheep.left > positions.game.left && positions.sheep.left < positions.game.right) {
       sheep.style.display = "block";
       sheep.style.left = positions.sheep.left - horizontal + speed + 'px';
     } else {
       sheep.style.display = "none";
-    }
+    } */
 
     if(positions.ring.frontmost > positions.game.left && positions.ring.frontmost < positions.game.right) {
       ringFront.style.display = "block";
@@ -534,20 +530,72 @@ function handleLeftScroll(e) {
     
 }
 
+//spawn start
+const sheepArray = [];
+
+function spawnSheep(index) {
+  const left = Math.floor(Math.random() * 100);
+  let sheeptop = parseInt(window.getComputedStyle(sheepContainer).getPropertyValue("top"));
+  result = document.createElement("div");
+  result.innerHTML = '<div class="sheep" style="left:' + left + '%" id="sheep' + index + '">'
+        + '<div class="sheepHead">'
+        + '<div class="sheepHeadWool scc"></div>'
+        +   '<div class="sheepEarLeft scc"></div>'
+        +   '<div class="sheepEarRight scc"></div>'
+        +    '<div class="sheepFace">'
+        +        '<div class="sheepEyeLeft"></div>'
+        +        '<div class="sheepEyeRight"></div>'
+        +        '<div class="sheepMouth"></div>'
+        +    '</div>'
+        + '</div>'
+        + '<div class="sheepBody">'
+        +    '<div class="sheepWool scc"></div>'
+        +    '<div class="sheepTail scc"></div>'
+        +    '<div class="sheepLeg SFL"></div>'
+        +    '<div class="sheepLeg SFR"></div>'
+        +    '<div class="sheepLeg SBL"></div>'
+        +    '<div class="sheepLeg SBR"></div>'
+        + '</div>'
+    + '</div>';
+    sheepContainer.appendChild(result);
+    sheepArray.push({index, left: left * 1300 / 100, top: 420, width: 70, height: 60, woolColored: false});
+    return result;
+}
+
+function fillSheep() {
+  for(let i= 0; i < 5; i++) {
+    spawnSheep(i);
+  }
+}
+//spawn end
+
 //collections start
 let sheepCount = 0;
-let sheepWoolColored = false;
+//let sheepWoolColored = false;
 
-function catchSheep() {
-  if(sheepWoolColored) {
+function catchAllSheep() {
+  sheepArray.forEach((sheep) => {
+    catchSheep(sheep);
+  });
+}
+
+function catchSheep(sheep) {
+  /*console.log("sheep is:", sheep);
+  console.log("checks", positions.player.left + positions.player.width >= sheep.left,
+    positions.player.left <= sheep.left + sheep.width,
+    positions.player.top + positions.player.height >= sheep.top,
+    positions.player.top <= sheep.top + sheep.height) */
+  if(sheep.woolColored) {
     return;
-  } else if(positions.player.left + positions.player.width >= positions.sheep.left &&
-    positions.player.left <= positions.sheep.left + positions.sheep.width &&
-    positions.player.top + positions.player.height >= positions.sheep.top &&
-    positions.player.top <= positions.sheep.top + positions.sheep.height
+  } else if(positions.player.left + positions.player.width >= sheep.left &&
+    positions.player.left <= sheep.left + sheep.width &&
+    positions.player.top + positions.player.height >= sheep.top &&
+    positions.player.top <= sheep.top + sheep.height
   ) {
+    console.log("touching!!");
+    const scc = document.querySelectorAll('#sheep' + sheep.index + ' .scc');
       sheepCount += 1;
-      sheepNum.textContent = `${sheepCount}/3`;
+      sheepNum.textContent = `${sheepCount}/5`;
         if(mangoSel) {
             scc.forEach((el) => el.style.backgroundColor = 'red');
         } else if(fernSel) {
@@ -557,7 +605,7 @@ function catchSheep() {
         } else if(violetSel) {
             scc.forEach((el) => el.style.backgroundColor = 'rgb(144, 0, 180)');
         }
-        sheepWoolColored = true;
+        sheep.woolColored = true;
     }
 }
 
@@ -640,6 +688,6 @@ function checkKey(e) {
   console.log("Fix dragon", distance, positions.player.left, e.keyCode);
   if(distance > 10 && positions.player.left <= 100 && (e.keyCode == '37' || e.keyCode == '65')) player.style.left = positions.player.left + 'px'; //fix dragon at 100px
   handleLeftScroll(e);
-  catchSheep();
+  catchAllSheep();
   collectRing();
 }
