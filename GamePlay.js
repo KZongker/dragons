@@ -270,7 +270,9 @@ function updatePositions() {
   let rftoppos = parseInt(window.getComputedStyle(rfTop).getPropertyValue("top"));
   let rftopheight = parseInt(window.getComputedStyle(rfTop).getPropertyValue("height"));
   let rfbotpos = parseInt(window.getComputedStyle(rfBottom).getPropertyValue("top"));
+  let rfmpos = parseInt(window.getComputedStyle(ringFront).getPropertyValue("left"));
   let rbpos = parseInt(window.getComputedStyle(rbSide).getPropertyValue("left"));
+  let rbmpos = parseInt(window.getComputedStyle(ringBack).getPropertyValue("left"));
 
   // Collision Borders
   let gameTop = parseInt(window.getComputedStyle(gameBox).getPropertyValue("top"));
@@ -355,7 +357,9 @@ function updatePositions() {
       fronttop: rftoppos,
       frontheight: rftopheight,
       frontbottom: rfbotpos,
-      backleft: rbpos
+      frontmost: rfmpos,
+      backleft: rbpos,
+      backmost: rbmpos
     }
   }
 }
@@ -407,7 +411,7 @@ function handleRight(e) {
   player.style.transform = 'scaleX(1)'; }
   distance += 1;
   console.log(distance);
-  console.log("PL - PW: <= RFL + (RFW * 3)", positions.player.left - positions.player.width <= positions.ring.frontleft + (positions.ring.frontwidth * 3),"PL - PW >= RFL + (RFW *2):", positions.player.left - positions.player.width >= positions.ring.frontleft + (positions.ring.frontwidth * 2), "PT - PH >= RFT - RFH:", positions.player.top - positions.player.height >= positions.ring.fronttop - positions.ring.frontheight, "PT <= RFB + RFH:", positions.player.top <= positions.ring.frontbottom + positions.ring.frontheight);
+  //console.log("PL - PW: <= RFL + (RFW * 3)", positions.player.left - positions.player.width <= positions.ring.frontleft + (positions.ring.frontwidth * 3),"PL - PW >= RFL + (RFW *2):", positions.player.left - positions.player.width >= positions.ring.frontleft + (positions.ring.frontwidth * 2), "PT - PH >= RFT - RFH:", positions.player.top - positions.player.height >= positions.ring.fronttop - positions.ring.frontheight, "PT <= RFB + RFH:", positions.player.top <= positions.ring.frontbottom + positions.ring.frontheight);
   //console.log("PL - PW >= SL:", positions.player.left + positions.player.width >= positions.sheep.left, "PL <= SL + SW:", positions.player.left <= positions.sheep.left + positions.sheep.width, "PT + PH >= ST:", positions.player.top + positions.player.height >= positions.sheep.top, "PT <= ST + SH:", positions.player.top <= positions.sheep.top + positions.sheep.height);
 }
 
@@ -433,7 +437,7 @@ function handleCollissions() {
 
 function handleRightScroll(e) {
   if(positions.player.left + positions.player.width >= positions.game.right / 2 && e.keyCode == '39' || positions.player.left + positions.player.width >= positions.game.right / 2 && e.keyCode == '68') {
-    console.log("S1P:", positions.sky.left, "S1D:", skydist, "S2P:", positions.sky.leftTwo, "S2D:", skyTwoDist, "S3P:", positions.sky.leftThree, "S3D:", skyThreeDist);
+    //console.log("S1P:", positions.sky.left, "S1D:", skydist, "S2P:", positions.sky.leftTwo, "S2D:", skyTwoDist, "S3P:", positions.sky.leftThree, "S3D:", skyThreeDist);
     player.style.left = positions.player.left + 'px';
     keepBackgroundsInBounds();
 
@@ -444,6 +448,27 @@ function handleRightScroll(e) {
     ground.style.left = positions.ground.left - horizontal - speed + 'px';
     groundTwo.style.left = positions.ground.leftTwo - horizontal - speed + 'px';
     groundThree.style.left = positions.ground.leftThree - horizontal - speed + 'px';
+
+    if(positions.sheep.left > positions.game.left && positions.sheep.left < positions.game.right) {
+      sheep.style.display = "block";
+      sheep.style.left = positions.sheep.left - horizontal - speed + 'px';
+    } else {
+      sheep.style.display = "none";
+    }
+
+    if(positions.ring.frontmost > positions.game.left && positions.ring.frontmost < positions.game.right) {
+      ringFront.style.display = "block";
+      ringFront.style.left = positions.ring.frontmost - horizontal - speed + 'px';
+    } else {
+      ringFront.style.display = "none";
+    }
+
+    if(positions.ring.backmost > positions.game.left && positions.ring.backmost < positions.game.right) {
+      ringBack.style.display = "block";
+      ringBack.style.left = positions.ring.backmost - horizontal - speed + 'px';
+    } else {
+      ringBack.style.display = "none";
+    }
   }
 }
 
@@ -484,6 +509,27 @@ function handleLeftScroll(e) {
     ground.style.left = positions.ground.left - horizontal + speed + 'px';
     groundTwo.style.left = positions.ground.leftTwo - horizontal + speed + 'px';
     groundThree.style.left = positions.ground.leftThree - horizontal + speed + 'px';
+    
+    if(positions.sheep.left > positions.game.left && positions.sheep.left < positions.game.right) {
+      sheep.style.display = "block";
+      sheep.style.left = positions.sheep.left - horizontal + speed + 'px';
+    } else {
+      sheep.style.display = "none";
+    }
+
+    if(positions.ring.frontmost > positions.game.left && positions.ring.frontmost < positions.game.right) {
+      ringFront.style.display = "block";
+      ringFront.style.left = positions.ring.frontmost - horizontal + speed + 'px';
+    } else {
+      ringFront.style.display = "none";
+    }
+
+    if(positions.ring.backmost > positions.game.left && positions.ring.backmost < positions.game.right) {
+      ringBack.style.display = "block";
+      ringBack.style.left = positions.ring.backmost - horizontal + speed + 'px';
+    } else {
+      ringBack.style.display = "none";
+    }
   }
     
 }
