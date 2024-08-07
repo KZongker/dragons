@@ -1273,6 +1273,102 @@ input, select {
     right: 20%;
     background-color: orange;
 }
+
+.ringCounter {
+    height: 40px;
+    width: 80px;
+    position: absolute;
+    top: 0;
+    right: 200px;
+    z-index: 1;
+    display: none;
+    background-color: transparent;
+}
+.ringNum {
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    text-align: center;
+    line-height: 40px;
+}
+.ringDisplay {
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.drFront {
+    height: 100%;
+    width: 60%;
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    left: 36%;
+    z-index: 3;
+}
+.drfTop {
+    height: 10%;
+    width: 30%;
+    position: absolute;
+    top: 5%;
+    left: 20%;
+    background-color: yellow;
+    z-index: 1;
+}
+.drfSide {
+    height: 75%;
+    width: 30%;
+    position: absolute;
+    top: 15%;
+    left: 40%;
+    background-color: yellow;
+}
+.drfBottom {
+    height: 10%;
+    width: 30%;
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    background-color: yellow;
+}
+.drBack {
+    height: 100%;
+    width: 60%;
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    left: 10%;
+    z-index: 1;
+}
+.drbTop {
+    height: 10%;
+    width: 30%;
+    position: absolute;
+    top: 5%;
+    right: 20%;
+    background-color: orange;
+}
+.drbSide {
+    height: 75%;
+    width: 30%;
+    position: absolute;
+    top: 15%;
+    left: 20%;
+    background-color: orange;
+}
+.drbBottom {
+    height: 10%;
+    width: 30%;
+    position: absolute;
+    bottom: 0;
+    right: 20%;
+    background-color: orange;
+}
 /* ring end */
 
 /*pause/timer start */

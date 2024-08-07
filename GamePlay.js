@@ -14,7 +14,13 @@ const sheepCounter = document.getElementById('sheepCounter');
 const sheepNum = document.getElementById('sheepNum');
 
 const ringFront = document.getElementById('ringFront');
+const rfTop = document.getElementById('rfTop');
+const rfSide = document.getElementById('rfSide');
+const rfBottom = document.getElementById('rfBottom');
 const ringBack = document.getElementById('ringBack');
+const rbSide = document.getElementById('rbSide');
+const ringCounter = document.getElementById('ringCounter');
+const ringNum = document.getElementById('ringNum');
 
 const startBtn = document.getElementById('startBtn');
 const startScreen = document.getElementById('startScreen');
@@ -67,64 +73,24 @@ violet.addEventListener("click", violetSelected);
 function startGame() {
     console.log("started");
     let gameSide = parseInt(window.getComputedStyle(gameBox).getPropertyValue("width"));
-    player.style.display = "block";
 
-    sky.style.display = "block";
-    skyTwo.style.display = "block";
-    skyThree.style.display = "block";
+    showGame();
+   
     skyTwo.style.left = gameSide + 'px';
     skyThree.style.left = (gameSide * 2) + 'px';
 
-    ground.style.display = "block";
-    groundTwo.style.display = "block";
-    groundThree.style.display = "block";
     groundTwo.style.left = gameSide + 'px';
     groundThree.style.left = (gameSide * 2) + 'px';
 
-    sheep.style.display = "block";
-    sheepCounter.style.display = "block";
-    ringFront.style.display = "block";
-    ringBack.style.display = "block";
     landmark.style.display = "none";
     startScreen.style.display = "none";
 
-    pauseGameBtn.style.display = "block";
-    gameTimer.style.display = "block";
     resetTimer();
     resetPosition();
     return;
 }
 
-pauseGameBtn.addEventListener("click", pauseGame);
-resumeGameBtn.addEventListener("click", resumeGame);
-
-function pauseGame() {
-  player.style.display = "none";
-
-  sky.style.display = "none";
-  skyTwo.style.display = "none";
-  skyThree.style.display = "none";
-
-  ground.style.display = "none";
-  groundTwo.style.display = "none";
-  groundThree.style.display = "none";
-
-  sheep.style.display = "none";
-  sheepCounter.style.display = "none";
-
-  ringFront.style.display = "none";
-  ringBack.style.display = "none";
-
-  pauseGameBtn.style.display = "none";
-  gameTimer.style.display = "none";
-  
-  gamePaused = true;
-  pauseScreen.style.display = "block";
-  setPlayPause();
-  currentTime.textContent = `Current Time: ${hours}:${minuteTens}${minuteOnes}:${secondsTens}${secondsOnes}`;
-}
-
-function resumeGame() {
+function showGame() {
   player.style.display = "block";
 
   sky.style.display = "block";
@@ -140,6 +106,48 @@ function resumeGame() {
 
   ringFront.style.display = "block";
   ringBack.style.display = "block";
+  ringCounter.style.display = "block";
+
+  pauseGameBtn.style.display = "block";
+  gameTimer.style.display = "block";
+}
+
+function hideGame() {
+  player.style.display = "none";
+
+  sky.style.display = "none";
+  skyTwo.style.display = "none";
+  skyThree.style.display = "none";
+
+  ground.style.display = "none";
+  groundTwo.style.display = "none";
+  groundThree.style.display = "none";
+
+  sheep.style.display = "none";
+  sheepCounter.style.display = "none";
+
+  ringFront.style.display = "none";
+  ringBack.style.display = "none";
+  ringCounter.style.display = "none";
+
+  pauseGameBtn.style.display = "none";
+  gameTimer.style.display = "none";
+}
+
+pauseGameBtn.addEventListener("click", pauseGame);
+resumeGameBtn.addEventListener("click", resumeGame);
+
+function pauseGame() {
+  hideGame();
+
+  gamePaused = true;
+  pauseScreen.style.display = "block";
+  setPlayPause();
+  currentTime.textContent = `Current Time: ${hours}:${minuteTens}${minuteOnes}:${secondsTens}${secondsOnes}`;
+}
+
+function resumeGame() {
+  showGame();
 
   gamePaused = false;
   pauseGameBtn.style.display = "block";
@@ -256,6 +264,14 @@ function updatePositions() {
   let sheepwidth = parseInt(window.getComputedStyle(sheep).getPropertyValue("width"));
   let sheepheight = parseInt(window.getComputedStyle(sheep).getPropertyValue("height"));
 
+  //ring
+  let rfpos = parseInt(window.getComputedStyle(rfSide).getPropertyValue("left"));
+  let rfwidth = parseInt(window.getComputedStyle(rfSide).getPropertyValue("width"));
+  let rftoppos = parseInt(window.getComputedStyle(rfTop).getPropertyValue("top"));
+  let rftopheight = parseInt(window.getComputedStyle(rfTop).getPropertyValue("height"));
+  let rfbotpos = parseInt(window.getComputedStyle(rfBottom).getPropertyValue("top"));
+  let rbpos = parseInt(window.getComputedStyle(rbSide).getPropertyValue("left"));
+
   // Collision Borders
   let gameTop = parseInt(window.getComputedStyle(gameBox).getPropertyValue("top"));
   let gameLeft = parseInt(window.getComputedStyle(gameBox).getPropertyValue("left"));
@@ -332,6 +348,14 @@ function updatePositions() {
         top: sheeptop,
         width: sheepwidth,
         height: sheepheight
+    },
+    ring: {
+      frontleft: rfpos,
+      frontwidth: rfwidth,
+      fronttop: rftoppos,
+      frontheight: rftopheight,
+      frontbottom: rfbotpos,
+      backleft: rbpos
     }
   }
 }
@@ -383,7 +407,8 @@ function handleRight(e) {
   player.style.transform = 'scaleX(1)'; }
   distance += 1;
   console.log(distance);
-  console.log("PL - PW >= SL:", positions.player.left + positions.player.width >= positions.sheep.left, "PL <= SL + SW:", positions.player.left <= positions.sheep.left + positions.sheep.width, "PT + PH >= ST:", positions.player.top + positions.player.height >= positions.sheep.top, "PT <= ST + SH:", positions.player.top <= positions.sheep.top + positions.sheep.height);
+  console.log("PL - PW: <= RFL + (RFW * 3)", positions.player.left - positions.player.width <= positions.ring.frontleft + (positions.ring.frontwidth * 3),"PL - PW >= RFL + (RFW *2):", positions.player.left - positions.player.width >= positions.ring.frontleft + (positions.ring.frontwidth * 2), "PT - PH >= RFT - RFH:", positions.player.top - positions.player.height >= positions.ring.fronttop - positions.ring.frontheight, "PT <= RFB + RFH:", positions.player.top <= positions.ring.frontbottom + positions.ring.frontheight);
+  //console.log("PL - PW >= SL:", positions.player.left + positions.player.width >= positions.sheep.left, "PL <= SL + SW:", positions.player.left <= positions.sheep.left + positions.sheep.width, "PT + PH >= ST:", positions.player.top + positions.player.height >= positions.sheep.top, "PT <= ST + SH:", positions.player.top <= positions.sheep.top + positions.sheep.height);
 }
 
 function handleCollissions() {
@@ -463,6 +488,7 @@ function handleLeftScroll(e) {
     
 }
 
+//collections start
 let sheepCount = 0;
 let sheepWoolColored = false;
 
@@ -489,6 +515,24 @@ function catchSheep() {
     }
 }
 
+let ringCount = 0;
+let ringCollected = false;
+
+function collectRing() {
+  if(ringCollected) {
+    return;
+  } else if(positions.player.left - positions.player.width <= positions.ring.frontleft + (positions.ring.frontwidth * 3) &&
+    positions.player.left - positions.player.width >= positions.ring.frontleft + (positions.ring.frontwidth * 2) &&
+    positions.player.top - positions.player.height >= positions.ring.fronttop - positions.ring.frontheight &&
+    positions.player.top <= positions.ring.frontbottom + positions.ring.frontheight) {
+      ringCount += 1;
+      ringNum.textContent = `${ringCount}/3`;
+        ringCollected = true;
+    }
+}
+//collections end
+
+// start timer
 let secondsOnes = 0;
 let secondsTens = 0;
 let minuteOnes = 0;
@@ -537,15 +581,7 @@ function resetTimer() {
   minuteTens = 0;
   hours = 0;
 }
-
-function pauseTimer() {
-  secondsOnes = secondsOnes;
-  secondsTens = secondsTens;
-  minuteOnes = minuteOnes;
-  minuteTens = minuteTens;
-  hours = hours;
-  gameTimer.textContent = `${hours}:${minuteTens}${minuteOnes}:${secondsTens}${secondsOnes}`;
-}
+//end timer
 
 function checkKey(e) {
   e = e || window.event;
@@ -559,4 +595,5 @@ function checkKey(e) {
   if(distance > 10 && positions.player.left <= 100 && (e.keyCode == '37' || e.keyCode == '65')) player.style.left = positions.player.left + 'px'; //fix dragon at 100px
   handleLeftScroll(e);
   catchSheep();
+  collectRing();
 }
