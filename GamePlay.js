@@ -125,7 +125,7 @@ function hideGame() {
   groundTwo.style.display = "none";
   groundThree.style.display = "none";
 
-  sheep.style.display = "none";
+  sheepContainer.style.display = "none";
   sheepCounter.style.display = "none";
 
   ringFront.style.display = "none";
@@ -407,8 +407,6 @@ function handleRight(e) {
   player.style.transform = 'scaleX(1)'; }
   distance += 1;
   console.log(distance);
-  //console.log("PL - PW: <= RFL + (RFW * 3)", positions.player.left - positions.player.width <= positions.ring.frontleft + (positions.ring.frontwidth * 3),"PL - PW >= RFL + (RFW *2):", positions.player.left - positions.player.width >= positions.ring.frontleft + (positions.ring.frontwidth * 2), "PT - PH >= RFT - RFH:", positions.player.top - positions.player.height >= positions.ring.fronttop - positions.ring.frontheight, "PT <= RFB + RFH:", positions.player.top <= positions.ring.frontbottom + positions.ring.frontheight);
-  //console.log("PL - PW >= SL:", positions.player.left + positions.player.width >= positions.sheep.left, "PL <= SL + SW:", positions.player.left <= positions.sheep.left + positions.sheep.width, "PT + PH >= ST:", positions.player.top + positions.player.height >= positions.sheep.top, "PT <= ST + SH:", positions.player.top <= positions.sheep.top + positions.sheep.height);
 }
 
 function handleCollissions() {

@@ -1007,7 +1007,7 @@ input, select {
 }
 
 .sheep {
-    background-color: darkblue;
+    background-color: transparent;
     height: 60px;
     width: 70px;
     position: absolute;
