@@ -443,6 +443,12 @@ function handleRightScroll(e) {
     groundTwo.style.left = positions.ground.leftTwo - horizontal - speed + 'px';
     groundThree.style.left = positions.ground.leftThree - horizontal - speed + 'px';
 
+    sheepArray.forEach((sheep) => {
+      let s = document.getElementById('sheep' + sheep.index);
+      sheep.left = sheep.left - horizontal - speed
+      s.style.left = sheep.left + 'px';
+    });
+
     /*if(positions.sheep.left > positions.game.left && positions.sheep.left < positions.game.right) {
       sheep.style.display = "block";
       sheep.style.left = positions.sheep.left - horizontal - speed + 'px';
@@ -503,6 +509,12 @@ function handleLeftScroll(e) {
     ground.style.left = positions.ground.left - horizontal + speed + 'px';
     groundTwo.style.left = positions.ground.leftTwo - horizontal + speed + 'px';
     groundThree.style.left = positions.ground.leftThree - horizontal + speed + 'px';
+
+    sheepArray.forEach((sheep) => {
+      let s = document.getElementById('sheep' + sheep.index);
+      sheep.left = sheep.left - horizontal + speed
+      s.style.left = sheep.left + 'px';
+    });
     
     /* if(positions.sheep.left > positions.game.left && positions.sheep.left < positions.game.right) {
       sheep.style.display = "block";
