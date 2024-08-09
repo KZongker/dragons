@@ -1208,14 +1208,15 @@ input, select {
 /* sheep end */
 
 /* ring start */
+#ringContainer {
+    display: none;
+}
+
 .ringFront {
     height: 140px;
     width: 60px;
     background-color: transparent;
     position: absolute;
-    top: 20%;
-    left: 22%;
-    display: none;
     z-index: 3;
 }
 .rfTop {
@@ -1248,9 +1249,6 @@ input, select {
     width: 60px;
     background-color: transparent;
     position: absolute;
-    top: 20%;
-    left: 20%;
-    display: none;
     z-index: 1;
 }
 .rbTop {

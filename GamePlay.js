@@ -13,11 +13,12 @@ const sheepCounter = document.getElementById('sheepCounter');
 const sheepNum = document.getElementById('sheepNum');
 const sheepContainer = document.getElementById('sheepContainer');
 
+const ringBack = document.getElementById('ringBack');
 const ringFront = document.getElementById('ringFront');
+const ringContainer = document.getElementById('ringContainer');
 const rfTop = document.getElementById('rfTop');
 const rfSide = document.getElementById('rfSide');
 const rfBottom = document.getElementById('rfBottom');
-const ringBack = document.getElementById('ringBack');
 const rbSide = document.getElementById('rbSide');
 const ringCounter = document.getElementById('ringCounter');
 const ringNum = document.getElementById('ringNum');
@@ -86,6 +87,7 @@ function startGame() {
     startScreen.style.display = "none";
 
     fillSheep();
+    fillRing();
 
     resetTimer();
     resetPosition();
@@ -106,8 +108,7 @@ function showGame() {
   sheepContainer.style.display = "block";
   sheepCounter.style.display = "block";
 
-  ringFront.style.display = "block";
-  ringBack.style.display = "block";
+  ringContainer.style.display = "block";
   ringCounter.style.display = "block";
 
   pauseGameBtn.style.display = "block";
@@ -128,8 +129,7 @@ function hideGame() {
   sheepContainer.style.display = "none";
   sheepCounter.style.display = "none";
 
-  ringFront.style.display = "none";
-  ringBack.style.display = "none";
+  ringContainer.style.display = "none";
   ringCounter.style.display = "none";
 
   pauseGameBtn.style.display = "none";
@@ -260,22 +260,6 @@ function updatePositions() {
   let heightpos = parseInt(window.getComputedStyle(player).getPropertyValue("height"));
   let widthpos = parseInt(window.getComputedStyle(player).getPropertyValue("width"));
 
-  //sheep
-  //let sheeppos = parseInt(window.getComputedStyle(sheepContainer).getPropertyValue("left"));
-  //let sheeptop = parseInt(window.getComputedStyle(sheepContainer).getPropertyValue("top"));
-  //let sheepwidth = parseInt(window.getComputedStyle(sheepContainer).getPropertyValue("width"));
-  //let sheepheight = parseInt(window.getComputedStyle(sheepContainer).getPropertyValue("height"));
-
-  //ring
-  let rfpos = parseInt(window.getComputedStyle(rfSide).getPropertyValue("left"));
-  let rfwidth = parseInt(window.getComputedStyle(rfSide).getPropertyValue("width"));
-  let rftoppos = parseInt(window.getComputedStyle(rfTop).getPropertyValue("top"));
-  let rftopheight = parseInt(window.getComputedStyle(rfTop).getPropertyValue("height"));
-  let rfbotpos = parseInt(window.getComputedStyle(rfBottom).getPropertyValue("top"));
-  let rfmpos = parseInt(window.getComputedStyle(ringFront).getPropertyValue("left"));
-  let rbpos = parseInt(window.getComputedStyle(rbSide).getPropertyValue("left"));
-  let rbmpos = parseInt(window.getComputedStyle(ringBack).getPropertyValue("left"));
-
   // Collision Borders
   let gameTop = parseInt(window.getComputedStyle(gameBox).getPropertyValue("top"));
   let gameLeft = parseInt(window.getComputedStyle(gameBox).getPropertyValue("left"));
@@ -346,16 +330,6 @@ function updatePositions() {
       top: groundTop,
       topTwo: groundTwoTop,
       topThree: groundThreeTop
-    },
-    ring: {
-      frontleft: rfpos,
-      frontwidth: rfwidth,
-      fronttop: rftoppos,
-      frontheight: rftopheight,
-      frontbottom: rfbotpos,
-      frontmost: rfmpos,
-      backleft: rbpos,
-      backmost: rbmpos
     }
   }
 }
@@ -449,26 +423,15 @@ function handleRightScroll(e) {
       s.style.left = sheep.left + 'px';
     });
 
-    /*if(positions.sheep.left > positions.game.left && positions.sheep.left < positions.game.right) {
-      sheep.style.display = "block";
-      sheep.style.left = positions.sheep.left - horizontal - speed + 'px';
-    } else {
-      sheep.style.display = "none";
-    } */
+    ringArray.forEach((ring) => {
+      ring.left = ring.left - horizontal - speed;
+      ring.secondleft = ring.secondleft - horizontal - speed;
+      let rb = document.getElementById('ringBack' + ring.index);
+      let rf = document.getElementById('ringFront' + ring.index);
+      rb.style.left = ring.left + 'px';
+      rf.style.left = ring.secondleft + 'px';
+    });
 
-    if(positions.ring.frontmost > positions.game.left && positions.ring.frontmost < positions.game.right) {
-      ringFront.style.display = "block";
-      ringFront.style.left = positions.ring.frontmost - horizontal - speed + 'px';
-    } else {
-      ringFront.style.display = "none";
-    }
-
-    if(positions.ring.backmost > positions.game.left && positions.ring.backmost < positions.game.right) {
-      ringBack.style.display = "block";
-      ringBack.style.left = positions.ring.backmost - horizontal - speed + 'px';
-    } else {
-      ringBack.style.display = "none";
-    }
   }
 }
 
@@ -515,27 +478,16 @@ function handleLeftScroll(e) {
       sheep.left = sheep.left - horizontal + speed
       s.style.left = sheep.left + 'px';
     });
+
+    ringArray.forEach((ring) => {
+      ring.left = ring.left - horizontal + speed;
+      ring.secondleft = ring.secondleft - horizontal + speed;
+      let rb = document.getElementById('ringBack' + ring.index);
+      let rf = document.getElementById('ringFront' + ring.index);
+      rb.style.left = ring.left + 'px';
+      rf.style.left = ring.secondleft + 'px';
+    });
     
-    /* if(positions.sheep.left > positions.game.left && positions.sheep.left < positions.game.right) {
-      sheep.style.display = "block";
-      sheep.style.left = positions.sheep.left - horizontal + speed + 'px';
-    } else {
-      sheep.style.display = "none";
-    } */
-
-    if(positions.ring.frontmost > positions.game.left && positions.ring.frontmost < positions.game.right) {
-      ringFront.style.display = "block";
-      ringFront.style.left = positions.ring.frontmost - horizontal + speed + 'px';
-    } else {
-      ringFront.style.display = "none";
-    }
-
-    if(positions.ring.backmost > positions.game.left && positions.ring.backmost < positions.game.right) {
-      ringBack.style.display = "block";
-      ringBack.style.left = positions.ring.backmost - horizontal + speed + 'px';
-    } else {
-      ringBack.style.display = "none";
-    }
   }
     
 }
@@ -544,7 +496,7 @@ function handleLeftScroll(e) {
 const sheepArray = [];
 
 function spawnSheep(index) {
-  const left = Math.floor(Math.random() * 100);
+  const left = Math.floor(Math.random() * 300);
   let sheeptop = parseInt(window.getComputedStyle(sheepContainer).getPropertyValue("top"));
   result = document.createElement("div");
   result.innerHTML = '<div class="sheep" style="left:' + left + '%" id="sheep' + index + '">'
@@ -581,7 +533,6 @@ function fillSheep() {
 
 //collections start
 let sheepCount = 0;
-//let sheepWoolColored = false;
 
 function catchAllSheep() {
   sheepArray.forEach((sheep) => {
@@ -590,11 +541,6 @@ function catchAllSheep() {
 }
 
 function catchSheep(sheep) {
-  /*console.log("sheep is:", sheep);
-  console.log("checks", positions.player.left + positions.player.width >= sheep.left,
-    positions.player.left <= sheep.left + sheep.width,
-    positions.player.top + positions.player.height >= sheep.top,
-    positions.player.top <= sheep.top + sheep.height) */
   if(sheep.woolColored) {
     return;
   } else if(positions.player.left + positions.player.width >= sheep.left &&
@@ -619,19 +565,55 @@ function catchSheep(sheep) {
     }
 }
 
-let ringCount = 0;
-let ringCollected = false;
+const ringArray = [];
 
-function collectRing() {
-  if(ringCollected) {
+function spawnRing(index) {
+  const left = Math.floor(Math.random() * 300) + 10;
+  const top = Math.floor(Math.random() * 50);
+  result = document.createElement("div");
+  result.innerHTML = '<div class="ringBack" id="ringBack' + index + '" style="left:' + left + '%;top:' + top + '%">'
+  +    '<div class="rbTop" id="rbTop"></div>'
+  +    '<div class="rbSide" id="rbSide"></div>'
+  +    '<div class="rbBottom" id="rbBottom"></div>'
+  + '</div>'
+    ringContainer.appendChild(result);
+    const secondleft = left + 2;
+    resultTwo = document.createElement("div");
+    resultTwo.innerHTML = '<div class="ringFront" id="ringFront' + index + '" style="left:' + secondleft + '%;top:' + top + '%">'
+  +    '<div class="rfTop" id="rfTop"></div>'
+  +    '<div class="rfSide" id="rfSide"></div>'
+  +    '<div class="rfBottom" id="rfBottom"></div>'
+  + '</div>'
+  ringContainer.appendChild(resultTwo);
+  ringArray.push({index, left: left * 1300 / 100, secondleft: secondleft * 1300 / 100, top: top, width: 60, height: 140, ringCollected: false});
+    return result, resultTwo;
+}
+
+function fillRing() {
+  for(let i= 0; i < 3; i++) {
+    spawnRing(i);
+  }
+}
+
+function collectAllRings() {
+  ringArray.forEach((ring) => {
+    collectRing(ring);
+  });
+}
+
+let ringCount = 0;
+
+function collectRing(ring) {
+  if(ring.ringCollected) {
     return;
-  } else if(positions.player.left - positions.player.width <= positions.ring.frontleft + (positions.ring.frontwidth * 3) &&
-    positions.player.left - positions.player.width >= positions.ring.frontleft + (positions.ring.frontwidth * 2) &&
-    positions.player.top - positions.player.height >= positions.ring.fronttop - positions.ring.frontheight &&
-    positions.player.top <= positions.ring.frontbottom + positions.ring.frontheight) {
+  } else if(positions.player.left + positions.player.width >= ring.left + ring.width &&
+    positions.player.left + positions.player.width <= ring.secondleft + ring.width &&
+    positions.player.top  >= ring.top &&
+    positions.player.top - positions.player.height <= ring.top + ring.height) {
+      console.log("collected!");
       ringCount += 1;
       ringNum.textContent = `${ringCount}/3`;
-        ringCollected = true;
+        ring.ringCollected = true;
     }
 }
 //collections end
@@ -695,9 +677,9 @@ function checkKey(e) {
   handleInput(e);
   handleCollissions();
   handleRightScroll(e);
-  console.log("Fix dragon", distance, positions.player.left, e.keyCode);
+  //console.log("Fix dragon", distance, positions.player.left, e.keyCode);
   if(distance > 10 && positions.player.left <= 100 && (e.keyCode == '37' || e.keyCode == '65')) player.style.left = positions.player.left + 'px'; //fix dragon at 100px
   handleLeftScroll(e);
   catchAllSheep();
-  collectRing();
+  collectAllRings();
 }
