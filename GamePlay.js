@@ -47,10 +47,15 @@ const pauseScreen = document.getElementById('pauseScreen');
 const currentTime = document.getElementById('currentTime');
 const resumeGameBtn = document.getElementById('resumeGameBtn');
 
-//temp in case player offscreen
-const resetBtn = document.getElementById('resetBtn');
+const lvlScreen = document.getElementById('lvlScreen');
+const lvlComp = document.getElementById('lvlComp');
+const lvlTime = document.getElementById('lvlTime');
+const nextLvlBtn = document.getElementById('nextLvlBtn');
 
-resetBtn.addEventListener("click", resetPosition);
+//temp in case player offscreen
+//const resetBtn = document.getElementById('resetBtn');
+
+//resetBtn.addEventListener("click", resetPosition);
 
 function resetPosition() {
     player.style.top = 0;
@@ -59,7 +64,7 @@ function resetPosition() {
         player.style.transform = 'scaleX(1)'; }
     playerX = 0;
     playerY = 0;
-    console.log("reset");
+    //console.log("reset");
     return;
 }
 // code above temporary until collisions added or game finished
@@ -380,7 +385,7 @@ function handleRight(e) {
   if(player.style.transform !== 'scaleX(1)') {
   player.style.transform = 'scaleX(1)'; }
   distance += 1;
-  console.log(distance);
+  //console.log(distance);
 }
 
 function handleCollissions() {
@@ -460,10 +465,10 @@ function keepBackgroundsInBounds() {
 function handleLeftScroll(e) {
   if((distance > 8 && positions.player.left <= 100 && e.keyCode == '37') || (distance > 10 && positions.player.left <= 100 && e.keyCode == '65')) {
     //We're scrolling left
-    console.log("Scrolling left")
-    console.log("S1P:", positions.sky.left, "S1D:", skydist, "S2P:", positions.sky.leftTwo, "S2D:", skyTwoDist, "S3P:", positions.sky.leftThree, "S3D:", skyThreeDist);
+    //console.log("Scrolling left")
+    //console.log("S1P:", positions.sky.left, "S1D:", skydist, "S2P:", positions.sky.leftTwo, "S2D:", skyTwoDist, "S3P:", positions.sky.leftThree, "S3D:", skyThreeDist);
     keepBackgroundsInBounds();
-    console.log(positions.sky.left, positions.sky.left + positions.sky.width, positions.game.right)
+    //console.log(positions.sky.left, positions.sky.left + positions.sky.width, positions.game.right)
 
     sky.style.left = positions.sky.left - horizontal + speed + 'px';
     skyTwo.style.left = positions.sky.leftTwo - horizontal + speed + 'px';
@@ -493,7 +498,7 @@ function handleLeftScroll(e) {
 }
 
 //spawn start
-const sheepArray = [];
+let sheepArray = [];
 
 function spawnSheep(index) {
   const left = Math.floor(Math.random() * 300);
@@ -525,7 +530,7 @@ function spawnSheep(index) {
 }
 
 function fillSheep() {
-  for(let i= 0; i < 5; i++) {
+  for(let i= 0; i < sheepAmt; i++) {
     spawnSheep(i);
   }
 }
@@ -548,10 +553,10 @@ function catchSheep(sheep) {
     positions.player.top + positions.player.height >= sheep.top &&
     positions.player.top <= sheep.top + sheep.height
   ) {
-    console.log("touching!!");
+    //console.log("touching!!");
     const scc = document.querySelectorAll('#sheep' + sheep.index + ' .scc');
       sheepCount += 1;
-      sheepNum.textContent = `${sheepCount}/5`;
+      sheepNum.textContent = `${sheepCount}/${sheepAmt}`;
         if(mangoSel) {
             scc.forEach((el) => el.style.backgroundColor = 'red');
         } else if(fernSel) {
@@ -565,7 +570,7 @@ function catchSheep(sheep) {
     }
 }
 
-const ringArray = [];
+let ringArray = [];
 
 function spawnRing(index) {
   const left = Math.floor(Math.random() * 300) + 10;
@@ -590,7 +595,7 @@ function spawnRing(index) {
 }
 
 function fillRing() {
-  for(let i= 0; i < 3; i++) {
+  for(let i= 0; i < ringAmt; i++) {
     spawnRing(i);
   }
 }
@@ -610,9 +615,9 @@ function collectRing(ring) {
     positions.player.left + positions.player.width <= ring.secondleft + ring.width &&
     positions.player.top  >= ring.top &&
     positions.player.top - positions.player.height <= ring.top + ring.height) {
-      console.log("collected!");
+      //console.log("collected!");
       ringCount += 1;
-      ringNum.textContent = `${ringCount}/3`;
+      ringNum.textContent = `${ringCount}/${ringAmt}`;
         ring.ringCollected = true;
     }
 }
@@ -669,6 +674,109 @@ function resetTimer() {
 }
 //end timer
 
+//start leveling up
+let sheepAmt = 5;
+let ringAmt = 3;
+let level = 0;
+let tth = 0;
+let ttmt = 0;
+let ttmo = 0;
+let ttst = 0;
+let ttso = 0;
+
+function updateTotalTime() {
+  while(ttso > 9) {
+    ttst += 1;
+    ttso -= 10;
+  }
+  while(ttst > 5) {
+    ttmo += 1;
+    ttst -= 6;
+  }
+  while(ttmo > 8) {
+    ttmt += 1;
+    ttmo -= 9;
+  }
+  while(ttmt > 4) {
+    tth += 1;
+    ttmt -=5;
+  }
+  }
+
+  let gatheredTime = 0;
+  let leveledUp = 0;
+
+  function gatherFinalTime() {
+    tth += hours;
+    ttmt += minuteTens;
+    ttmo += minuteOnes;
+    ttst += secondsTens;
+    ttso += secondsOnes;
+    updateTotalTime();
+    gatheredTime = 1;
+  }
+
+function levelUp() {
+
+  if(level > 2) {
+    if(gatheredTime < 1) {
+    gatherFinalTime();
+    }
+
+    lvlComp.textContent = "You Won!";
+    lvlTime.textContent = `Total Playtime: ${tth}:${ttmt}${ttmo}:${ttst}${ttso}`
+    hideGame();
+    lvlScreen.style.display = "block";
+    nextLvlBtn.style.display = "none";
+  } else if(sheepCount === sheepAmt && ringCount == ringAmt) {
+
+    if(leveledUp < 1) {
+      leveledUp = 1;
+      level += 1;
+    }
+
+    hideGame();
+    lvlTime.textContent = `Level Time: ${hours}:${minuteTens}${minuteOnes}:${secondsTens}${secondsOnes}`;
+    lvlScreen.style.display = "block";
+    
+  }
+}
+
+nextLvlBtn.addEventListener("click", levelSetting);
+
+function levelSetting() {
+
+    tth += hours;
+    ttmt += minuteTens;
+    ttmo += minuteOnes;
+    ttst += secondsTens;
+    ttso += secondsOnes;
+    updateTotalTime();
+
+    sheepCount = 0;
+    ringCount = 0;
+    leveledUp = 0;
+    while (sheepContainer.hasChildNodes()) {
+      sheepContainer.removeChild(sheepContainer.firstChild);
+    }
+    while (ringContainer.hasChildNodes()) {
+      ringContainer.removeChild(ringContainer.firstChild);
+    }
+    sheepArray = [];
+    ringArray = [];
+    sheepAmt += 2;
+    ringAmt +=2;
+    fillSheep();
+    fillRing();
+    ringNum.textContent = `${ringCount}/${ringAmt}`;
+    sheepNum.textContent = `${sheepCount}/${sheepAmt}`;
+
+    resetTimer();
+    showGame();
+    lvlScreen.style.display = "none";
+}
+//end leveling up
+
 function checkKey(e) {
   e = e || window.event;
   horizontal = 0;
@@ -682,4 +790,5 @@ function checkKey(e) {
   handleLeftScroll(e);
   catchAllSheep();
   collectAllRings();
+  levelUp();
 }
