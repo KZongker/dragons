@@ -546,6 +546,7 @@ function catchAllSheep() {
 }
 
 function catchSheep(sheep) {
+  let sheepBleating = document.getElementById('sheepBleating');
   if(sheep.woolColored) {
     return;
   } else if(positions.player.left + positions.player.width >= sheep.left &&
@@ -554,6 +555,7 @@ function catchSheep(sheep) {
     positions.player.top <= sheep.top + sheep.height
   ) {
     //console.log("touching!!");
+    sheepBleating.play();
     const scc = document.querySelectorAll('#sheep' + sheep.index + ' .scc');
       sheepCount += 1;
       sheepNum.textContent = `${sheepCount}/${sheepAmt}`;
@@ -609,12 +611,14 @@ function collectAllRings() {
 let ringCount = 0;
 
 function collectRing(ring) {
+  let ringTwinkle = document.getElementById('ringTwinkle');
   if(ring.ringCollected) {
     return;
   } else if(positions.player.left + positions.player.width >= ring.left + ring.width &&
     positions.player.left + positions.player.width <= ring.secondleft + ring.width &&
     positions.player.top  >= ring.top &&
     positions.player.top - positions.player.height <= ring.top + ring.height) {
+      ringTwinkle.play();
       //console.log("collected!");
       ringCount += 1;
       ringNum.textContent = `${ringCount}/${ringAmt}`;
@@ -734,7 +738,8 @@ function levelUp() {
       leveledUp = 1;
       level += 1;
     }
-
+    gamePaused = true;
+    setPlayPause();
     hideGame();
     lvlTime.textContent = `Level Time: ${hours}:${minuteTens}${minuteOnes}:${secondsTens}${secondsOnes}`;
     lvlScreen.style.display = "block";
@@ -745,6 +750,8 @@ function levelUp() {
 nextLvlBtn.addEventListener("click", levelSetting);
 
 function levelSetting() {
+  gamePaused = false;
+  setPlayPause();
 
     tth += hours;
     ttmt += minuteTens;

@@ -401,6 +401,10 @@ input, select {
 /* GALLERY END */
 
 /* GAME START */
+.hiddenmusic {
+    display: none;
+}
+
 #gameBox {
     height: 100%;
     width: 1300px;
@@ -1479,9 +1483,9 @@ font-size: 30px;
 font-style: italic;
 font-weight: bold;
 color: white;
-text-shadow: 2px 2px 4px rgb(25, 137, 185);
-background-image: linear-gradient(to bottom right, rgb(95, 203, 245), rgb(25, 124, 185));
-border: 2px solid rgb(0, 65, 95);
+text-shadow: 2px 2px 4px rgb(185, 25, 25);
+background-image: linear-gradient(to bottom right, rgb(245, 95, 95), rgb(185, 25, 25));
+border: 2px solid rgb(95, 0, 0);
 position: relative;
 top: 30%;
 }
