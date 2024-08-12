@@ -440,10 +440,19 @@ input, select {
     left: 0;
     width: 100%;
     height: 30px;
-    background-color: rgb(196, 52, 0);
+    background-color: rgb(0, 196, 0);
     z-index: 2;
     display: none;
 }
+
+/* "developer mode" colors:
+sky: lightblue;
+ground: rgb(0, 196, 0);
+skyTwo: blue;
+groundTwo: rgb(196, 52, 0);
+skyThree: cyan;
+groundThree: rgb(196, 193, 0);
+*/
 
 .groundThree {
     position: absolute;
@@ -483,7 +492,7 @@ input, select {
     left: 1300;
     width: 100%;
     height: 100%;
-    background-color: blue;
+    background-color: lightskyblue;
     z-index: 0;
     display: none;
 }
@@ -540,6 +549,21 @@ input, select {
     left: 75%;
 }
 
+#s1c7 {
+    top: 5%;
+    right: 5%;
+}
+
+#s2c4 {
+    top: 30%;
+    left: 40%;
+}
+
+#s2c5 {
+    top: 15%;
+    left: 45%;
+}
+
 .cloud2 {
     position: absolute;
     height: 80px;
@@ -579,6 +603,21 @@ input, select {
     left: 30%;
 }
 
+#s2c2 {
+    left: 10%;
+    top: 5%;
+}
+
+#s2c3 {
+    left: 30%;
+    top: 15%;
+}
+
+#s2c7 {
+    left: 80%;
+    top: 20%;
+}
+
 .cloud3 {
     position: absolute;
     height: 80px;
@@ -612,6 +651,135 @@ input, select {
 #s1c6 {
     left: 10%;
     top: 20%;
+}
+
+#s2c1 {
+    left: 2%;
+    top: 30%;
+}
+
+#s2c6 {
+    left: 60%;
+    top: 10%;
+}
+
+.cave {
+    position: absolute;
+    height: 40%;
+    width: 300px;
+    left: 30%;
+    bottom: 0;
+    background-color: grey;
+}
+
+.caveinside {
+    position: absolute;
+    height: 70%;
+    width: 50%;
+    left: 25%;
+    bottom: 0;
+    background-color: black;
+}
+
+.tree1 {
+    position: absolute;
+    height: 70%;
+    width: 200px;
+    background-color: transparent;
+}
+
+.t1i1 {
+    position: absolute;
+    height: 100%;
+    width: 20%;
+    top: 0;
+    left: 40%;
+}
+
+.t1i2 {
+    position: absolute;
+    height: 20%;
+    width: 100%;
+    top: 40%;
+    left: 0;
+}
+
+.t1i3 {
+    position: absolute;
+    height: 20%;
+    width: 80%;
+    top: 25%;
+    left: 10%;
+}
+
+.t1i4 {
+    position: absolute;
+    height: 20%;
+    width: 60%;
+    top: 10%;
+    left: 20%;
+}
+
+.t1i5 {
+    position: absolute;
+    height: 20%;
+    width: 40%;
+    top: 0;
+    left: 30%;
+}
+
+.ttc {
+    background-color: rgb(101, 55, 32);
+}
+
+.tc1 {
+    background-color: rgb(5, 100, 43);
+}
+
+#s2t1 {
+    bottom: 0;
+    left: 10%;
+}
+
+.tree2 {
+    position: absolute;
+    height: 50%;
+    width: 150px;
+    background-color: transparent;
+}
+
+.tc2 {
+    background-color: rgb(0, 196, 0);
+}
+
+#s2t2 {
+    bottom: 0;
+    left: 20%;
+}
+
+#s2t3 {
+    bottom: 0;
+    left: 50%;
+}
+
+#s2t4 {
+    bottom: 0;
+    left: 60%;
+}
+
+#s2t5 {
+    bottom: 0;
+    left: 70%;
+}
+
+#s2t6 {
+    bottom: 0;
+    left: 80%;
+}
+
+#s2t7 {
+    bottom: 0;
+    left: 5%;
 }
 
 .house {
