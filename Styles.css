@@ -460,7 +460,7 @@ groundThree: rgb(196, 193, 0);
     left: 0;
     width: 100%;
     height: 30px;
-    background-color: rgb(196, 193, 0);
+    background-color: rgb(0, 196, 0);
     z-index: 2;
     display: none;
 }
@@ -503,7 +503,7 @@ groundThree: rgb(196, 193, 0);
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: cyan;
+    background-color: lightskyblue;
     z-index: 0;
     display: none;
 }
@@ -564,6 +564,21 @@ groundThree: rgb(196, 193, 0);
     left: 45%;
 }
 
+#s3c1 {
+    top: 20%;
+    left: 2%;
+}
+
+#s3c6 {
+    top: 25%;
+    left: 65%;
+}
+
+#s3c8 {
+    top: 10%;
+    left: 95%;
+}
+
 .cloud2 {
     position: absolute;
     height: 80px;
@@ -618,6 +633,21 @@ groundThree: rgb(196, 193, 0);
     top: 20%;
 }
 
+#s2c8 {
+    left: 90%;
+    top: 5%;
+}
+
+#s3c3 {
+    left: 20%;
+    top: 30%;
+}
+
+#s3c7 {
+    left: 85%;
+    top: 5%;
+}
+
 .cloud3 {
     position: absolute;
     height: 80px;
@@ -643,13 +673,18 @@ groundThree: rgb(196, 193, 0);
     background-color: white;
 }
 
+#s3c2 {
+    left: 10%;
+    top: 5%;
+}
+
 #s1c3 {
     left: 80%;
     top: 20%;
 }
 
 #s1c6 {
-    left: 10%;
+    left: 5%;
     top: 20%;
 }
 
@@ -661,6 +696,38 @@ groundThree: rgb(196, 193, 0);
 #s2c6 {
     left: 60%;
     top: 10%;
+}
+
+#s3c4 {
+    top: 25%;
+    left: 40%;
+}
+
+#s3c5 {
+    top: 10%;
+    left: 55%;
+}
+
+.mountain1 {
+    position: absolute;
+    bottom: 0;
+    left: 40%;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-left: 300px solid transparent;
+    border-right: 300px solid transparent;
+    border-bottom: 350px solid grey;
+}
+
+.mountain2 {
+    position: absolute;
+    bottom: 0;
+    left: 60%;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-left: 200px solid transparent;
+    border-right: 200px solid transparent;
+    border-bottom: 250px solid lightgrey;
 }
 
 .cave {
@@ -736,9 +803,19 @@ groundThree: rgb(196, 193, 0);
     background-color: rgb(5, 100, 43);
 }
 
+#s1t1 {
+    bottom: 0;
+    left: 10%;
+}
+
 #s2t1 {
     bottom: 0;
     left: 10%;
+}
+
+#s3t1 {
+    bottom: 0;
+    left: 5%;
 }
 
 .tree2 {
@@ -780,6 +857,21 @@ groundThree: rgb(196, 193, 0);
 #s2t7 {
     bottom: 0;
     left: 5%;
+}
+
+#s3t2 {
+    bottom: 0;
+    left: 20%; 
+}
+
+#s3t3 {
+    bottom: 0;
+    left: 80%;
+}
+
+#s3t4 {
+    bottom: 0;
+    left: 88%;
 }
 
 .house {

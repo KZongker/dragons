@@ -52,6 +52,9 @@ const lvlComp = document.getElementById('lvlComp');
 const lvlTime = document.getElementById('lvlTime');
 const nextLvlBtn = document.getElementById('nextLvlBtn');
 
+const rpgMusic = document.getElementById('rpgMusic');
+rpgMusic.loop = true;
+
 //temp in case player offscreen
 //const resetBtn = document.getElementById('resetBtn');
 
@@ -90,6 +93,8 @@ function startGame() {
 
     landmark.style.display = "none";
     startScreen.style.display = "none";
+
+    rpgMusic.play();
 
     fillSheep();
     fillRing();
@@ -147,6 +152,7 @@ resumeGameBtn.addEventListener("click", resumeGame);
 function pauseGame() {
   hideGame();
 
+  rpgMusic.pause();
   gamePaused = true;
   pauseScreen.style.display = "block";
   setPlayPause();
@@ -156,6 +162,7 @@ function pauseGame() {
 function resumeGame() {
   showGame();
 
+  rpgMusic.play();
   gamePaused = false;
   pauseGameBtn.style.display = "block";
   gameTimer.style.display = "block";
@@ -731,6 +738,7 @@ function levelUp() {
     gatherFinalTime();
     }
 
+    rpgMusic.pause();
     lvlComp.textContent = "You Won!";
     lvlTime.textContent = `Total Playtime: ${tth}:${ttmt}${ttmo}:${ttst}${ttso}`
     hideGame();
