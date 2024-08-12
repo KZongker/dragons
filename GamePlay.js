@@ -54,6 +54,9 @@ const nextLvlBtn = document.getElementById('nextLvlBtn');
 
 const rpgMusic = document.getElementById('rpgMusic');
 rpgMusic.loop = true;
+rpgMusic.volume = 0.15;
+sheepBleating.volume = 1;
+ringTwinkle.volume = 0.25;
 
 //temp in case player offscreen
 //const resetBtn = document.getElementById('resetBtn');
