@@ -611,6 +611,8 @@ function collectAllRings() {
 let ringCount = 0;
 
 function collectRing(ring) {
+  let rbc = document.querySelectorAll('#ringBack' + ring.index);
+  let rfc = document.querySelectorAll('#ringFront' + ring.index);
   let ringTwinkle = document.getElementById('ringTwinkle');
   if(ring.ringCollected) {
     return;
@@ -619,6 +621,8 @@ function collectRing(ring) {
     positions.player.top  >= ring.top &&
     positions.player.top - positions.player.height <= ring.top + ring.height) {
       ringTwinkle.play();
+      rbc.forEach((el) => el.style.opacity = '30%');
+      rfc.forEach((el) => el.style.opacity = '30%');
       //console.log("collected!");
       ringCount += 1;
       ringNum.textContent = `${ringCount}/${ringAmt}`;
